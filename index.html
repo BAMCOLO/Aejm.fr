@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,164 +10,182 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
+    <link rel="stylesheet" href="styles.css"> <!-- Assurez-vous que le chemin est correct -->
+    <!-- Dépendance Fuse.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
     <style>
+
         /* Déclarations de variables pour un design moderne */
-        :root {
-            --primary-color: #2BB0ED;
-            --secondary-color: #2292cc;
-            --text-color: #333;
-            --background-color: #f5f5f5;
-            --card-background: white;
-            --border-radius: 10px;
-            --shadow: rgba(0, 0, 0, 0.1);
-            --section-padding: 3rem; /* Padding par défaut des sections */
-        }
+:root {
+    --primary-color: #2BB0ED; /* Couleur principale du site */
+    --secondary-color: #2292cc; /* Couleur secondaire */
+    --text-color: #333; /* Couleur du texte général */
+    --background-color: #f5f5f5; /* Couleur de fond du site */
+    --card-background: white; /* Couleur de fond des cartes */
+    --border-radius: 10px; /* Arrondi des coins */
+    --shadow: rgba(0, 0, 0, 0.1); /* Ombre légère */
+    --section-padding: 3rem; /* Espacement par défaut des sections */
+}
 
-        /* Styles globaux */
-        body {
-            margin: 0; /* Suppression des marges par défaut */
-            font-family: "Open Sans", Arial, sans-serif; /* Utilisation de la police Open Sans */
-            color: var(--text-color); /* Couleur du texte */
-            background: var(--background-color); /* Couleur de fond */
-            line-height: 1.6; /* Hauteur de ligne pour lisibilité */
-            scroll-behavior: smooth; /* Scrolling fluide */
-        }
+/* Styles globaux pour le body */
+body {
+    margin: 0; /* Supprime les marges par défaut */
+    font-family: "Open Sans", Arial, sans-serif; /* Définit la police du texte */
+    color: var(--text-color); /* Applique la couleur du texte */
+    background: var(--background-color); /* Applique la couleur de fond */
+    line-height: 1.6; /* Hauteur de ligne pour améliorer la lisibilité */
+    scroll-behavior: smooth; /* Permet un défilement fluide sur la page */
+}
 
-        header {
-            display: flex; /* Flexbox pour aligner les éléments */
-            align-items: center; /* Alignement vertical centré */
-            justify-content: space-between; /* Espacement entre logo et navigation */
-            background: var(--background-color); /* Couleur de fond de l'en-tête */
-            padding: 1rem 2rem; /* Espacement interne */
-            border-bottom: 2px solid var(--primary-color); /* Bordure en bas */
-            position: sticky; /* Rester en haut lors du défilement */
-            top: 0; /* Positionner en haut */
-            z-index: 1000; /* Pour superposition au-dessus des autres éléments */
-            box-shadow: 0 2px 5px var(--shadow); /* Ombre portée */
-            transition: top 0.3s; /* Transition pour masquer la barre de navigation */
-        }
+/* Styles pour l'en-tête */
+header {
+    display: flex; /* Utilise Flexbox pour aligner les éléments en ligne */
+    align-items: center; /* Centre les éléments verticalement */
+    justify-content: space-between; /* Espace entre le logo et le menu de navigation */
+    background: var(--background-color); /* Couleur de fond de l'en-tête */
+    padding: 1rem 2rem; /* Espacement interne de l'en-tête */
+    border-bottom: 2px solid var(--primary-color); /* Bordure inférieure avec la couleur principale */
+    position: sticky; /* Fixe l'en-tête en haut lors du défilement */
+    top: 0; /* Positionné tout en haut */
+    z-index: 1000; /* S'assure que l'en-tête reste au-dessus des autres éléments */
+    box-shadow: 0 2px 5px var(--shadow); /* Ombre portée pour l'en-tête */
+    transition: top 0.3s; /* Transition douce lors du masquage de l'en-tête */
+}
 
-        header .logo img {
-            height: 60px; /* Hauteur du logo modifiée pour plus de visibilité */
-            border-radius: var(--border-radius); /* Coins arrondis */
-            box-shadow: 0 0 10px rgba(100, 100, 100, 0.5); /* Ombre portée */
-        }
+/* Styles pour le logo dans l'en-tête */
+header .logo img {
+    height: 60px; /* Hauteur du logo */
+    border-radius: var(--border-radius); /* Arrondit les coins du logo */
+    box-shadow: 0 0 10px rgba(100, 100, 100, 0.5); /* Ombre portée autour du logo */
+}
 
-        header .logo a {
-            text-decoration: none; /* Pas de soulignement du lien */
-            color: var(--text-color); /* Couleur du texte du logo */
-            font-size: 0rem; /* Taille de la police du logo augmentée */
-            font-weight: 700; /* Gras */
-            letter-spacing: 0px; /* Espacement entre les lettres */
-        }
+/* Styles pour le lien du logo */
+header .logo a {
+    text-decoration: none; /* Pas de soulignement pour le lien */
+    color: var(--text-color); /* Couleur du texte du lien */
+    font-size: 0rem; /* Taille de la police du lien */
+    font-weight: 700; /* Met le texte en gras */
+    letter-spacing: 0px; /* Espacement entre les lettres */
+}
 
-        nav ul {
-            list-style: none; /* Pas de puces de liste */
-            display: flex; /* Flexbox pour aligner les éléments */
-            gap: 2rem; /* Espacement entre les éléments de navigation */
-            margin: 0; /* Pas de marge */
-            padding: 0; /* Pas de padding */
-        }
+/* Styles pour la navigation */
+nav ul {
+    list-style: none; /* Supprime les puces de la liste */
+    display: flex; /* Utilise Flexbox pour aligner les éléments du menu */
+    gap: 2rem; /* Espace entre les éléments de navigation */
+    margin: 0; /* Supprime la marge */
+    padding: 0; /* Supprime le padding */
+}
 
-        nav a {
-            text-decoration: none; /* Pas de soulignement */
-            color: var(--text-color); /* Couleur du texte */
-            font-weight: 600; /* Poids de la police */
-            transition: color 0.3s; /* Transition de couleur */
-            padding: 0.5rem; /* Espacement interne pour les liens */
-            border-radius: var(--border-radius); /* Coins arrondis */
-        }
+/* Styles pour les liens de navigation */
+nav a {
+    text-decoration: none; /* Pas de soulignement */
+    color: var(--text-color); /* Couleur du texte pour les liens */
+    font-weight: 600; /* Poids de la police */
+    transition: color 0.3s; /* Transition douce de la couleur */
+    padding: 0.5rem; /* Espacement interne pour les liens */
+    border-radius: var(--border-radius); /* Arrondit les coins des liens */
+}
 
-        nav a:hover {
-            background: var(--primary-color); /* Changer de fond au survol */
-            color: white; /* Texte en blanc au survol */
-        }
+/* Changement de style au survol d'un lien de navigation */
+nav a:hover {
+    background: var(--primary-color); /* Change le fond au survol */
+    color: white; /* Change la couleur du texte au survol */
+}
 
-        section {
-            padding: var(--section-padding); /* Espacement vertical des sections */
-            margin: 2rem 0; /* Marges entre les sections */
-            box-shadow: 0 4px 10px var(--shadow); /* Ombre portée */
-            border-radius: var(--border-radius); /* Coins arrondis */
-            background: white; /* Couleur de fond de la section */
-        }
+/* Styles pour les sections */
+section {
+    padding: var(--section-padding); /* Espacement vertical des sections */
+    margin: rem 0; /* Marges entre les sections */
+    box-shadow: 0 4px 10px var(--shadow); /* Ombre portée pour les sections */
+    border-radius: var(--border-radius); /* Arrondit les coins des sections */
+    background: white; /* Couleur de fond de la section */
+}
 
-        /* Section héroïque */
-        .hero {
-            position: relative; /* Position relative pour le contenu */
-            width: 97.8%; /* Largeur pleine */
-            min-height: 50vh; /* Hauteur minimale */
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url("Equipe-Aejm.jpg") no-repeat center center/cover; /* Fond d'écran avec gradient */
-            display: flex; /* Utilisation de Flexbox */
-            justify-content: center; /* Centrer horizontalement */
-            align-items: center; /* Centrer verticalement */
-            text-align: center; /* Texte centré */
-            padding: 4rem 1rem; /* Padding pour la section héroïque */
-        }
+/* Styles pour la section héroïque */
+.hero {
+    position: relative; /* Positionnement relatif pour le contenu de la section */
+    width: 97.8%; /* Largeur presque pleine */
+    min-height: 54vh; /* Hauteur minimale de la section */
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url("Equipe-Aejm.jpg") no-repeat center center/cover; /* Fond d'écran avec gradient */
+    display: flex; /* Utilise Flexbox pour centrer le contenu */
+    justify-content: center; /* Centre le contenu horizontalement */
+    align-items: center; /* Centre le contenu verticalement */
+    text-align: center; /* Centre le texte */
+    padding: 8rem 1rem; /* Espacement interne pour la section héroïque */
+}
 
-        .hero-content {
-            color: white; /* Couleur du texte dans la section héroïque */
-            max-width: 800px; /* Largeur maximale du contenu */
-            background: rgba(0, 0, 0, 0.7); /* Fond semi-transparent pour le texte */
-            padding: 2rem; /* Espacement interne du contenu */
-            border-radius: var(--border-radius); /* Coins arrondis */
-        }
+/* Styles pour le contenu de la section héroïque */
+.hero-content {
+    color: white; /* Couleur du texte dans la section héroïque */
+    max-width: 800px; /* Largeur maximale du contenu */
+    background: rgb(216 216 216 / 0%); /* Fond semi-transparent pour le texte */
+    padding: 2rem; /* Espacement interne du contenu */
+    border-radius: var(--border-radius); /* Arrondit les coins du contenu */
+}
 
-        .hero-content h2 {
-            font-size: 2.5rem; /* Taille du titre */
-            margin-bottom: 1rem; /* Marge en bas */
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9); /* Ombre portée pour le titre */
-        }
+/* Styles pour le titre dans la section héroïque */
+.hero-content h2 {
+    font-size: 3rem; /* Taille du titre */
+    margin-bottom: 1rem; /* Marge en bas du titre */
+    text-shadow: 1px 1px 4px #000000; /* Ombre portée pour le titre */
+}
 
-        .join-button {
-            padding: 0.75rem 1.5rem; /* Espacement interne */
-            background: var(--primary-color); /* Couleur de fond */
-            color: white; /* Couleur du texte */
-            border: none; /* Pas de bordure */
-            border-radius: var(--border-radius); /* Coins arrondis */
-            font-size: 1.2rem; /* Taille de la police */
-            cursor: pointer; /* Curseur pointer */
-            transition: background 0.3s, transform 0.3s; /* Transitions pour les effets */
-            box-shadow: 0 4px 8px var(--shadow); /* Ombre portée */
-        }
+/* Styles pour le bouton de rejoindre */
+.join-button {
+    padding: 0.75rem 1.5rem; /* Espacement interne du bouton */
+    background: var(--primary-color); /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte du bouton */
+    border: none; /* Pas de bordure */
+    border-radius: var(--border-radius); /* Arrondit les coins du bouton */
+    font-size: 1.2rem; /* Taille de la police du bouton */
+    cursor: pointer; /* Curseur pointer pour indiquer que c'est cliquable */
+    transition: background 0.3s, transform 0.3s; /* Transitions douces pour les effets au survol */
+    box-shadow: 0 4px 8px var(--shadow); /* Ombre portée pour le bouton */
+}
 
-        .join-button:hover {
-            background: var(--secondary-color); /* Changer de couleur au survol */
-            transform: scale(1.05); /* Légère augmentation de taille au survol */
-        }
+/* Styles au survol du bouton de rejoindre */
+.join-button:hover {
+    background: var(--secondary-color); /* Change la couleur de fond au survol */
+    transform: scale(1.05); /* Légère augmentation de la taille au survol */
+}
 
-        /* Titres de section */
-        .section-title {
-            text-align: center; /* Texte centré */
-            font-size: 2.5rem; /* Taille du titre */
-            margin-bottom: 2rem; /* Marge inférieure */
-        }
+/* Styles pour les titres de section */
+.section-title {
+    text-align: center; /* Centre le texte du titre */
+    font-size: 2.5rem; /* Taille du titre */
+    margin-bottom: 2rem; /* Marge en bas du titre */
+}
 
-        .content-grid {
-            display: grid; /* Grille pour les cartes */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Colonnes adaptables */
-            gap: 2rem; /* Espacement entre les éléments */
-            max-width: 1200px; /* Largeur maximale */
-            margin: 0 auto; /* Centré horizontalement */
-        }
+/* Styles pour une grille de contenu */
+.content-grid {
+    display: grid; /* Utilisation de la grille pour le layout */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Colonnes adaptables */
+    gap: 2rem; /* Espacement entre les éléments de la grille */
+    max-width: 1200px; /* Largeur maximale de la grille */
+    margin: 0 auto; /* Centre la grille horizontalement */
+}
 
-        .card {
-            background: var(--card-background); /* Couleur de fond de la carte */
-            border-radius: var(--border-radius); /* Coins arrondis */
-            padding: 1.5rem; /* Espacement interne */
-            box-shadow: 0 4px 6px var(--shadow); /* Ombre portée */
-            transition: transform 0.3s; /* Transition pour le survol */
-        }
+/* Styles pour une carte de contenu */
+.card {
+    background: var(--card-background); /* Couleur de fond de la carte */
+    border-radius: var(--border-radius); /* Arrondit les coins de la carte */
+    padding: 1.5rem; /* Espacement interne de la carte */
+    box-shadow: 0 4px 6px var(--shadow); /* Ombre portée autour de la carte */
+    transition: transform 0.3s; /* Transition pour l'effet de survol */
+}
 
-        .card:hover {
-            transform: translateY(-5px); /* Effet de survol */
-        }
+/* Effet de survol pour la carte */
+.card:hover {
+    transform: translateY(-5px); /* Légère élévation au survol */
+}
 
-        .card img {
-            width: 100%; /* Largeur pleine pour l'image */
-            border-radius: var(--border-radius); /* Coins arrondis */
-            margin-bottom: 1rem; /* Marge en bas de l'image */
-        }
+/* Styles pour les images des cartes */
+.card img {
+    width: 100%; /* Largeur pleine pour l'image */
+    border-radius: var(--border-radius); /* Arrondit les coins de l'image */
+    margin-bottom: 1rem; /* Marge en bas de l'image */
+}
 
         /* Styles pour le carrousel */
         .carousel-container {
@@ -1081,10 +1098,207 @@
         grid-template-columns: 1fr;
     }
 }
-</style>
-</head>
 
+        :root {
+            --primary-color: #2BB0ED;
+            --primary-dark: #2292cc;
+            --background: #ffffff;
+            --text-color: #333333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        .chat-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-toggle:hover .mina-logo {
+            transform: scale(1.1);
+            box-shadow: var(--shadow);
+        }
+
+        .mina-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .chat-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: min(400px, 95vw);
+            background: var(--background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: none;
+            flex-direction: column;
+            z-index: 999;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: var(--primary-color);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        .chat-header h2 {
+            color: white;
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        .close-button {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0 0.5rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-button:hover {
+            opacity: 0.8;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            max-height: 50vh;
+            min-height: 200px;
+            scroll-behavior: smooth;
+        }
+
+        .chat-message {
+            margin: 0.5rem 0;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            max-width: 85%;
+            word-wrap: break-word;
+            animation: messageAppear 0.3s ease;
+        }
+
+        .user-message {
+            background: var(--primary-color);
+            color: white;
+            margin-left: auto;
+        }
+
+        .mina-message {
+            background: #f5f5f5;
+            color: var(--text-color);
+            margin-right: auto;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 0.5rem;
+            padding: 1rem;
+            border-top: 1px solid #eeeeee;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #dddddd;
+            border-radius: 0.5rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .chat-input input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .chat-input button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .chat-input button:hover {
+            background: var(--primary-dark);
+        }
+
+        @keyframes messageAppear {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            gap: 0.5rem;
+            opacity: 0.7;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            animation: bounce 1.4s infinite ease-in-out;
+        }
+
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-6px); }
+        }
+
+        .quick-replies {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .quick-reply {
+            background: rgba(43, 176, 237, 0.1);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .quick-reply:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 480px) {
+            .chat-container { bottom: 70px; right: 10px; }
+            .chat-toggle { bottom: 15px; right: 15px; }
+        }
+    </style>
+</head>
 <body>
+
     <header>
         <div class="logo">
             <a href="#accueil">AEJM</a>
@@ -1107,9 +1321,31 @@
         <div class="hero-content">
             <h2>Association des Étudiants et des Jeunes de Mayotte</h2>
             <p>Engagés pour l'épanouissement des jeunes depuis 2013</p>
-            <a href="#adhesion" class="join-button">Nous rejoindre</a> <!-- Bouton pour la section d'adhésion -->
+            <a href="#adhesion" class="join-button">Nous rejoindre</a>
         </div>
     </section>
+
+<!-- Chat LA MINA -->
+<button class="chat-toggle" id="chatToggle" aria-label="Ouvrir le chat">
+    <img src="mina-head.jpg" alt="La Mina" class="mina-logo" loading="lazy">
+</button>
+
+<div class="chat-container" id="chatContainer" aria-hidden="true" role="dialog" aria-labelledby="chatTitle">
+    <div class="chat-header">
+        <h2 id="chatTitle">La Mina</h2>
+        <button id="closeChat" class="close-button" aria-label="Fermer le chat">✖</button>
+    </div>
+    <div class="chat-messages" id="chatMessages" role="log" aria-live="polite"></div>
+    <div id="typingIndicator" class="typing-indicator">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Posez votre question ici..." aria-label="Votre message">
+        <button id="sendButton" aria-label="Envoyer le message">Envoyer</button>
+    </div>
+</div>
 
 <!-- Section Blog Moderne -->
 <section class="blog-section">
@@ -1182,8 +1418,6 @@
     
     <div class="events-grid" id="eventsContainer"></div>
 </div>
-
-<!-- Script -->
 
     <!-- Section "À la une" avec carrousel d'images -->
     <section id="a-la-une" class="alaune">
@@ -1385,7 +1619,7 @@
         <p style="text-align: center; margin-top: 2rem;">&copy; 2024 AEJM - Tous droits réservés</p>
     </footer>
 
-    <script>
+<script>
     // Script pour masquer la barre de navigation au défilement  
     let lastScrollTop = 0;
     window.addEventListener("scroll", function () {
@@ -1630,13 +1864,234 @@
         });
     }
 
-    // Initialisation  
-    document.addEventListener('DOMContentLoaded', () => {
-        animateCards();
-        
-        // Intégrer ici la logique de chargement  
-    });
-</script>
-</body>
+    // Protection contre les XSS  
+const sanitizeInput = (text) => {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+};
 
+// Liste des questions-réponses pour La Mina  
+const responses = [
+    // ********** QUESTIONS GÉNÉRALES **********
+    {
+        question: ["bonjour", "salut", "coucou", "hello", "hey", "yo"], // Variantes de question  
+        answer: "👋 Bonjour ! Je suis La Mina, l'assistante virtuelle de l'AEJM. Voici ce que je peux faire pour vous :\n• Informations sur l'association\n• Gestion des adhésions\n• Programme des activités\n• Contact de l'équipe\nDites-moi comment je peux vous aider !", // Réponse  
+        quickReplies: ["Adhésion", "Événements", "Contact", "Aide"] // Réponses rapides pour l'interaction  
+    },
+    {
+        question: ["merci", "super", "parfait", "cool", "génial"],
+        answer: "😊 C'est un plaisir de vous aider ! N'hésitez pas si vous avez d'autres questions."
+    },
+    {
+        question: ["comment ça va ?", "Comment ça va"],
+        answer: "Je vais super bien 😊! Même si mon créateur ne ma toujours pas terminer, sinon je vais bien, et vous ?"
+    },
+    {
+        question: ["aide", "assistance", "sos", "urgence"],
+        answer: "🆘 Besoin d'aide immédiate ?\n• 📞 Appelez le 01 23 45 67 89 (24h/24)\n• 📧 Écrivez à urgent@aejm.org\n• 🚨 Visitez notre centre d'urgence : 12 Rue de l'Urgence, Paris"
+    },
+
+    // ********** À PROPOS DE L'ASSOCIATION **********
+    {
+        question: ["qui êtes-vous", "présentation", "aejm", "association"],
+        answer: "**L'AEJM en 5 points :**\n1. Association loi 1901 créée en 2010\n2. 15 000 membres actifs\n3. 3 domaines d'action : Éducation, Culture, Insertion\n4. Présente dans 5 régions\n5. Budget annuel : 1.2M€\n\n📌 Site officiel : https://aejm.org"
+    },
+    {
+        question: ["histoire", "fondation", "création", "origine"],
+        answer: "Notre histoire :\n▶️ 2010 : Création par 3 étudiants\n▶️ 2012 : Ouverture du premier centre\n▶️ 2015 : Lancement du programme emploi\n▶️ 2020 : Certification qualité ISO 9001\n▶️ 2023 : 50 collaborateurs permanents"
+    },
+
+    // ********** ADHÉSION **********
+    {
+        question: ["adhérer", "devenir membre", "inscription", "rejoindre", "carte membre"],
+        answer: "Pour nous rejoindre :\n1️⃣ Rendez-vous sur https://aejm.org/inscription\n2️⃣ Choisissez votre formule\n3️⃣ Complétez le formulaire\n4️⃣ Validez par email\n\n✅ Adhésion 100% gratuite !",
+        quickReplies: ["Formules", "Avantages", "Problème inscription"] // Réponses rapides associées  
+    },
+    {
+        question: ["avantages", "bénéfices", "pourquoi adhérer"],
+        answer: "**Vos avantages membres :**\n• Accès prioritaire aux événements\n• Réductions partenaires (-20%)\n• Newsletter exclusive\n• Accompagnement personnalisé\n• Carte membre digitale\n• Participation aux décisions"
+    },
+    {
+        question: ["cotisation", "prix", "gratuité", "frais"],
+        answer: "💰 Notre engagement : Zéro frais d'adhésion !\n\nL'association est financée par :\n• Subventions publiques (40%)\n• Dons privés (30%)\n• Partenariats (30%)\n\nNous garantissons la gratuité totale."
+    },
+
+    // ********** ACTIVITÉS **********
+    {
+        question: ["activités", "programme", "ateliers", "agenda"],
+        answer: "**Ce mois-ci :**\n▫️ 05/06 : Atelier CV\n▫️ 12/06 : Forum emploi\n▫️ 18/06 : Spectacle interculturel\n▫️ 25/06 : Conférence climat\n\n📅 Téléchargez l'agenda complet : https://aejm.org/agenda.pdf",
+        quickReplies: ["Emploi", "Culture", "Éducation"] // Réponses rapides associées  
+    },
+    {
+        question: ["événement spécial", "anniversaire", "fête"],
+        answer: "🎉 **10 ans de l'AEJM !**\n• Date : 15 septembre 2024\n• Lieu : Parc des Expositions Paris\n• Programme :\n   - Tables rondes\n   - Concerts\n   - Activités jeunesse\n• Inscriptions ouvertes : https://aejm.org/10ans"
+    },
+
+    // ********** CONTACT **********
+    {
+        question: ["contacter", "email", "téléphone", "adresse", "siège"],
+        answer: "📌 **Nous trouver :**\n• 📧 contact@aejm.org\n• 📞 01 23 45 67 89\n• 📍 12 Rue de la Solidarité, 75000 Paris\n• 🕒 Horaires :\n   - Lundi-Vendredi : 9h-19h\n   - Samedi : 10h-18h\n\n📡 Réseaux sociaux : @aejm_officiel"
+    },
+    {
+        question: ["équipe", "responsable", "directeur", "président"],
+        answer: "**Notre équipe :**\n• Présidente : Marie Dubois\n• Directeur général : Jean Leroy\n• 15 coordinateurs régionaux\n• 50 bénévoles actifs\n\n💼 Consultez l'organigramme : https://aejm.org/team"
+    },
+
+    // ********** SERVICES **********
+    {
+        question: ["orientation", "emploi", "carrière", "cv"],
+        answer: "🔍 **Service orientation :**\n• Bilan de compétences\n• Ateliers CV\n• Simulations d'entretien\n• Offres d'emploi exclusives\n\n📅 Prenez rendez-vous : https://aejm.org/emploi",
+        quickReplies: ["RDV", "Offres", "Formations"] // Réponses rapides associées  
+    },
+    {
+        question: ["soutien scolaire", "cours", "aide aux devoirs"],
+        answer: "📚 **Aide scolaire :**\n• 15 matières disponibles\n• 50 tuteurs qualifiés\n• Horaires flexibles\n• Plateforme en ligne\n\n👉 Première séance gratuite : https://aejm.org/soutien"
+    },
+
+    // ********** BÉNÉVOLAT **********
+    {
+        question: ["bénévolat", "volontariat", "mission", "donner temps"],
+        answer: "🤝 **Devenez bénévole :**\n1. Choisissez votre mission :\n   - Accueil\n   - Enseignement\n   - Logistique\n2. Postulez en ligne\n3. Formation gratuite\n\n➡️ Voir les opportunités : https://aejm.org/benevolat",
+        quickReplies: ["Missions", "Avantages", "Témoignages"] // Réponses rapides associées  
+    },
+    {
+        question: ["témoignage", "expérience", "avis"],
+        answer: "**Ils témoignent :**\n*« Grâce à l'AEJM, j'ai trouvé ma voie professionnelle »* - Clara, 22 ans\n\n*« Une communauté incroyablement bienveillante »* - Mohamed, 19 ans\n\n🎥 Voir les vidéos : https://aejm.org/temoignages"
+    },
+
+    // ********** DON **********
+    {
+        question: ["don", "soutenir", "financer", "contribuer"],
+        answer: "❤️ **Soutenez-nous :**\n• Don en ligne sécurisé : https://aejm.org/don\n• Par chèque à l'ordre AEJM\n• Mécénat d'entreprise\n• Legs et assurances-vie\n\n💶 Déduction fiscale : 66% du montant",
+        quickReplies: ["Déduction fiscale", "Projets financés", "Reçu"] // Réponses rapides associées  
+    },
+    {
+        question: ["utilisation dons", "projets", "financement"],
+        answer: "📊 **Répartition des fonds :**\n• 75% : Actions terrain\n• 15% : Fonctionnement\n• 10% : Innovation\n\n✅ Suivi transparent : https://aejm.org/transparence"
+    },
+
+    // ********** URGENCES **********
+    {
+        question: ["détresse", "maladie", "danger", "suicide"],
+        answer: "🚨 **Service d'urgence 24/7 :**\n• 📞 01 23 45 67 89\n• 📱 Chat d'urgence : https://aejm.org/urgence\n• 📍 Centre crise : 5 Rue des Remparts, Paris\n\nVous n'êtes pas seul, nous sommes là."
+    },
+    {
+        question: ["signalement", "abus", "harcèlement", "violence"],
+        answer: "🛡 **Protection des jeunes :**\n1. Contactez notre cellule :\n   - 📞 01 89 00 00 00\n   - 📧 protection@aejm.org\n2. Procédure confidentielle\n3. Accompagnement juridique\n\nToute situation est prise au sérieux."
+    }
+];
+
+// Configuration optimisée pour Fuse.js  
+const fuseOptions = {
+    keys: ['question'], // Indique que nous voulons rechercher dans le champ 'question'
+    threshold: 0.25, // Permet des correspondances approximatives  
+    ignoreLocation: true, // Ignore la position de la correspondance  
+    minMatchCharLength: 3, // Longueur minimum pour une correspondance  
+    shouldSort: true, // Trie les résultats  
+    includeMatches: true // Inclut les détails des correspondances  
+};
+
+const fuse = new Fuse(responses, fuseOptions); // Crée une instance de Fuse.js avec les options définies
+
+// Éléments DOM : Récupération des éléments nécessaires du DOM  
+const chatContainer = document.getElementById('chatContainer'); // Conteneur du chat  
+const userInput = document.getElementById('userInput'); // Champ de saisie de l'utilisateur  
+const sendButton = document.getElementById('sendButton'); // Bouton d'envoi  
+let isChatOpen = false; // État du chat (ouvert ou fermé)
+
+// Gestion du chat : Fonction pour ouvrir ou fermer le chat  
+const toggleChat = () => {
+    isChatOpen = !isChatOpen; // Inverse l'état du chat  
+    chatContainer.style.display = isChatOpen ? 'flex' : 'none'; // Affiche ou masque le conteneur  
+    chatContainer.setAttribute('aria-hidden', !isChatOpen); // Met à jour l'attribut ARIA pour l'accessibilité  
+    if (isChatOpen) userInput.focus(); // Focalise le champ de saisie si le chat est ouvert  
+};
+
+// Événements pour ouvrir/fermer le chat  
+document.getElementById('chatToggle').addEventListener('click', toggleChat); // Ouvre le chat  
+document.getElementById('closeChat').addEventListener('click', toggleChat); // Ferme le chat
+
+// Gestion du clavier : Écoute la touche 'Escape' pour fermer le chat  
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isChatOpen) toggleChat(); // Ferme le chat si 'Escape' est pressé  
+});
+
+// Affichage des messages : Fonction pour afficher les messages  
+const displayMessage = (text, sender, options = {}) => {
+    const messageDiv = document.createElement('div'); // Crée un élément div pour le message  
+    messageDiv.className = `chat-message ${sender}-message`; // Définit la classe du message (utilisateur ou Mina)
+    messageDiv.textContent = sanitizeInput(text); // Définit le texte du message
+
+    // Si des réponses rapides sont fournies  
+    if (options.quickReplies) {
+        const quickRepliesDiv = document.createElement('div'); // Crée un div pour les réponses rapides  
+        quickRepliesDiv.className = 'quick-replies'; // Définit la classe pour les réponses rapides
+
+        options.quickReplies.forEach(reply => {
+            const button = document.createElement('div'); // Crée un bouton pour chaque réponse rapide  
+            button.className = 'quick-reply'; // Définit la classe pour le bouton  
+            button.textContent = reply; // Définit le texte du bouton
+
+            // Événement onclick pour chaque réponse rapide  
+            button.onclick = () => {
+                userInput.value = reply; // Remplit le champ de saisie avec la réponse rapide  
+                sendMessage(); // Envoie le message  
+            };
+
+            quickRepliesDiv.appendChild(button); // Ajoute le bouton des réponses rapides au div  
+        });
+
+        messageDiv.appendChild(quickRepliesDiv); // Ajoute les réponses rapides au message  
+    }
+
+    document.getElementById('chatMessages').appendChild(messageDiv); // Ajoute le message au conteneur de messages  
+    chatContainer.scrollTo(0, chatContainer.scrollHeight); // Fait défiler jusqu'en bas du chat  
+};
+
+// Gestion des réponses : Fonction pour obtenir une réponse basée sur l'entrée de l'utilisateur  
+const getResponse = (input) => {
+    const cleanInput = input.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Normalise l'entrée  
+    const result = fuse.search(cleanInput)[0]; // Cherche la réponse correspondante
+
+    if (result) {
+        return result.item; // Renvoie l'objet correspondant  
+    } else {
+        // Réponse par défaut si aucune correspondance n'est trouvée  
+        return {
+            answer: "Désolé, je n'ai pas compris votre question. Pourriez-vous reformuler ?",
+            quickReplies: ["Aide", "Contact", "Adhésion"] // Réponses rapides par défaut  
+        };
+    }
+};
+
+// Envoi de message : Fonction pour gérer l'envoi de messages  
+const sendMessage = async () => {
+    const message = userInput.value.trim(); // Récupère et nettoie le message de l'utilisateur  
+    if (!message) return; // Ne fait rien si le message est vide
+
+    displayMessage(message, 'user'); // Affiche le message de l'utilisateur  
+    userInput.value = ''; // Réinitialise le champ de saisie
+
+    // Simulation délai réponse  
+    document.getElementById('typingIndicator').style.display = 'flex'; // Affiche l'indicateur de saisie  
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Attend 1 seconde (simule le temps de réponse)
+    document.getElementById('typingIndicator').style.display = 'none'; // Masque l'indicateur de saisie
+
+    const response = getResponse(message); // Récupère la réponse à partir du message  
+    displayMessage(response.answer, 'mina', { quickReplies: response.quickReplies }); // Affiche la réponse de La Mina  
+};
+
+// Événements pour interagir avec le chatbot  
+document.getElementById('sendButton').addEventListener('click', sendMessage); // Événement pour le bouton d'envoi  
+userInput.addEventListener('keypress', (e) => e.key === 'Enter' && sendMessage()); // Envoie le message si 'Entrée' est pressé  
+
+// Initialisation : Écoute l'événement DOMContentLoaded pour démarrer le chatbot une fois le contenu chargé  
+document.addEventListener('DOMContentLoaded', () => {
+    // Appelle la fonction pour animer les cartes (si nécessaire)
+    animateCards();
+});
+</script>
+
+</body>
 </html>
