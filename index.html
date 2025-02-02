@@ -412,79 +412,383 @@ section {
     opacity: 1;
 }
 
-        /* Styles de la section adhésion */
-        .adhesion-section {
-            text-align: center; /* Texte centré */
-            padding: 2rem; /* Espacement interne */
-            background: var(--form-background); /* Couleur de fond */
-            border-radius: 10px; /* Coins arrondis */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Ombre portée */
-            max-width: 600px; /* Largeur maximale */
-            margin: 2rem auto; /* Marges verticales */
-            display: block; /* Afficher le formulaire par défaut */
-        }
-        
-        .adhesion-section h2 {
-            margin-bottom: 1.5rem; /* Marge inférieure */
-            color: var(--primary-color); /* Couleur du titre */
-        }
+    /* Styles de la section adhésion */
+.adhesion-section {
+    padding: 4rem 1.5rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
 
-        #adhesion-form {
-            display: grid; /* Grille pour le formulaire */
-            gap: 1.5rem; /* Espacement entre les éléments du formulaire */
-        }
+.adhesion-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
 
-        .form-group {
-            display: flex; /* Flexbox pour les groupes de champs */
-            flex-direction: column; /* Alignement vertical des éléments */
-            gap: 0.5rem; /* Espacement entre les éléments */
-        }
+.adhesion-header {
+    padding: 2.5rem;
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+}
 
-        input,
-        textarea {
-            padding: 0.8rem; /* Espacement interne */
-            border: 1px solid var(--form-border); /* Bordure */
-            border-radius: 5px; /* Coins arrondis */
-            font-size: 1rem; /* Taille de la police */
-            transition: border-color 0.3s ease; /* Transition pour le focus */
-        }
+.adhesion-header h2 {
+    font-size: 2.25rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
 
-        input:focus,
-        textarea:focus {
-            outline: none; /* Pas de contour au focus */
-            border-color: var(--primary-color); /* Changement de couleur de bordure */
-            box-shadow: 0 0 0 3px rgba(43, 176, 237, 0.2); /* Ombre au focus */
-        }
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
 
-        button[type="submit"] {
-            background: var(--primary-color); /* Couleur de fond du bouton */
-            color: white; /* Couleur du texte */
-            padding: 1rem; /* Espacement interne */
-            border: none; /* Pas de bordure */
-            border-radius: 5px; /* Coins arrondis */
-            font-size: 1.1rem; /* Taille de la police */
-            cursor: pointer; /* Curseur pointer */
-            transition: background 0.3s ease; /* Transition pour le survol */
-        }
+.cta-container {
+    padding: 2rem;
+    text-align: center;
+}
 
-        button[type="submit"]:hover {
-            background: var(--secondary-color); /* Changer de couleur au survol */
-        }
+.benefits-list {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.benefit-item i {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.join-button {
+    position: relative;
+    padding: 1.25rem 3rem;
+    background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.join-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.join-button i {
+    transition: transform 0.3s ease;
+}
+
+.join-button:hover i {
+    transform: translateX(3px);
+}
+
+.form-container {
+    display: none;
+    padding: 2.5rem;
+    animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.success-message {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+    background: #f0fdf4;
+    border: 2px solid #4ade80;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.success-message i {
+    color: #22c55e;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.form-footer {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.disclaimer {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 1rem;
+}
+
+.disclaimer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
 
         /* Styles de la section contact */
-        .contact-section {
-            padding: 2rem; /* Espacement interne */
-            background: var(--form-background); /* Couleur de fond */
-            border-radius: 10px; /* Coins arrondis */
-            box-shadow: 0 2px 10px var(--shadow); /* Ombre portée */
-            max-width: 600px; /* Largeur maximale */
-            margin: 2rem auto; /* Marges verticales */
-        }
+.contact-section {
+    padding: 4rem 1.5rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
 
-        .contact-section h2 {
-            margin-bottom: 1.5rem; /* Marge inférieure */
-            color: var(--primary-color); /* Couleur du titre */
-        }
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.contact-header {
+    padding: 2.5rem;
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+.contact-header h2 {
+    font-size: 2.25rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.contact-wrapper {
+    padding: 2.5rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.floating-label label {
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    color: #6b7280;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floating-label input,
+.floating-label textarea {
+    width: 100%;
+    padding: 1.5rem 0 0.5rem;
+    border: none;
+    border-radius: 0;
+    background: none;
+    border-bottom: 2px solid #e5e7eb;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.floating-label textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.floating-label input:focus,
+.floating-label textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.floating-label input:focus ~ label,
+.floating-label input:valid ~ label,
+.floating-label textarea:focus ~ label,
+.floating-label textarea:valid ~ label {
+    transform: translateY(-1.2rem);
+    font-size: 0.875rem;
+    color: var(--primary-color);
+}
+
+.underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+input:focus ~ .underline,
+textarea:focus ~ .underline {
+    transform: scaleX(1);
+}
+
+.submit-btn {
+    position: relative;
+    width: 100%;
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.submit-btn i {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover i {
+    opacity: 1;
+    right: 1.5rem;
+}
+
+.loader {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.contact-alert {
+    display: none;
+    padding: 1.5rem;
+    background: #f0fdf4;
+    border: 2px solid #4ade80;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    align-items: center;
+    gap: 1rem;
+    animation: slideIn 0.5s ease;
+}
+
+.contact-alert i {
+    color: #22c55e;
+    font-size: 1.5rem;
+}
+
+.divider {
+    position: relative;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.divider span {
+    padding: 0 1rem;
+    background: white;
+    position: relative;
+    z-index: 1;
+    color: #6b7280;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e5e7eb;
+}
+
+.contact-methods {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+.contact-method:hover {
+    transform: translateX(5px);
+    background: #f1f5f9;
+}
+
+.contact-method i {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
 
        /* Styles de la section partenaires */
 .partners-section {
@@ -711,43 +1015,135 @@ section {
         padding: 1rem;
     }
 }
+/* =====================
+   PIED DE PAGE MODERNISÉ
+   ===================== */
+footer {
+    background: linear-gradient(160deg, #2d2d2d 0%, #1a1a1a 100%);
+    color: #f8f9fa;
+    padding: 4rem 2rem 2rem;
+    border-top: 3px solid var(--primary-color);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
 
-        /* Styles du pied de page */
-        footer {
-            background: #2d2d2d; /* Couleur de fond du pied de page */
-            color: white; /* Couleur du texte */
-            padding: 3rem 2rem; /* Espacement interne */
-            margin-top: 4rem; /* Marge supérieure */
-        }
+.footer-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 3rem;
+    padding-bottom: 2rem;
+}
 
-        .footer-content {
-            max-width: 1200px; /* Largeur maximale */
-            margin: 0 auto; /* Centré horizontalement */
-            display: grid; /* Grille pour les sections du pied de page */
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Colonnes adaptables */
-            gap: 2rem; /* Espacement entre les sections */
-        }
+.footer-section {
+    position: relative;
+    padding-left: 2rem;
+}
 
-        .footer-section h3 {
-            color: var(--primary-color); /* Couleur du titre */
-            margin-bottom: 1rem; /* Marge inférieure */
-        }
+.footer-section:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
 
-        .social-links {
-            display: flex; /* Alignement horizontal des icônes */
-            gap: 1rem; /* Espacement entre les icônes */
-            margin-top: 1rem; /* Marge supérieure */
-        }
+.footer-section h3 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
 
-        .social-links a {
-            color: white; /* Couleur des icônes */
-            font-size: 1.5rem; /* Taille des icônes */
-            transition: color 0.3s; /* Transition pour le survol */
-        }
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--primary-color);
+}
 
-        .social-links a:hover {
-            color: var(--primary-color); /* Couleur au survol */
-        }
+.footer-section p {
+    line-height: 1.8;
+    margin: 0.8rem 0;
+    opacity: 0.9;
+    max-width: 280px;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.6rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.social-links a:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+footer > p {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.8;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-section {
+        padding-left: 0;
+        text-align: center;
+    }
+    
+    .footer-section:not(:first-child)::before {
+        display: none;
+    }
+    
+    .footer-section h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-section p {
+        max-width: none;
+    }
+}
 
         /* Styles responsives */
         @media (max-width: 768px) {
@@ -779,220 +1175,7 @@ section {
                 width: 100%; /* Largeur complète sur mobile */
             }
         }
-        :root {
-    --primary: #CouleurPrincipale; 
-    --secondary: #CouleurSecondaire;
-    --light: #CouleurFond;
-    --dark: #CouleurTexte;
-}
-
-:root {
-    --primary: #2A2D34;
-    --accent: #5F6C7B;
-    --hover: #3F51B5;
-    --soft-bg: #F8FAFC;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.blog-section {
-    padding: 6rem 0;
-    background: var(--soft-bg);
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    letter-spacing: -0.05em;
-    margin-bottom: 4rem;
-    color: var(--primary);
-    position: relative;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: var(--accent);
-}
-
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 3rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.blog-card {
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    transition: var(--transition);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.blog-card:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-    transform: translateY(-4px);
-}
-
-.blog-image {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 16/9;
-}
-
-.blog-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
-}
-
-.blog-image:hover img {
-    transform: scale(1.03);
-}
-
-.category-tag {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 0.25rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--primary);
-    backdrop-filter: blur(4px);
-}
-
-.blog-content {
-    padding: 1.5rem;
-}
-
-.meta-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-    color: var(--accent);
-}
-
-.blog-title {
-    font-size: 1.5rem;
-    line-height: 1.3;
-    margin-bottom: 1rem;
-    color: var(--primary);
-}
-
-.blog-title a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.hover-underline {
-    position: relative;
-    display: inline-block;
-}
-
-.hover-underline::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--hover);
-    transition: var(--transition);
-}
-
-.hover-underline:hover::after {
-    width: 100%;
-}
-
-.blog-excerpt {
-    color: #64748B;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-.author-info {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.author-img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.author-name {
-    font-weight: 500;
-    color: var(--primary);
-    margin-bottom: 0.25rem;
-}
-
-.author-role {
-    font-size: 0.85rem;
-    color: var(--accent);
-}
-
-.load-more {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 4rem auto 0;
-    padding: 1rem 2.5rem;
-    background: transparent;
-    color: var(--primary);
-    border: 2px solid var(--accent);
-    border-radius: 50px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.load-more:hover {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-}
-
-.arrow-icon {
-    width: 20px;
-    height: 20px;
-    stroke-width: 2;
-    transition: transform 0.3s ease;
-}
-
-.load-more:hover .arrow-icon {
-    transform: translateY(2px);
-}
-
-@media (max-width: 768px) {
-    .blog-section {
-        padding: 4rem 0;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .blog-grid {
-        gap: 2rem;
-    }
-}
+        
     </style>
 
     <style>
@@ -1295,6 +1478,168 @@ section {
             .chat-container { bottom: 70px; right: 10px; }
             .chat-toggle { bottom: 15px; right: 15px; }
         }
+
+   /* =====================
+   SECTION ÉQUIPE MODERNISÉE
+   ===================== */
+#equipe {
+    padding: var(--section-padding);
+    background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#equipe h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+    color: var(--primary-color);
+}
+
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+    scroll-behavior: smooth;
+}
+
+.team-member {
+    position: relative;
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cardEntrance 0.6s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+.team-member::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 1rem 1rem 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.team-member:hover::before {
+    opacity: 1;
+}
+
+.team-member img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.3s ease;
+    border: 3px solid var(--primary-color);
+    padding: 3px;
+}
+
+.team-member:hover img {
+    filter: grayscale(0%);
+}
+
+.team-member h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #2d2d2d;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.crown {
+    font-size: 1.4rem;
+    color: #ffd700;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+    animation: crownGlow 2s ease-in-out infinite;
+}
+
+.team-member p:first-of-type {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.team-member p:last-child {
+    color: #666;
+    line-height: 1.6;
+    text-align: center;
+    margin-top: auto;
+    font-size: 0.9rem;
+}
+
+/* Animation */
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes crownGlow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Scroll personnalisé */
+.team-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.team-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.team-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .team-container {
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(280px, 1fr);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 1rem;
+    }
+
+    .team-member {
+        scroll-snap-align: start;
+        min-width: 280px;
+    }
+
+    #equipe h2 {
+        font-size: 2rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -1347,69 +1692,7 @@ section {
     </div>
 </div>
 
-<!-- Section Blog Moderne -->
-<section class="blog-section">
-    <div class="container">
-        <h2 class="section-title">Actualités</h2>
-        
-        <div class="blog-grid">
-            <!-- Article 1 -->
-            <article class="blog-card">
-                <div class="blog-image">
-                    <img src="Logo_qui.jpg" alt="Image article" loading="lazy">
-                    <div class="category-tag">Technologie</div>
-                </div>
-                <div class="blog-content">
-                    <div class="meta-info">
-                        <span class="blog-date">15 Mars 2024</span>
-                        <span class="read-time">5 min read</span>
-                    </div>
-                    <h3 class="blog-title"><a href="#" class="hover-underline">Titre de l'article principal</a></h3>
-                    <p class="blog-excerpt">Courte description de l'article avec les informations clés à mettre en avant...</p>
-                    <div class="author-info">
-                        <img src="https://via.placeholder.com/40" alt="Auteur" class="author-img">
-                        <div>
-                            <p class="author-name">Mina Soilihi</p>
-                            <p class="author-role">Chargé de communication</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Article 2 -->
-            <article class="blog-card">
-                <div class="blog-image">
-                    <img src="https://via.placeholder.com/600x400" alt="Image article" loading="lazy">
-                    <div class="category-tag">Design</div>
-                </div>
-                <div class="blog-content">
-                    <div class="meta-info">
-                        <span class="blog-date">14 Mars 2024</span>
-                        <span class="read-time">4 min read</span>
-                    </div>
-                    <h3 class="blog-title"><a href="#" class="hover-underline">Un autre article intéressant</a></h3>
-                    <p class="blog-excerpt">Exemple de texte de présentation pour cet article de blog...</p>
-                    <div class="author-info">
-                        <img src="https://via.placeholder.com/40" alt="Auteur" class="author-img">
-                        <div>
-                            <p class="author-name">Marie Leroy</p>
-                            <p class="author-role">Directrice artistique</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <button class="load-more">
-            <span>Voir plus</span>
-            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M12 5v14M19 12l-7 7-7-7"/>
-            </svg>
-        </button>
-    </div>
-</section>
-
-<!-- HTML -->
+<!-- HTML CALENDRIER -->
 <div class="event-calendar">
     <div class="calendar-header">
         <h2>Calendrier des Événements</h2>
@@ -1515,34 +1798,81 @@ section {
 </section>
 
 <!-- Section adhésion -->
-    <section id="adhesion" class="adhesion-section">
-        <h2>Adhésion</h2>
-        <p>Voulez-vous vraiment devenir membre ?</p>
-        <button id="confirm-join-button" class="join-button">Oui, je veux devenir membre</button> <!-- Nouveau bouton pour confirmation -->
-        
-        <div id="adhesion-form-container" style="display: none;"> <!-- Conteneur pour le formulaire masqué par défaut -->
-            <p>Veuillez remplir le formulaire ci-dessous :</p>
-            <form id="adhesion-form">
-                <div class="form-group">
-                    <label for="name">Nom et Prénom</label>
-                    <input type="text" id="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Téléphone</label>
-                    <input type="tel" id="phone">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" rows="4"></textarea>
-                </div>
-                <button type="submit">Envoyer</button>
-            </form>
+<section id="adhesion" class="adhesion-section">
+    <div class="adhesion-container">
+        <div class="adhesion-header">
+            <h2>👋 Rejoignez notre communauté</h2>
+            <p class="subtitle">Devenez membre de l'AEJM en 2 minutes</p>
         </div>
-    </section>
+
+        <div class="cta-container" id="cta-container">
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Adhésion 100% gratuite</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-gift"></i>
+                    <span>Avantages exclusifs</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-users"></i>
+                    <span>Communauté bienveillante</span>
+                </div>
+            </div>
+            
+            <button id="confirm-join-button" class="join-button">
+                <span>Commencer l'inscription</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <div id="adhesion-form-container" class="form-container">
+            <form id="adhesion-form" class="animated-form">
+                <div class="form-grid">
+                    <div class="form-group floating-label">
+                        <input type="text" id="name" required autocomplete="name">
+                        <label for="name">Nom complet</label>
+                        <div class="underline"></div>
+                    </div>
+                    
+                    <div class="form-group floating-label">
+                        <input type="email" id="email" required autocomplete="email">
+                        <label for="email">Adresse email</label>
+                        <div class="underline"></div>
+                    </div>
+                    
+                    <div class="form-group floating-label">
+                        <input type="tel" id="phone" autocomplete="tel">
+                        <label for="phone">Téléphone (optionnel)</label>
+                        <div class="underline"></div>
+                    </div>
+                    
+                    <div class="form-group floating-label">
+                        <textarea id="message" rows="3"></textarea>
+                        <label for="message">Message (optionnel)</label>
+                        <div class="underline"></div>
+                    </div>
+                </div>
+
+                <div class="form-footer">
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Finaliser mon adhésion</span>
+                        <div class="loader"></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <p class="disclaimer">En cliquant, vous acceptez nos <a href="#">conditions d'utilisation</a></p>
+                </div>
+            </form>
+
+            <div class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <h3>Bienvenue dans l'AEJM !</h3>
+                <p>Votre inscription a bien été enregistrée. Vous allez recevoir un email de confirmation.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Section partenaires améliorée -->
 <section id="partenaires" class="partners-section">
@@ -1574,26 +1904,100 @@ section {
     </div>
 </section>
 
+<!-- Section Équipe -->
+<section id="equipe">
+    <h2>Notre Équipe</h2>
+    <div class="team-container" id="teamContainer">
+        <div class="team-member animate">
+            <img src="member1.jpg" alt="Marie Dubois" loading="lazy">
+            <h3>
+                Marie Dubois  
+                <span class="crown" aria-label="Président">&#x1F3C5;</span> <!-- Emoji couronne -->
+            </h3>
+            <p>Présidente</p>
+            <p>Marie est passionnée par l'éducation et travaille sans relâche pour l'épanouissement des jeunes.</p>
+        </div>
+        <div class="team-member animate">
+            <img src="member2.jpg" alt="Jean Leroy" loading="lazy">
+            <h3>Jean Leroy</h3>
+            <p>Directeur général</p>
+            <p>Jean gère les opérations de l'association et s'assure que nos projets avancent efficacement.</p>
+        </div>
+        <div class="team-member animate">
+            <img src="member3.jpg" alt="Sophie Martin" loading="lazy">
+            <h3>Sophie Martin</h3>
+            <p>Coordinateur régional</p>
+            <p>Sophie travaille directement avec les membres et coordonne nos activités sur le terrain.</p>
+        </div>
+        <!-- Ajoutez d'autres membres ici -->
+    </div>
+</section>
+
     <!-- Section contact -->
-    <section id="contact" class="contact-section">
-        <h2>Contactez-nous</h2>
-        <p>Vous pouvez nous contacter pour toute demande, question ou suggestion :</p>
-        <form id="contact-form">
-            <div class="form-group">
-                <label for="contact-name">Nom</label>
-                <input type="text" id="contact-name" required>
+<section id="contact" class="contact-section">
+    <div class="contact-container">
+        <div class="contact-header">
+            <h2>📬 Contactez-nous</h2>
+            <p class="subtitle">Une question, une suggestion ou simplement envie de discuter ? Écrivez-nous !</p>
+        </div>
+        
+        <div class="contact-wrapper">
+            <form id="contact-form" class="animated-form">
+                <div class="form-grid">
+                    <div class="form-group floating-label">
+                        <input type="text" id="contact-name" required autocomplete="name">
+                        <label for="contact-name">Nom et prénom complet</label>
+                        <div class="underline"></div>
+                    </div>
+                    
+                    <div class="form-group floating-label">
+                        <input type="email" id="contact-email" required autocomplete="email">
+                        <label for="contact-email">Adresse email</label>
+                        <div class="underline"></div>
+                    </div>
+                </div>
+
+                <div class="form-group floating-label">
+                    <textarea id="contact-message" rows="4" required></textarea>
+                    <label for="contact-message">Votre message</label>
+                    <div class="underline"></div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Envoyer le message</span>
+                    <div class="loader"></div>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+
+            <div class="contact-alert success">
+                <i class="fas fa-check-circle"></i>
+                <p>Message envoyé avec succès !</p>
             </div>
-            <div class="form-group">
-                <label for="contact-email">Email</label>
-                <input type="email" id="contact-email" required>
+
+            <div class="alternative-contact">
+                <div class="divider">
+                    <span>Ou</span>
+                </div>
+                
+                <div class="contact-methods">
+                    <a href="tel:+33123456789" class="contact-method">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>01 23 45 67 89</span>
+                    </a>
+                    <a href="mailto:contact@aejm.org" class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@aejm.org</span>
+                    </a>
+                    <div class="contact-method">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>12 Rue de la Solidarité<br>75000 Paris</span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="contact-message">Message</label>
-                <textarea id="contact-message" rows="4"></textarea>
-            </div>
-            <button type="submit">Envoyer</button>
-        </form>
-    </section>
+        </div>
+    </div>
+</section>
 
     <!-- Pied de page -->
     <footer>
@@ -1806,63 +2210,59 @@ section {
         });
     }
 
-    // Configuration des articles  
-    const blogPosts = [
-        {
-            category: 'Événement',
-            image: 'https://via.placeholder.com/600x400',
-            date: '13 Mars 2024',
-            title: 'Nouvelle fonctionnalité',
-            excerpt: 'Découvrez notre dernière mise à jour...',
-            author: {
-                name: 'Pierre Martin',
-                role: 'Lead Developer',
-                avatar: 'https://via.placeholder.com/40'
-            },
-            link: '#'
-        },
-        // Ajouter plus d'articles...
-    ];
+    // Gestion de l'adhésion
+document.getElementById('confirm-join-button').addEventListener('click', function() {
+    document.getElementById('cta-container').style.display = 'none';
+    document.getElementById('adhesion-form-container').style.display = 'block';
+});
 
-    // Fonction de création d'article  
-    function createBlogPost(post) {
-        return `
-            <article class="blog-card">
-                <div class="blog-image">
-                    <img src="${post.image}" alt="Image article" loading="lazy">
-                    <div class="category-tag">${post.category}</div>
-                </div>
-                <div class="blog-content">
-                    <div class="meta-info">
-                        <span class="blog-date">${post.date}</span>
-                        <span class="read-time">${post.readTime || '3 min read'}</span>
-                    </div>
-                    <h3 class="blog-title">
-                        <a href="${post.link}" class="hover-underline">${post.title}</a>
-                    </h3>
-                    <p class="blog-excerpt">${post.excerpt}</p>
-                    <div class="author-info">
-                        <img src="${post.author.avatar}" alt="${post.author.name}" class="author-img">
-                        <div>
-                            <p class="author-name">${post.author.name}</p>
-                            <p class="author-role">${post.author.role}</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        `;
+document.getElementById('adhesion-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const submitBtn = form.querySelector('.submit-btn');
+    const loader = submitBtn.querySelector('.loader');
+    const btnText = submitBtn.querySelector('.btn-text');
+    
+    // Validation des champs
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
     }
 
-    // Animation au chargement  
-    function animateCards() {
-        gsap.from('.blog-card', {
-            duration: 0.8,
-            y: 50,
-            opacity: 0,
-            stagger: 0.1,
-            ease: 'power3.out'
-        });
+    try {
+        // Simulation de chargement
+        submitBtn.disabled = true;
+        btnText.style.opacity = '0';
+        loader.style.display = 'block';
+
+        // Simulation d'envoi
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        // Affichage du message de succès
+        form.style.display = 'none';
+        document.querySelector('.success-message').style.display = 'block';
+        
+    } catch (error) {
+        alert("Une erreur est survenue, veuillez réessayer.");
+    } finally {
+        submitBtn.disabled = false;
+        btnText.style.opacity = '1';
+        loader.style.display = 'none';
     }
+});
+
+// Animation des labels flottants
+document.querySelectorAll('.floating-label input, .floating-label textarea').forEach(input => {
+    input.addEventListener('input', function() {
+        const label = this.previousElementSibling;
+        if (this.value) {
+            label.classList.add('active');
+        } else {
+            label.classList.remove('active');
+        }
+    });
+});
 
     // Protection contre les XSS  
 const sanitizeInput = (text) => {
@@ -1877,108 +2277,128 @@ const responses = [
     {
         question: ["bonjour", "salut", "coucou", "hello", "hey", "yo"], // Variantes de question  
         answer: "👋 Bonjour ! Je suis La Mina, l'assistante virtuelle de l'AEJM. Voici ce que je peux faire pour vous :\n• Informations sur l'association\n• Gestion des adhésions\n• Programme des activités\n• Contact de l'équipe\nDites-moi comment je peux vous aider !", // Réponse  
-        quickReplies: ["Adhésion", "Événements", "Contact", "Aide"] // Réponses rapides pour l'interaction  
+        quickReplies: ["Adhésion", "Événements", "Contact", "Aide"] // Réponses rapides 
     },
     {
         question: ["merci", "super", "parfait", "cool", "génial"],
-        answer: "😊 C'est un plaisir de vous aider ! N'hésitez pas si vous avez d'autres questions."
+        answer: "😊 C'est un plaisir de vous aider ! N'hésitez pas si vous avez d'autres questions.",
+        quickReplies: ["Comment ça va ?", "Que peux-tu faire ?"]
     },
     {
-        question: ["comment ça va ?", "Comment ça va"],
-        answer: "Je vais super bien 😊! Même si mon créateur ne ma toujours pas terminer, sinon je vais bien, et vous ?"
+        question: ["comment ça va ?", "comment vas-tu ?", "comment tu vas"],
+        answer: "Je vais très bien, merci ! 😊 Et vous ? Si vous avez des questions, je suis là pour y répondre.",
+        quickReplies: ["Adhésion", "Aide", "Événements"]
+    },
+    {
+        question: ["qu'est-ce que tu peux faire pour moi ?", "qu'est-ce que tu sais faire ?", "que proposes-tu ?"],
+        answer: "Je peux vous aider avec diverses informations comme :\n• Adhésion à l'association\n• Détails sur nos événements\n• Réponses à toutes vos questions sur l'AEJM\nDites-moi ce dont vous avez besoin !",
+        quickReplies: ["Adhésion", "Événements", "Contact"]
     },
     {
         question: ["aide", "assistance", "sos", "urgence"],
-        answer: "🆘 Besoin d'aide immédiate ?\n• 📞 Appelez le 01 23 45 67 89 (24h/24)\n• 📧 Écrivez à urgent@aejm.org\n• 🚨 Visitez notre centre d'urgence : 12 Rue de l'Urgence, Paris"
+        answer: "🆘 Besoin d'aide immédiate ?\n• 📞 Appelez le 01 23 45 67 89 (24h/24)\n• 📧 Écrivez à urgent@aejm.org\n• 🚨 Visitez notre centre d'urgence : 12 Rue de l'Urgence, Paris",
+        quickReplies: ["Contact", "Urgence", "Aide"]
     },
 
     // ********** À PROPOS DE L'ASSOCIATION **********
     {
         question: ["qui êtes-vous", "présentation", "aejm", "association"],
-        answer: "**L'AEJM en 5 points :**\n1. Association loi 1901 créée en 2010\n2. 15 000 membres actifs\n3. 3 domaines d'action : Éducation, Culture, Insertion\n4. Présente dans 5 régions\n5. Budget annuel : 1.2M€\n\n📌 Site officiel : https://aejm.org"
+        answer: "**L'AEJM en 5 points :**\n1. Association loi 1901 créée en 2010\n2. 15 000 membres actifs\n3. 3 domaines d'action : Éducation, Culture, Insertion\n4. Présente dans 5 régions\n5. Budget annuel : 1.2M€\n\n📌 Site officiel : https://aejm.org",
+        quickReplies: ["Histoire", "Équipe", "Activités"]
     },
     {
         question: ["histoire", "fondation", "création", "origine"],
-        answer: "Notre histoire :\n▶️ 2010 : Création par 3 étudiants\n▶️ 2012 : Ouverture du premier centre\n▶️ 2015 : Lancement du programme emploi\n▶️ 2020 : Certification qualité ISO 9001\n▶️ 2023 : 50 collaborateurs permanents"
+        answer: "Notre histoire :\n▶️ 2010 : Création par 3 étudiants\n▶️ 2012 : Ouverture du premier centre\n▶️ 2015 : Lancement du programme emploi\n▶️ 2020 : Certification qualité ISO 9001\n▶️ 2023 : 50 collaborateurs permanents",
+        quickReplies: ["À propos", "Équipe", "Contact"]
     },
 
     // ********** ADHÉSION **********
     {
         question: ["adhérer", "devenir membre", "inscription", "rejoindre", "carte membre"],
         answer: "Pour nous rejoindre :\n1️⃣ Rendez-vous sur https://aejm.org/inscription\n2️⃣ Choisissez votre formule\n3️⃣ Complétez le formulaire\n4️⃣ Validez par email\n\n✅ Adhésion 100% gratuite !",
-        quickReplies: ["Formules", "Avantages", "Problème inscription"] // Réponses rapides associées  
+        quickReplies: ["Formules", "Avantages", "Problème inscription"] 
     },
     {
         question: ["avantages", "bénéfices", "pourquoi adhérer"],
-        answer: "**Vos avantages membres :**\n• Accès prioritaire aux événements\n• Réductions partenaires (-20%)\n• Newsletter exclusive\n• Accompagnement personnalisé\n• Carte membre digitale\n• Participation aux décisions"
+        answer: "**Vos avantages membres :**\n• Accès prioritaire aux événements\n• Réductions partenaires (-20%)\n• Newsletter exclusive\n• Accompagnement personnalisé\n• Carte membre digitale\n• Participation aux décisions",
+        quickReplies: ["Inscription", "Aide"]
     },
     {
         question: ["cotisation", "prix", "gratuité", "frais"],
-        answer: "💰 Notre engagement : Zéro frais d'adhésion !\n\nL'association est financée par :\n• Subventions publiques (40%)\n• Dons privés (30%)\n• Partenariats (30%)\n\nNous garantissons la gratuité totale."
+        answer: "💰 Notre engagement : Zéro frais d'adhésion !\n\nL'association est financée par :\n• Subventions publiques (40%)\n• Dons privés (30%)\n• Partenariats (30%)\n\nNous garantissons la gratuité totale.",
+        quickReplies: ["Comment adhérer ?", "Avantages"]
     },
 
     // ********** ACTIVITÉS **********
     {
         question: ["activités", "programme", "ateliers", "agenda"],
         answer: "**Ce mois-ci :**\n▫️ 05/06 : Atelier CV\n▫️ 12/06 : Forum emploi\n▫️ 18/06 : Spectacle interculturel\n▫️ 25/06 : Conférence climat\n\n📅 Téléchargez l'agenda complet : https://aejm.org/agenda.pdf",
-        quickReplies: ["Emploi", "Culture", "Éducation"] // Réponses rapides associées  
+        quickReplies: ["Événements", "Culture", "Éducation"]
     },
     {
         question: ["événement spécial", "anniversaire", "fête"],
-        answer: "🎉 **10 ans de l'AEJM !**\n• Date : 15 septembre 2024\n• Lieu : Parc des Expositions Paris\n• Programme :\n   - Tables rondes\n   - Concerts\n   - Activités jeunesse\n• Inscriptions ouvertes : https://aejm.org/10ans"
+        answer: "🎉 **10 ans de l'AEJM !**\n• Date : 15 septembre 2024\n• Lieu : Parc des Expositions Paris\n• Programme :\n   - Tables rondes\n   - Concerts\n   - Activités jeunesse\n• Inscriptions ouvertes : https://aejm.org/10ans",
+        quickReplies: ["Activités", "Contact"]
     },
 
     // ********** CONTACT **********
     {
         question: ["contacter", "email", "téléphone", "adresse", "siège"],
-        answer: "📌 **Nous trouver :**\n• 📧 contact@aejm.org\n• 📞 01 23 45 67 89\n• 📍 12 Rue de la Solidarité, 75000 Paris\n• 🕒 Horaires :\n   - Lundi-Vendredi : 9h-19h\n   - Samedi : 10h-18h\n\n📡 Réseaux sociaux : @aejm_officiel"
+        answer: "📌 **Nous trouver :**\n• 📧 contact@aejm.org\n• 📞 01 23 45 67 89\n• 📍 12 Rue de la Solidarité, 75000 Paris\n• 🕒 Horaires :\n   - Lundi-Vendredi : 9h-19h\n   - Samedi : 10h-18h\n\n📡 Réseaux sociaux : @aejm_officiel",
+        quickReplies: ["Équipe", "Urgence", "Aide"]
     },
     {
-        question: ["équipe", "responsable", "directeur", "président"],
-        answer: "**Notre équipe :**\n• Présidente : Marie Dubois\n• Directeur général : Jean Leroy\n• 15 coordinateurs régionaux\n• 50 bénévoles actifs\n\n💼 Consultez l'organigramme : https://aejm.org/team"
+        question: ["équipe", "membres", "présentez l'équipe", "qui sont les membres"],
+        answer: "Voici notre équipe :\n\n👩‍💼 **Marie Dubois** - Présidente : Marie est passionnée par l'éducation et travaille sans relâche pour l'épanouissement des jeunes.\n\n👨‍💼 **Jean Leroy** - Directeur général : Jean gère les opérations de l'association et s'assure que nos projets avancent efficacement.\n\n👩‍🏫 **Sophie Martin** - Coordinateur régional : Sophie travaille directement avec les membres et coordonne nos activités sur le terrain.\n\nPour en savoir plus, consultez notre site web : https://aejm.org",
+        quickReplies: ["Contact", "Aide"]
     },
 
     // ********** SERVICES **********
     {
         question: ["orientation", "emploi", "carrière", "cv"],
         answer: "🔍 **Service orientation :**\n• Bilan de compétences\n• Ateliers CV\n• Simulations d'entretien\n• Offres d'emploi exclusives\n\n📅 Prenez rendez-vous : https://aejm.org/emploi",
-        quickReplies: ["RDV", "Offres", "Formations"] // Réponses rapides associées  
+        quickReplies: ["RDV", "Offres", "Formations"]
     },
     {
         question: ["soutien scolaire", "cours", "aide aux devoirs"],
-        answer: "📚 **Aide scolaire :**\n• 15 matières disponibles\n• 50 tuteurs qualifiés\n• Horaires flexibles\n• Plateforme en ligne\n\n👉 Première séance gratuite : https://aejm.org/soutien"
+        answer: "📚 **Aide scolaire :**\n• 15 matières disponibles\n• 50 tuteurs qualifiés\n• Horaires flexibles\n• Plateforme en ligne\n\n👉 Première séance gratuite : https://aejm.org/soutien",
+        quickReplies: ["Détails", "Formations"]
     },
 
     // ********** BÉNÉVOLAT **********
     {
         question: ["bénévolat", "volontariat", "mission", "donner temps"],
         answer: "🤝 **Devenez bénévole :**\n1. Choisissez votre mission :\n   - Accueil\n   - Enseignement\n   - Logistique\n2. Postulez en ligne\n3. Formation gratuite\n\n➡️ Voir les opportunités : https://aejm.org/benevolat",
-        quickReplies: ["Missions", "Avantages", "Témoignages"] // Réponses rapides associées  
+        quickReplies: ["Missions", "Avantages", "Témoignages"]
     },
     {
         question: ["témoignage", "expérience", "avis"],
-        answer: "**Ils témoignent :**\n*« Grâce à l'AEJM, j'ai trouvé ma voie professionnelle »* - Clara, 22 ans\n\n*« Une communauté incroyablement bienveillante »* - Mohamed, 19 ans\n\n🎥 Voir les vidéos : https://aejm.org/temoignages"
+        answer: "**Ils témoignent :**\n*« Grâce à l'AEJM, j'ai trouvé ma voie professionnelle »* - Clara, 22 ans\n\n*« Une communauté incroyablement bienveillante »* - Mohamed, 19 ans\n\n🎥 Voir les vidéos : https://aejm.org/temoignages",
+        quickReplies: ["Contact", "Aide"]
     },
 
     // ********** DON **********
     {
         question: ["don", "soutenir", "financer", "contribuer"],
         answer: "❤️ **Soutenez-nous :**\n• Don en ligne sécurisé : https://aejm.org/don\n• Par chèque à l'ordre AEJM\n• Mécénat d'entreprise\n• Legs et assurances-vie\n\n💶 Déduction fiscale : 66% du montant",
-        quickReplies: ["Déduction fiscale", "Projets financés", "Reçu"] // Réponses rapides associées  
+        quickReplies: ["Déduction fiscale", "Projets financés", "Reçu"]
     },
     {
         question: ["utilisation dons", "projets", "financement"],
-        answer: "📊 **Répartition des fonds :**\n• 75% : Actions terrain\n• 15% : Fonctionnement\n• 10% : Innovation\n\n✅ Suivi transparent : https://aejm.org/transparence"
+        answer: "📊 **Répartition des fonds :**\n• 75% : Actions terrain\n• 15% : Fonctionnement\n• 10% : Innovation\n\n✅ Suivi transparent : https://aejm.org/transparence",
+        quickReplies: ["Détails financiers", "Aide"]
     },
 
     // ********** URGENCES **********
     {
         question: ["détresse", "maladie", "danger", "suicide"],
-        answer: "🚨 **Service d'urgence 24/7 :**\n• 📞 01 23 45 67 89\n• 📱 Chat d'urgence : https://aejm.org/urgence\n• 📍 Centre crise : 5 Rue des Remparts, Paris\n\nVous n'êtes pas seul, nous sommes là."
+        answer: "🚨 **Service d'urgence 24/7 :**\n• 📞 01 23 45 67 89\n• 📱 Chat d'urgence : https://aejm.org/urgence\n• 📍 Centre crise : 5 Rue des Remparts, Paris\n\nVous n'êtes pas seul, nous sommes là.",
+        quickReplies: ["Urgence", "Aide"]
     },
     {
         question: ["signalement", "abus", "harcèlement", "violence"],
-        answer: "🛡 **Protection des jeunes :**\n1. Contactez notre cellule :\n   - 📞 01 89 00 00 00\n   - 📧 protection@aejm.org\n2. Procédure confidentielle\n3. Accompagnement juridique\n\nToute situation est prise au sérieux."
+        answer: "🛡 **Protection des jeunes :**\n1. Contactez notre cellule :\n   - 📞 01 89 00 00 00\n   - 📧 protection@aejm.org\n2. Procédure confidentielle\n3. Accompagnement juridique\n\nToute situation est prise au sérieux.",
+        quickReplies: ["Aide", "Urgence"]
     }
 ];
 
