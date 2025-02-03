@@ -30,7 +30,7 @@
 /* Styles globaux pour le body */
 body {
     margin: 0; /* Supprime les marges par défaut */
-    font-family: "Open Sans", Arial, sans-serif; /* Définit la police du texte */
+    font-family: "Open Sans",, sans-serif; /* Définit la police du texte */
     color: var(--text-color); /* Applique la couleur du texte */
     background: var(--background-color); /* Applique la couleur de fond */
     line-height: 1.6; /* Hauteur de ligne pour améliorer la lisibilité */
@@ -816,11 +816,9 @@ textarea:focus ~ .underline {
 }
 
 .partners-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    justify-content: center;
     gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .partner-card {
@@ -832,6 +830,7 @@ textarea:focus ~ .underline {
     flex-direction: column;
     position: relative;
     overflow: hidden;
+    width: 300px; /* Vous pouvez ajuster la largeur du card */
 }
 
 .partner-card:hover {
@@ -906,12 +905,116 @@ textarea:focus ~ .underline {
 }
 
 @media (max-width: 768px) {
-    .partners-grid {
-        grid-template-columns: 1fr;
-    }
-    
     .section-title {
         font-size: 2rem;
+    }
+}
+/* Section partenaires horizontale */
+.partners-section {
+    padding: 6rem 1.5rem;
+    background: var(--section-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.partners-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.partners-track {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2rem;
+}
+
+/* Masquer la scrollbar */
+.partners-track::-webkit-scrollbar {
+    display: none;
+}
+
+.partner-card {
+    scroll-snap-align: start;
+    flex: 0 0 360px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.partner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation */
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.scroll-btn:hover {
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.scroll-btn.prev {
+    left: 2%;
+}
+
+.scroll-btn.next {
+    right: 2%;
+}
+
+.scroll-btn i {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .partners-container {
+        padding: 0 1rem;
+    }
+    
+    .partner-card {
+        flex: 0 0 300px;
+    }
+    
+    .scroll-btn {
+        width: 48px;
+        height: 48px;
+        display: none; /* Cacher sur mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .partner-card {
+        flex: 0 0 280px;
+        padding: 1.5rem;
+    }
+    
+    .partner-logo-container {
+        height: 100px;
     }
 }
 
@@ -1664,7 +1767,7 @@ footer > p {
     <!-- Section héroïque avec contenu principal -->
     <section id="accueil" class="hero">
         <div class="hero-content">
-            <h2>Association des Étudiants et des Jeunes de Mayotte</h2>
+            <h2>Association des Étudiants et des Jeunes de Mayotte - AEJM</h2>
             <p>Engagés pour l'épanouissement des jeunes depuis 2013</p>
             <a href="#adhesion" class="join-button">Nous rejoindre</a>
         </div>
@@ -1730,19 +1833,19 @@ footer > p {
         <div class="content-grid">
             <div class="card">
                 <h3>Santé & Prévention</h3>
-                <img src="image_sante_prevention.jpg" alt="Santé & Prévention" style="width: 100%; border-radius: var(--border-radius); margin-bottom: 1rem;">
+                <img src="Prévention.jpg" alt="Santé & Prévention" style="width: 100%; border-radius: var(--border-radius); margin-bottom: 1rem;">
                 <p>Campagnes de sensibilisation et ateliers de prévention santé</p>
                 <iframe src="https://www.youtube.com/embed/ID_VIDEO_1" title="Vidéo Santé & Prévention" allowfullscreen style="width: 100%; height: 200px; border-radius: var(--border-radius);"></iframe>
             </div>
             <div class="card">
                 <h3>Animation locale</h3>
-                <img src="image_animation_locale.jpg" alt="Animation Locale" style="width: 100%; border-radius: var(--border-radius); margin-bottom: 1rem;">
+                <img src="Animation.jpg" alt="Animation Locale" style="width: 100%; border-radius: var(--border-radius); margin-bottom: 1rem;">
                 <p>Organisation d'événements culturels et sportifs</p>
                 <iframe src="https://www.youtube.com/embed/ID_VIDEO_2" title="Vidéo Animation Locale" allowfullscreen style="width: 100%; height: 200px; border-radius: var(--border-radius);"></iframe>
             </div>
             <div class="card">
                 <h3>Accompagnement</h3>
-                <img src="image_accompagnement.jpg" alt="Accompagnement" style="width: 100%; border-radius: var(--border-radius); margin-bottom: 1rem;">
+                <img src="Accompagnement.jpg" alt="Accompagnement" style="width: 100%; border-radius: var(--border-radius); margin-bottom: 1rem;">
                 <p>Aide à l'orientation scolaire et professionnelle</p>
                 <iframe src="https://www.youtube.com/embed/ID_VIDEO_3" title="Vidéo Accompagnement" allowfullscreen style="width: 100%; height: 200px; border-radius: var(--border-radius);"></iframe>
             </div>
@@ -1802,7 +1905,7 @@ footer > p {
     <div class="adhesion-container">
         <div class="adhesion-header">
             <h2>👋 Rejoignez notre communauté</h2>
-            <p class="subtitle">Devenez membre de l'AEJM en 2 minutes</p>
+            <p class="subtitle">Devenez Bénévolot de l'AEJM en 2 minutes</p>
         </div>
 
         <div class="cta-container" id="cta-container">
@@ -1874,34 +1977,94 @@ footer > p {
     </div>
 </section>
 
-<!-- Section partenaires améliorée -->
+<!-- Section partenaires horizontale -->
 <section id="partenaires" class="partners-section">
-    <h2 class="section-title">Nos Partenaires</h2>
-    <div class="partners-grid">
-        <article class="partner-card">
-            <div class="partner-logo-container">
-                <img src="logo-partenaire1.png" alt="Logo Partenaire 1" class="partner-logo" loading="lazy">
-            </div>
-            <div class="partner-content">
-                <h3 class="partner-name">Partenaire 1</h3>
-                <p class="partner-description">Description du partenariat ou des services offerts.</p>
-                <a href="#" class="partner-link" aria-label="En savoir plus sur Partenaire 1">→</a>
-            </div>
-        </article>
-
-        <article class="partner-card">
-            <div class="partner-logo-container">
-                <img src="logo-partenaire2.png" alt="Logo Partenaire 2" class="partner-logo" loading="lazy">
-            </div>
-            <div class="partner-content">
-                <h3 class="partner-name">Partenaire 2</h3>
-                <p class="partner-description">Description du partenariat ou des services offerts.</p>
-                <a href="#" class="partner-link" aria-label="En savoir plus sur Partenaire 2">→</a>
-            </div>
-        </article>
-
-        <!-- Répéter pour les autres partenaires -->
+    <div class="section-header">
+        <h2 class="section-title">Nos Partenaires</h2>
+        <p class="section-subtitle">Collaborations stratégiques</p>
     </div>
+
+    <div class="partners-container">
+        <div class="partners-track">
+            <!-- Carte partenaire 1 -->
+            <article class="partner-card">
+                <div class="card-inner">
+                    <div class="partner-logo-container">
+                        <img src="logo-partenaire1.png" alt="Logo Partenaire 1" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-content">
+                        <h3 class="partner-name">Partenaire 1</h3>
+                        <p class="partner-description">Synergies sectorielles innovantes</p>
+                        <a href="#" class="partner-link">
+                            <span>Explorer</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Répétez les cartes partenaires suivantes -->
+            <!-- Carte partenaire 2 -->
+            <article class="partner-card">
+                <div class="card-inner">
+                    <div class="partner-logo-container">
+                        <img src="logo-partenaire1.png" alt="Logo Partenaire 1" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-content">
+                        <h3 class="partner-name">Partenaire 1</h3>
+                        <p class="partner-description">Synergies sectorielles innovantes</p>
+                        <a href="#" class="partner-link">
+                            <span>Explorer</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+                <!-- ... même structure ... -->
+            </article>
+            <article class="partner-card">
+                <div class="card-inner">
+                    <div class="partner-logo-container">
+                        <img src="logo-partenaire1.png" alt="Logo Partenaire 1" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-content">
+                        <h3 class="partner-name">Partenaire 1</h3>
+                        <p class="partner-description">Synergies sectorielles innovantes</p>
+                        <a href="#" class="partner-link">
+                            <span>Explorer</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="partner-card">
+                <div class="card-inner">
+                    <div class="partner-logo-container">
+                        <img src="logo-partenaire1.png" alt="Logo Partenaire 1" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-content">
+                        <h3 class="partner-name">Partenaire 1</h3>
+                        <p class="partner-description">Synergies sectorielles innovantes</p>
+                        <a href="#" class="partner-link">
+                            <span>Explorer</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Ajoutez autant de cartes que nécessaire -->
+        </div>
+    </div>
+
+    <!-- Contrôles de navigation -->
+    <button class="scroll-btn prev" aria-label="Partenaire précédent">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="scroll-btn next" aria-label="Partenaire suivant">
+        <i class="fas fa-chevron-right"></i>
+    </button>
 </section>
 
 <!-- Section Équipe -->
@@ -2037,6 +2200,33 @@ footer > p {
         lastScrollTop = st <= 0 ? 0 : st; // Pour éviter des valeurs négatives  
     });
 
+    document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.partners-track');
+    const prevBtn = document.querySelector('.scroll-btn.prev');
+    const nextBtn = document.querySelector('.scroll-btn.next');
+    const cardWidth = document.querySelector('.partner-card').offsetWidth + 32; // 32 = gap (2rem)
+
+    nextBtn.addEventListener('click', () => {
+        track.scrollBy({
+            left: cardWidth,
+            behavior: 'smooth'
+        });
+    });
+
+    prevBtn.addEventListener('click', () => {
+        track.scrollBy({
+            left: -cardWidth,
+            behavior: 'smooth'
+        });
+    });
+
+    // Désactiver les boutons aux extrémités
+    track.addEventListener('scroll', () => {
+        prevBtn.disabled = track.scrollLeft === 0;
+        nextBtn.disabled = track.scrollLeft + track.offsetWidth >= track.scrollWidth;
+    });
+});
+
     // Script pour le carrousel  
     document.addEventListener("DOMContentLoaded", () => {
         const carousel = document.querySelector(".carousel");
@@ -2123,18 +2313,18 @@ footer > p {
     // Événements modifiables ici  
     const events = [
         {
-            date: "15 Mars 2024",
-            title: "Atelier Orientation",
+            date: "15 Octobre 2025",
+            title: "Salon de l'étudiant et de l'apprenti de Mayotte",
             category: "Éducation",
             description: "Session d'orientation professionnelle pour les jeunes",
             location: "Maison des Jeunes"
         },
         {
             date: "22 Mars 2024",
-            title: "Clean Walk",
+            title: "Education",
             category: "Environnement",
-            description: "Collecte de déchets dans le centre-ville",
-            location: "Place de la République"
+            description: "Animation et vie étudiante",
+            location: "Maison Des Jeunes"
         },
         {
             date: "28 Mars 2024",
@@ -2276,7 +2466,7 @@ const responses = [
     // ********** QUESTIONS GÉNÉRALES **********
     {
         question: ["bonjour", "salut", "coucou", "hello", "hey", "yo"], // Variantes de question  
-        answer: "👋 Bonjour ! Je suis La Mina, l'assistante virtuelle de l'AEJM. Voici ce que je peux faire pour vous :\n• Informations sur l'association\n• Gestion des adhésions\n• Programme des activités\n• Contact de l'équipe\nDites-moi comment je peux vous aider !", // Réponse  
+        answer: "👋 Bonjour ! Je suis La Mina, l'assistante virtuelle de l'AEJM. Voici ce que je peux faire pour vous :\n• Informations sur l'association\n• Gestion des adhésions\n• Programme des activités\n• Contact de l'équipe\nDites-moi comment je peux vous aider !\nNa MOUKARIBOU", // Réponse  
         quickReplies: ["Adhésion", "Événements", "Contact", "Aide"] // Réponses rapides 
     },
     {
