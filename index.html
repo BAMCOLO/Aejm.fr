@@ -1282,109 +1282,232 @@ footer > p {
     </style>
 
     <style>
+/* Section Calendrier Agenda */
+
 :root {
     --primary: #2BB0ED;
+    --primary-hover: #1E90C0;
     --secondary: #6c757d;
-    --light: #f8f9fa;
-    --dark: #212529;
+    --light: #ffffff;
+    --dark: #2A2E35;
+    --accent: #FF6B6B;
+    --gradient: linear-gradient(135deg, var(--primary) 0%, #4A90E2 100%);
 }
 
 .event-calendar {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 1400px;
+    margin: 4rem auto;
+    padding: 3rem 2rem;
+    background: var(--light);
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
 }
 
 .calendar-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.header-content {
+    margin-bottom: 2.5rem;
 }
 
 .calendar-header h2 {
-    font-size: 2.5rem;
-    color: var(--primary);
+    font-size: 2.75rem;
+    color: var(--dark);
     margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.calendar-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--primary);
+}
+
+.section-subtitle {
+    color: var(--secondary);
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
 }
 
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
 }
 
 .event-card {
-    padding: 1.5rem;
-    border-radius: 12px;
     background: var(--light);
-    transition: transform 0.3s ease;
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.event-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .event-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.event-card:hover::before {
+    opacity: 1;
 }
 
 .event-date {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .date-badge {
-    background: var(--primary);
+    background: var(--gradient);
     color: white;
-    padding: 0.8rem 1.2rem;
-    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
     text-align: center;
+    line-height: 1.3;
+    min-width: 70px;
+    box-shadow: 0 4px 12px rgba(43,176,237,0.2);
+}
+
+.date-badge span:first-child {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: block;
+}
+
+.date-badge span:last-child {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .event-content h3 {
     color: var(--dark);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+
+.event-content p {
+    color: var(--secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.event-content small {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    font-weight: 500;
 }
 
 .event-category {
-    display: inline-block;
-    padding: 0.3rem 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 1rem;
     border-radius: 20px;
     font-size: 0.8rem;
-    background: var(--secondary);
-    color: white;
+    background: rgba(43,176,237,0.1);
+    color: var(--primary);
+    border: 1px solid rgba(43,176,237,0.2);
 }
 
-/* Filtres */
 .filter-buttons {
     display: flex;
     gap: 1rem;
     justify-content: center;
+    flex-wrap: wrap;
     margin-bottom: 2rem;
 }
 
 .filter-btn {
-    padding: 0.5rem 1.5rem;
+    padding: 0.7rem 1.8rem;
     border: none;
-    border-radius: 25px;
-    background: var(--light);
+    border-radius: 30px;
+    background: rgba(43,176,237,0.1);
+    color: var(--primary);
     cursor: pointer;
     transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .filter-btn.active {
-    background: var(--primary);
     color: white;
 }
 
+.filter-btn.active::before {
+    opacity: 1;
+}
+
+.filter-btn span {
+    position: relative;
+    z-index: 1;
+}
+
 @media (max-width: 768px) {
+    .event-calendar {
+        padding: 2rem 1rem;
+        margin: 2rem auto;
+    }
+    
+    .calendar-header h2 {
+        font-size: 2rem;
+    }
+    
     .events-grid {
         grid-template-columns: 1fr;
     }
+    
+    .filter-buttons {
+        gap: 0.8rem;
+    }
+    
+    .filter-btn {
+        padding: 0.6rem 1.5rem;
+    }
 }
 
+/* Section Chatbot */
         :root {
             --primary-color: #2BB0ED;
             --primary-dark: #2292cc;
@@ -1977,37 +2100,40 @@ footer > p {
     <section id="accueil" class="hero">
         <div class="hero-content">
             <h2>Association des Étudiants et des Jeunes de Mayotte - AEJM</h2>
-            <p>Engagés pour l'épanouissement des jeunes depuis 2013</p>
+            <p>Engagées pour l'épanouissement des jeunes depuis 2013</p>
             <a href="#adhesion" class="join-button">Nous rejoindre</a>
         </div>
     </section>
 
-<!-- Chat LA MINA -->
-<button class="chat-toggle" id="chatToggle" aria-label="Ouvrir le chat">
-    <img src="mina-head.jpg" alt="La Mina" class="mina-logo" loading="lazy">
-</button>
+ <!-- Chat LA MINA -->
+    <button class="chat-toggle" id="chatToggle" aria-label="Ouvrir le chat">
+        <img src="mina-head.jpg" alt="La Mina" class="mina-logo" loading="lazy">
+    </button>
 
-<div class="chat-container" id="chatContainer" aria-hidden="true" role="dialog" aria-labelledby="chatTitle">
-    <div class="chat-header">
-        <h2 id="chatTitle">La Mina</h2>
-        <button id="closeChat" class="close-button" aria-label="Fermer le chat">✖</button>
+    <div class="chat-container" id="chatContainer" aria-hidden="true" role="dialog" aria-labelledby="chatTitle" style="display:none;">
+        <div class="chat-header">
+            <h2 id="chatTitle">La Mina</h2>
+            <button id="closeChat" class="close-button" aria-label="Fermer le chat">✖</button>
+        </div>
+        <div class="chat-messages" id="chatMessages" role="log" aria-live="polite"></div>
+        <div id="typingIndicator" class="typing-indicator" style="display:none;">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Posez votre question ici..." aria-label="Votre message">
+            <button id="sendButton" aria-label="Envoyer le message">Envoyer</button>
+        </div>
     </div>
-    <div class="chat-messages" id="chatMessages" role="log" aria-live="polite"></div>
-    <div id="typingIndicator" class="typing-indicator">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-    </div>
-    <div class="chat-input">
-        <input type="text" id="userInput" placeholder="Posez votre question ici..." aria-label="Votre message">
-        <button id="sendButton" aria-label="Envoyer le message">Envoyer</button>
-    </div>
-</div>
 
 <!-- HTML CALENDRIER -->
 <div class="event-calendar">
     <div class="calendar-header">
-        <h2>Calendrier des Événements</h2>
+        <div class="header-content">
+            <h2>Agenda des Événements</h2>
+            <p class="section-subtitle">Découvrez nos prochaines activités</p>
+        </div>
         <div class="filter-buttons" id="filterButtons"></div>
     </div>
     
@@ -2020,13 +2146,13 @@ footer > p {
         <div class="carousel-container">
             <div class="carousel">
                 <div class="slide">
-                    <img src="Aejm_page.jpg" alt="Événement AEJM 2024">
+                    <img src="Logo_qui.jpg" alt="Événement AEJM 2024">
                 </div>
                 <div class="slide">
-                    <img src="edition.jpg" alt="Ateliers éducatifs">
+                    <img src="Aejm_page.jpg" alt="Ateliers éducatifs">
                 </div>
                 <div class="slide">
-                    <img src="Asso-aejm.jpg" alt="Rencontre avec les membres">
+                    <img src="asso-aejm.jpg" alt="Rencontre avec les membres">
                 </div>
             </div>
             <div class="carousel-controls">
@@ -2469,19 +2595,102 @@ footer > p {
 
 <script>
     // Script pour masquer la barre de navigation au défilement  
-    let lastScrollTop = 0;
-    window.addEventListener("scroll", function () {
-        const header = document.querySelector("header");
-        let st = window.pageYOffset || document.documentElement.scrollTop;
-        if (st > lastScrollTop) {
-            header.style.top = "-100px"; // Masquer la barre de navigation  
-        } else {
-            header.style.top = "0"; // Afficher la barre de navigation  
+let lastScrollTop = 0;
+window.addEventListener("scroll", function () {
+    const header = document.querySelector("header");
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+        header.style.top = "-100px"; // Masquer la barre de navigation  
+    } else {
+        header.style.top = "0"; // Afficher la barre de navigation  
+    }
+    lastScrollTop = st <= 0 ? 0 : st; // Pour éviter des valeurs négatives  
+});
+
+// Script pour le carrousel  
+document.addEventListener("DOMContentLoaded", () => {
+    const carousel = document.querySelector(".carousel");
+    const slides = document.querySelectorAll(".slide");
+    const prevBtn = document.querySelector(".prev");
+    const nextBtn = document.querySelector(".next");
+    let currentIndex = 0;
+    let autoSlide = true;
+    let slideInterval;
+
+    // Fonction pour mettre à jour la position du carrousel  
+    function updateCarousel() {
+        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    // Fonction pour passer à la diapositive suivante  
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+    }
+
+    // Fonction pour revenir à la diapositive précédente  
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+    }
+
+    // Fonction pour démarrer le défilement automatique  
+    function startSlide() {
+        slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    // Gestionnaires d'événements pour les boutons  
+    prevBtn.addEventListener("click", () => {
+        prevSlide();
+        if (autoSlide) {
+            clearInterval(slideInterval);
+            startSlide();
         }
-        lastScrollTop = st <= 0 ? 0 : st; // Pour éviter des valeurs négatives  
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
+    nextBtn.addEventListener("click", () => {
+        nextSlide();
+        if (autoSlide) {
+            clearInterval(slideInterval);
+            startSlide();
+        }
+    });
+
+    // Pause sur survol  
+    carousel.parentElement.addEventListener("mouseenter", () => clearInterval(slideInterval));
+    carousel.parentElement.addEventListener("mouseleave", startSlide);
+
+    startSlide();
+});
+
+// Script interactif optionnel  
+document.querySelectorAll('.play-button').forEach(button => {
+    button.addEventListener('click', (e) => {
+        const overlay = e.currentTarget.parentElement;
+        const iframe = overlay.querySelector('.video-embed');
+        
+        overlay.classList.add('active');
+        iframe.src = iframe.dataset.src;
+    });
+});
+
+// Script pour le défilement fluide  
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+
+        if (targetSection) {
+            targetSection.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
     const track = document.querySelector('.partners-track');
     const prevBtn = document.querySelector('.scroll-btn.prev');
     const nextBtn = document.querySelector('.scroll-btn.next');
@@ -2508,185 +2717,111 @@ footer > p {
     });
 });
 
-    // Script pour le carrousel  
-    document.addEventListener("DOMContentLoaded", () => {
-        const carousel = document.querySelector(".carousel");
-        const slides = document.querySelectorAll(".slide");
-        const prevBtn = document.querySelector(".prev");
-        const nextBtn = document.querySelector(".next");
-        let currentIndex = 0;
-        let autoSlide = true;
-        let slideInterval;
+// Mise à jour des données d'événements
+const events = [
+    {
+        date: "15 Octobre 2025",
+        title: "Salon de l'étudiant et de l'apprenti de Mayotte",
+        category: "Éducation",
+        description: "Session d'orientation professionnelle pour les jeunes avec des experts du secteur",
+        location: "Maison des Jeunes"
+    },
+    {
+        date: "22 Mars 2024",
+        title: "Journée Éco-citoyenne",
+        category: "Environnement",
+        description: "Nettoyage des plages et sensibilisation à la protection marine",
+        location: "Plage de N'Gouja"
+    },
+    {
+        date: "28 Mars 2024",
+        title: "Atelier Artistique",
+        category: "Culture",
+        description: "Découverte des techniques traditionnelles de sculpture mahoraise",
+        location: "Centre Culturel"
+    }
+];
 
-        // Fonction pour mettre à jour la position du carrousel  
-        function updateCarousel() {
-            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-
-        // Fonction pour passer à la diapositive suivante  
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateCarousel();
-        }
-
-        // Fonction pour revenir à la diapositive précédente  
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateCarousel();
-        }
-
-        // Fonction pour démarrer le défilement automatique  
-        function startSlide() {
-            slideInterval = setInterval(nextSlide, 5000);
-        }
-
-        // Gestionnaires d'événements pour les boutons  
-        prevBtn.addEventListener("click", () => {
-            prevSlide();
-            if (autoSlide) {
-                clearInterval(slideInterval);
-                startSlide();
-            }
-        });
-
-        nextBtn.addEventListener("click", () => {
-            nextSlide();
-            if (autoSlide) {
-                clearInterval(slideInterval);
-                startSlide();
-            }
-        });
-
-        // Pause sur survol  
-        carousel.parentElement.addEventListener("mouseenter", () => clearInterval(slideInterval));
-        carousel.parentElement.addEventListener("mouseleave", startSlide);
-
-        startSlide();
-    });
-
-    // Script interactif optionnel  
-    document.querySelectorAll('.play-button').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const overlay = e.currentTarget.parentElement;
-            const iframe = overlay.querySelector('.video-embed');
-            
-            overlay.classList.add('active');
-            iframe.src = iframe.dataset.src;
-        });
-    });
-
-    // Script pour le défilement fluide  
-    document.querySelectorAll('nav a').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Événements modifiables ici  
-    const events = [
-        {
-            date: "15 Octobre 2025",
-            title: "Salon de l'étudiant et de l'apprenti de Mayotte",
-            category: "Éducation",
-            description: "Session d'orientation professionnelle pour les jeunes",
-            location: "Maison des Jeunes"
-        },
-        {
-            date: "22 Mars 2024",
-            title: "Education",
-            category: "Environnement",
-            description: "Animation et vie étudiante",
-            location: "Maison Des Jeunes"
-        },
-        {
-            date: "28 Mars 2024",
-            title: "BEN L'empereur",
-            category: "Éducation",
-            description: "Cour d'éducation",
-            location: "Place de la République"
-        },
-        // Ajouter d'autres événements ici  
-    ];
-
-    // Génération automatique du calendrier  
-    function generateCalendar() {
-        const container = document.getElementById('eventsContainer');
-        const categories = [...new Set(events.map(event => event.category))];
-        
-        // Génération des filtres  
-        const filterButtons = document.getElementById('filterButtons');
-        filterButtons.innerHTML = `
-            <button class="filter-btn active" data-category="all">Tous</button>
-            ${categories.map(cat => `
-                <button class="filter-btn" data-category="${cat}">${cat}</button>
-            `).join('')}
-        `;
-        
-        // Génération des événements  
-        container.innerHTML = events.map(event => `
-            <div class="event-card" data-category="${event.category}">
-                <div class="event-date">
-                    <div class="date-badge">
-                        ${event.date.split(' ')[0]}<br>${event.date.split(' ')[1]}
-                    </div>
-                    <div>
-                        <span class="event-category">${event.category}</span>
-                    </div>
+// Génération automatique du calendrier  
+function generateCalendar() {
+    const container = document.getElementById('eventsContainer');
+    const categories = [...new Set(events.map(event => event.category))];
+    
+    // Génération des filtres  
+    const filterButtons = document.getElementById('filterButtons');
+    filterButtons.innerHTML = `
+        <button class="filter-btn active" data-category="all">
+            <span>Tous</span>
+        </button>
+        ${categories.map(cat => `
+            <button class="filter-btn" data-category="${cat}">
+                <span>${cat}</span>
+            </button>
+        `).join('')}
+    `;
+    
+    // Génération des événements  
+    container.innerHTML = events.map(event => {
+        const [day, month] = event.date.split(' ');
+        return `
+        <div class="event-card" data-category="${event.category}">
+            <div class="event-date">
+                <div class="date-badge">
+                    <span>${day}</span>
+                    <span>${month}</span>
                 </div>
-                <div class="event-content">
-                    <h3>${event.title}</h3>
-                    <p>${event.description}</p>
-                    <small>📍 ${event.location}</small>
-                </div>
+                <span class="event-category">${event.category}</span>
             </div>
-        `).join('');
-    }
+            <div class="event-content">
+                <h3>${event.title}</h3>
+                <p>${event.description}</p>
+                <small>📍 ${event.location}</small>
+            </div>
+        </div>
+    `}).join('');
+}
 
-    // Filtrage des événements  
-    document.addEventListener('click', function(e) {
-        if(e.target.classList.contains('filter-btn')) {
-            document.querySelectorAll('.filter-btn').forEach(btn => 
-                btn.classList.remove('active'));
+// Filtrage amélioré avec animation
+document.addEventListener('click', function(e) {
+    if(e.target.closest('.filter-btn')) {
+        const btn = e.target.closest('.filter-btn');
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const category = btn.dataset.category;
+        const cards = document.querySelectorAll('.event-card');
+        
+        cards.forEach(card => {
+            const shouldShow = category === 'all' || card.dataset.category === category;
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
             
-            e.target.classList.add('active');
-            const category = e.target.dataset.category;
-            
-            document.querySelectorAll('.event-card').forEach(card => {
-                card.style.display = (category === 'all' || card.dataset.category === category) 
-                    ? 'block' 
-                    : 'none';
-            });
-        }
-    });
-
-    // Appel initial pour générer le calendrier  
-    generateCalendar();
-
-    // Script pour contrôler l'affichage du formulaire d'adhésion  
-    const confirmJoinButton = document.getElementById('confirm-join-button');
-    const adhesionFormContainer = document.getElementById('adhesion-form-container');
-
-    if (confirmJoinButton) {
-        confirmJoinButton.addEventListener('click', () => {
-            adhesionFormContainer.style.display = 'block'; // Afficher le formulaire d'adhésion  
+            setTimeout(() => {
+                card.style.display = shouldShow ? 'block' : 'none';
+                if(shouldShow) {
+                    requestAnimationFrame(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    });
+                }
+            }, 300);
         });
     }
-
-    // Gestion de l'adhésion
-document.getElementById('confirm-join-button').addEventListener('click', function() {
-    document.getElementById('cta-container').style.display = 'none';
-    document.getElementById('adhesion-form-container').style.display = 'block';
 });
 
+generateCalendar();
+
+// Script pour contrôler l'affichage du formulaire d'adhésion  
+const confirmJoinButton = document.getElementById('confirm-join-button');
+const adhesionFormContainer = document.getElementById('adhesion-form-container');
+
+if (confirmJoinButton) {
+    confirmJoinButton.addEventListener('click', () => {
+        adhesionFormContainer.style.display = 'block'; // Afficher le formulaire d'adhésion  
+    });
+}
+
+// Gestion de l'adhésion  
 document.getElementById('adhesion-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     
@@ -2695,22 +2830,22 @@ document.getElementById('adhesion-form').addEventListener('submit', async functi
     const loader = submitBtn.querySelector('.loader');
     const btnText = submitBtn.querySelector('.btn-text');
     
-    // Validation des champs
+    // Validation des champs  
     if (!form.checkValidity()) {
         form.reportValidity();
         return;
     }
 
     try {
-        // Simulation de chargement
+        // Simulation de chargement  
         submitBtn.disabled = true;
         btnText.style.opacity = '0';
         loader.style.display = 'block';
 
-        // Simulation d'envoi
+        // Simulation d'envoi  
         await new Promise(resolve => setTimeout(resolve, 1500));
 
-        // Affichage du message de succès
+        // Affichage du message de succès  
         form.style.display = 'none';
         document.querySelector('.success-message').style.display = 'block';
         
@@ -2723,7 +2858,7 @@ document.getElementById('adhesion-form').addEventListener('submit', async functi
     }
 });
 
-// Animation des labels flottants
+// Animation des labels flottants  
 document.querySelectorAll('.floating-label input, .floating-label textarea').forEach(input => {
     input.addEventListener('input', function() {
         const label = this.previousElementSibling;
@@ -2735,7 +2870,7 @@ document.querySelectorAll('.floating-label input, .floating-label textarea').for
     });
 });
 
-    // Protection contre les XSS  
+// Protection contre les XSS  
 const sanitizeInput = (text) => {
     const div = document.createElement('div');
     div.textContent = text;
@@ -2746,9 +2881,9 @@ const sanitizeInput = (text) => {
 const responses = [
     // ********** QUESTIONS GÉNÉRALES **********
     {
-        question: ["bonjour", "salut", "coucou", "hello", "hey", "yo"], // Variantes de question  
-        answer: "👋 Bonjour ! Je suis La Mina, l'assistante virtuelle de l'AEJM. Voici ce que je peux faire pour vous :\n• Informations sur l'association\n• Gestion des adhésions\n• Programme des activités\n• Contact de l'équipe\nDites-moi comment je peux vous aider !\nNa MOUKARIBOU", // Réponse  
-        quickReplies: ["Adhésion", "Événements", "Contact", "Aide"] // Réponses rapides 
+        question: ["bonjour", "salut", "coucou", "hello", "hey", "yo"],
+        answer: "👋 Bonjour ! Je suis La Mina, l'assistante virtuelle de l'AEJM. Voici ce que je peux faire pour vous :\n• Informations sur l'association\n• Gestion des adhésions\n• Programme des activités\n• Contact de l'équipe\nDites-moi comment je peux vous aider !\nNa MOUKARIBOU",
+        quickReplies: ["Adhésion", "Événements", "Contact", "Aide"] 
     },
     {
         question: ["merci", "super", "parfait", "cool", "génial"],
@@ -2768,9 +2903,8 @@ const responses = [
     {
         question: ["aide", "assistance", "sos", "urgence"],
         answer: "🆘 Besoin d'aide immédiate ?\n• 📞 Appelez le 01 23 45 67 89 (24h/24)\n• 📧 Écrivez à urgent@aejm.org\n• 🚨 Visitez notre centre d'urgence : 12 Rue de l'Urgence, Paris",
-        quickReplies: ["Contact", "Urgence", "Aide"]
+        quickReplies: ["Contact", "Urgence", "Besoin d'Aide"]
     },
-
     // ********** À PROPOS DE L'ASSOCIATION **********
     {
         question: ["qui êtes-vous", "présentation", "aejm", "association"],
@@ -2782,7 +2916,6 @@ const responses = [
         answer: "Notre histoire :\n▶️ 2010 : Création par 3 étudiants\n▶️ 2012 : Ouverture du premier centre\n▶️ 2015 : Lancement du programme emploi\n▶️ 2020 : Certification qualité ISO 9001\n▶️ 2023 : 50 collaborateurs permanents",
         quickReplies: ["À propos", "Équipe", "Contact"]
     },
-
     // ********** ADHÉSION **********
     {
         question: ["adhérer", "devenir membre", "inscription", "rejoindre", "carte membre"],
@@ -2799,7 +2932,6 @@ const responses = [
         answer: "💰 Notre engagement : Zéro frais d'adhésion !\n\nL'association est financée par :\n• Subventions publiques (40%)\n• Dons privés (30%)\n• Partenariats (30%)\n\nNous garantissons la gratuité totale.",
         quickReplies: ["Comment adhérer ?", "Avantages"]
     },
-
     // ********** ACTIVITÉS **********
     {
         question: ["activités", "programme", "ateliers", "agenda"],
@@ -2811,7 +2943,6 @@ const responses = [
         answer: "🎉 **10 ans de l'AEJM !**\n• Date : 15 septembre 2024\n• Lieu : Parc des Expositions Paris\n• Programme :\n   - Tables rondes\n   - Concerts\n   - Activités jeunesse\n• Inscriptions ouvertes : https://aejm.org/10ans",
         quickReplies: ["Activités", "Contact"]
     },
-
     // ********** CONTACT **********
     {
         question: ["contacter", "email", "téléphone", "adresse", "siège"],
@@ -2823,7 +2954,6 @@ const responses = [
         answer: "Voici notre équipe :\n\n👩‍💼 **Marie Dubois** - Présidente : Marie est passionnée par l'éducation et travaille sans relâche pour l'épanouissement des jeunes.\n\n👨‍💼 **Jean Leroy** - Directeur général : Jean gère les opérations de l'association et s'assure que nos projets avancent efficacement.\n\n👩‍🏫 **Sophie Martin** - Coordinateur régional : Sophie travaille directement avec les membres et coordonne nos activités sur le terrain.\n\nPour en savoir plus, consultez notre site web : https://aejm.org",
         quickReplies: ["Contact", "Aide"]
     },
-
     // ********** SERVICES **********
     {
         question: ["orientation", "emploi", "carrière", "cv"],
@@ -2835,7 +2965,6 @@ const responses = [
         answer: "📚 **Aide scolaire :**\n• 15 matières disponibles\n• 50 tuteurs qualifiés\n• Horaires flexibles\n• Plateforme en ligne\n\n👉 Première séance gratuite : https://aejm.org/soutien",
         quickReplies: ["Détails", "Formations"]
     },
-
     // ********** BÉNÉVOLAT **********
     {
         question: ["bénévolat", "volontariat", "mission", "donner temps"],
@@ -2847,7 +2976,6 @@ const responses = [
         answer: "**Ils témoignent :**\n*« Grâce à l'AEJM, j'ai trouvé ma voie professionnelle »* - Clara, 22 ans\n\n*« Une communauté incroyablement bienveillante »* - Mohamed, 19 ans\n\n🎥 Voir les vidéos : https://aejm.org/temoignages",
         quickReplies: ["Contact", "Aide"]
     },
-
     // ********** DON **********
     {
         question: ["don", "soutenir", "financer", "contribuer"],
@@ -2859,7 +2987,6 @@ const responses = [
         answer: "📊 **Répartition des fonds :**\n• 75% : Actions terrain\n• 15% : Fonctionnement\n• 10% : Innovation\n\n✅ Suivi transparent : https://aejm.org/transparence",
         quickReplies: ["Détails financiers", "Aide"]
     },
-
     // ********** URGENCES **********
     {
         question: ["détresse", "maladie", "danger", "suicide"],
@@ -2870,6 +2997,35 @@ const responses = [
         question: ["signalement", "abus", "harcèlement", "violence"],
         answer: "🛡 **Protection des jeunes :**\n1. Contactez notre cellule :\n   - 📞 01 89 00 00 00\n   - 📧 protection@aejm.org\n2. Procédure confidentielle\n3. Accompagnement juridique\n\nToute situation est prise au sérieux.",
         quickReplies: ["Aide", "Urgence"]
+    }
+];
+
+// Liste des mots-clés et leurs réponses  
+const keywordResponses = [
+    {
+        keywords: ["bonjour", "salut", "coucou", "hello", "hey", "yo"],
+        answer: "👋 Bonjour ! Je suis La Mina, l'assistante virtuelle de l'AEJM. Voici ce que je peux faire pour vous :\n• Informations sur l'association\n• Devenir Adhérent\n• Programme des activités\n• Contact de l'équipe\nDites-moi comment je peux vous aider !",
+        quickReplies: ["Aide", "adhérer", "Nous Contacter ?"]
+    },
+    {
+        keywords: ["adhésion", "devenir membre", "inscription"],
+        answer: "Pour devenir membre, veuillez consulter notre site d'inscription : https://aejm.org/inscription. N'hésitez pas à demander des précisions !",
+        quickReplies: ["Avantages", "Cotisation", "Comment adhérer ?"]
+    },
+    {
+        keywords: ["événements", "activités", "agenda"],
+        answer: "Vous pouvez consulter notre programme des activités ici : https://aejm.org/agenda.pdf. Y a-t-il un événement spécifique que vous souhaitez connaître ?",
+        quickReplies: ["Contact", "Prochains événements"]
+    },
+    {
+        keywords: ["contact", "adresse", "email"],
+        answer: "📌 Voici comment nous contacter :\n• 📧 contact@aejm.org\n• 📞 01 23 45 67 89\n• 📍 12 Rue de la Solidarité, Paris",
+        quickReplies: ["Urgence", "Siège"]
+    },
+    {
+        keywords: ["urgence", "besoin d'aide", "soutien"],
+        answer: "🆘 Si vous avez besoin d'aide immédiate, veuillez nous appeler au 01 23 45 67 89 ou visiter notre site d'urgence : https://aejm.org/urgence.",
+        quickReplies: ["Urgence", "Assistance"]
     }
 ];
 
@@ -2893,15 +3049,16 @@ let isChatOpen = false; // État du chat (ouvert ou fermé)
 
 // Gestion du chat : Fonction pour ouvrir ou fermer le chat  
 const toggleChat = () => {
-    isChatOpen = !isChatOpen; // Inverse l'état du chat  
-    chatContainer.style.display = isChatOpen ? 'flex' : 'none'; // Affiche ou masque le conteneur  
-    chatContainer.setAttribute('aria-hidden', !isChatOpen); // Met à jour l'attribut ARIA pour l'accessibilité  
-    if (isChatOpen) userInput.focus(); // Focalise le champ de saisie si le chat est ouvert  
+    isChatOpen = !isChatOpen;
+    chatContainer.style.display = isChatOpen ? 'flex' : 'none';
+    chatContainer.setAttribute('aria-hidden', !isChatOpen);
+    if (isChatOpen) userInput.focus();
 };
 
 // Événements pour ouvrir/fermer le chat  
-document.getElementById('chatToggle').addEventListener('click', toggleChat); // Ouvre le chat  
-document.getElementById('closeChat').addEventListener('click', toggleChat); // Ferme le chat
+document.getElementById('chatToggle').addEventListener('click', toggleChat);
+document.getElementById('closeChat').addEventListener('click', toggleChat);
+
 
 // Gestion du clavier : Écoute la touche 'Escape' pour fermer le chat  
 document.addEventListener('keydown', (e) => {
@@ -2910,79 +3067,80 @@ document.addEventListener('keydown', (e) => {
 
 // Affichage des messages : Fonction pour afficher les messages  
 const displayMessage = (text, sender, options = {}) => {
-    const messageDiv = document.createElement('div'); // Crée un élément div pour le message  
-    messageDiv.className = `chat-message ${sender}-message`; // Définit la classe du message (utilisateur ou Mina)
-    messageDiv.textContent = sanitizeInput(text); // Définit le texte du message
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message ${sender}-message`;
+    messageDiv.innerHTML = sanitizeInput(text).replace(/\n/g, '<br>');
 
-    // Si des réponses rapides sont fournies  
     if (options.quickReplies) {
-        const quickRepliesDiv = document.createElement('div'); // Crée un div pour les réponses rapides  
-        quickRepliesDiv.className = 'quick-replies'; // Définit la classe pour les réponses rapides
+        const quickRepliesDiv = document.createElement('div');
+        quickRepliesDiv.className = 'quick-replies';
 
         options.quickReplies.forEach(reply => {
-            const button = document.createElement('div'); // Crée un bouton pour chaque réponse rapide  
-            button.className = 'quick-reply'; // Définit la classe pour le bouton  
-            button.textContent = reply; // Définit le texte du bouton
-
-            // Événement onclick pour chaque réponse rapide  
+            const button = document.createElement('div');
+            button.className = 'quick-reply';
+            button.textContent = reply;
             button.onclick = () => {
-                userInput.value = reply; // Remplit le champ de saisie avec la réponse rapide  
-                sendMessage(); // Envoie le message  
+                userInput.value = reply;
+                sendMessage();
             };
-
-            quickRepliesDiv.appendChild(button); // Ajoute le bouton des réponses rapides au div  
+            quickRepliesDiv.appendChild(button);
         });
 
-        messageDiv.appendChild(quickRepliesDiv); // Ajoute les réponses rapides au message  
+        messageDiv.appendChild(quickRepliesDiv);
     }
 
-    document.getElementById('chatMessages').appendChild(messageDiv); // Ajoute le message au conteneur de messages  
-    chatContainer.scrollTo(0, chatContainer.scrollHeight); // Fait défiler jusqu'en bas du chat  
+    document.getElementById('chatMessages').appendChild(messageDiv);
+    chatContainer.scrollTo(0, chatContainer.scrollHeight);
 };
 
-// Gestion des réponses : Fonction pour obtenir une réponse basée sur l'entrée de l'utilisateur  
+// Fonction pour trouver une réponse basée sur les mots-clés  
+const findKeywordResponse = (input) => {
+    const lowerInput = input.toLowerCase();
+    for (const response of keywordResponses) {
+        if (response.keywords.some(keyword => lowerInput.includes(keyword))) {
+            return response;
+        }
+    }
+    return null;
+};
+
+// Fonction améliorée pour obtenir une réponse basée sur l'entrée de l'utilisateur  
 const getResponse = (input) => {
-    const cleanInput = input.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Normalise l'entrée  
-    const result = fuse.search(cleanInput)[0]; // Cherche la réponse correspondante
+    const cleanInput = input.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-    if (result) {
-        return result.item; // Renvoie l'objet correspondant  
-    } else {
-        // Réponse par défaut si aucune correspondance n'est trouvée  
-        return {
-            answer: "Désolé, je n'ai pas compris votre question. Pourriez-vous reformuler ?",
-            quickReplies: ["Aide", "Contact", "Adhésion"] // Réponses rapides par défaut  
-        };
-    }
+    const keywordResponse = findKeywordResponse(cleanInput);
+    if (keywordResponse) return keywordResponse;
+
+    const result = fuse.search(cleanInput)[0];
+    return result?.item || {
+        answer: "Désolé, je n'ai pas compris. Pourriez-vous reformuler ?",
+        quickReplies: ["Aide", "Contact", "Adhésion"]
+    };
 };
+
 
 // Envoi de message : Fonction pour gérer l'envoi de messages  
 const sendMessage = async () => {
-    const message = userInput.value.trim(); // Récupère et nettoie le message de l'utilisateur  
-    if (!message) return; // Ne fait rien si le message est vide
+    const message = userInput.value.trim();
+    if (!message) return;
 
-    displayMessage(message, 'user'); // Affiche le message de l'utilisateur  
-    userInput.value = ''; // Réinitialise le champ de saisie
+    displayMessage(message, 'user');
+    userInput.value = '';
 
-    // Simulation délai réponse  
-    document.getElementById('typingIndicator').style.display = 'flex'; // Affiche l'indicateur de saisie  
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Attend 1 seconde (simule le temps de réponse)
-    document.getElementById('typingIndicator').style.display = 'none'; // Masque l'indicateur de saisie
+    document.getElementById('typingIndicator').style.display = 'flex';
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    document.getElementById('typingIndicator').style.display = 'none';
 
-    const response = getResponse(message); // Récupère la réponse à partir du message  
-    displayMessage(response.answer, 'mina', { quickReplies: response.quickReplies }); // Affiche la réponse de La Mina  
+    const response = getResponse(message);
+    displayMessage(response.answer, 'mina', { quickReplies: response.quickReplies });
 };
 
 // Événements pour interagir avec le chatbot  
-document.getElementById('sendButton').addEventListener('click', sendMessage); // Événement pour le bouton d'envoi  
-userInput.addEventListener('keypress', (e) => e.key === 'Enter' && sendMessage()); // Envoie le message si 'Entrée' est pressé  
-
-// Initialisation : Écoute l'événement DOMContentLoaded pour démarrer le chatbot une fois le contenu chargé  
 document.addEventListener('DOMContentLoaded', () => {
-    // Appelle la fonction pour animer les cartes (si nécessaire)
-    animateCards();
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => e.key === 'Enter' && sendMessage());
 });
 </script>
-
+<script src="chatbot.js"></script>
 </body>
 </html>
