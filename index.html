@@ -2099,7 +2099,7 @@ footer > p {
     <!-- Section héroïque avec contenu principal -->
     <section id="accueil" class="hero">
         <div class="hero-content">
-            <h2>Association des Étudiants et des Jeunes de Mayotte - AEJM</h2>
+            <h2>Association Pour Les Étudiants et Les Jeunes de Mayotte - AEJM</h2>
             <p>Engagées pour l'épanouissement des jeunes depuis 2013</p>
             <a href="#adhesion" class="join-button">Nous rejoindre</a>
         </div>
@@ -2107,12 +2107,12 @@ footer > p {
 
  <!-- Chat LA MINA -->
     <button class="chat-toggle" id="chatToggle" aria-label="Ouvrir le chat">
-        <img src="mina-head.jpg" alt="La Mina" class="mina-logo" loading="lazy">
+        <img src="mina-head.jpg" alt="l'AEJM BOT" class="mina-logo" loading="lazy">
     </button>
 
     <div class="chat-container" id="chatContainer" aria-hidden="true" role="dialog" aria-labelledby="chatTitle" style="display:none;">
         <div class="chat-header">
-            <h2 id="chatTitle">La Mina</h2>
+            <h2 id="chatTitle">AEJM BOT</h2>
             <button id="closeChat" class="close-button" aria-label="Fermer le chat">✖</button>
         </div>
         <div class="chat-messages" id="chatMessages" role="log" aria-live="polite"></div>
@@ -2312,7 +2312,7 @@ footer > p {
     <div class="adhesion-container">
         <div class="adhesion-header">
             <h2>👋 Rejoignez notre communauté</h2>
-            <p class="subtitle">Devenez Bénévolot de l'AEJM en 2 minutes</p>
+            <p class="subtitle">Devenez Bénévole de l'AEJM en 2 minutes</p>
         </div>
 
         <div class="cta-container" id="cta-container">
@@ -2882,7 +2882,7 @@ const responses = [
     // ********** QUESTIONS GÉNÉRALES **********
     {
         question: ["bonjour", "salut", "coucou", "hello", "hey", "yo"],
-        answer: "👋 Bonjour ! Je suis La Mina, l'assistante virtuelle de l'AEJM. Voici ce que je peux faire pour vous :\n• Informations sur l'association\n• Gestion des adhésions\n• Programme des activités\n• Contact de l'équipe\nDites-moi comment je peux vous aider !\nNa MOUKARIBOU",
+        answer: "👋 Bonjour ! Je suis l'AEJM BOT, l'assistante virtuelle de l'AEJM. Voici ce que je peux faire pour vous :\n• Informations sur l'association\n• Gestion des adhésions\n• Programme des activités\n• Contact de l'équipe\nDites-moi comment je peux vous aider !\nNa MOUKARIBOU",
         quickReplies: ["Adhésion", "Événements", "Contact", "Aide"] 
     },
     {
@@ -3004,7 +3004,7 @@ const responses = [
 const keywordResponses = [
     {
         keywords: ["bonjour", "salut", "coucou", "hello", "hey", "yo"],
-        answer: "👋 Bonjour ! Je suis La Mina, l'assistante virtuelle de l'AEJM. Voici ce que je peux faire pour vous :\n• Informations sur l'association\n• Devenir Adhérent\n• Programme des activités\n• Contact de l'équipe\nDites-moi comment je peux vous aider !",
+        answer: "👋 Bonjour ! Je suis l'AEJM BOT, l'assistante virtuelle de l'AEJM. Voici ce que je peux faire pour vous :\n• Informations sur l'association\n• Devenir Adhérent\n• Programme des activités\n• Contact de l'équipe\nDites-moi comment je peux vous aider !",
         quickReplies: ["Aide", "adhérer", "Nous Contacter ?"]
     },
     {
@@ -3132,7 +3132,7 @@ const sendMessage = async () => {
     document.getElementById('typingIndicator').style.display = 'none';
 
     const response = getResponse(message);
-    displayMessage(response.answer, 'mina', { quickReplies: response.quickReplies });
+    displayMessage(response.answer, 'Assistant Bot', { quickReplies: response.quickReplies });
 };
 
 // Événements pour interagir avec le chatbot  
