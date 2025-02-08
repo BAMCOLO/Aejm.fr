@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css"> <!-- Assurez-vous que le chemin est correct -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Dépendance Fuse.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
     <style>
@@ -30,7 +31,7 @@
 /* Styles globaux pour le body */
 body {
     margin: 0; /* Supprime les marges par défaut */
-    font-family: "Open Sans" sans-serif; /* Définit la police du texte */
+    font-family: "Open Sans", Arial, sans-serif; /* Définit la police du texte */
     color: var(--text-color); /* Applique la couleur du texte */
     background: var(--background-color); /* Applique la couleur de fond */
     line-height: 1.6; /* Hauteur de ligne pour améliorer la lisibilité */
@@ -44,12 +45,14 @@ header {
     justify-content: space-between; /* Espace entre le logo et le menu de navigation */
     background: var(--background-color); /* Couleur de fond de l'en-tête */
     padding: 1rem 2rem; /* Espacement interne de l'en-tête */
+    border-radius: 20px; /* Bordures arrondies pour l'en-tête */
     border-bottom: 2px solid var(--primary-color); /* Bordure inférieure avec la couleur principale */
     position: sticky; /* Fixe l'en-tête en haut lors du défilement */
     top: 0; /* Positionné tout en haut */
     z-index: 1000; /* S'assure que l'en-tête reste au-dessus des autres éléments */
-    box-shadow: 0 2px 5px var(--shadow); /* Ombre portée pour l'en-tête */
-    transition: top 0.3s; /* Transition douce lors du masquage de l'en-tête */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre portée pour l'en-tête avec effet plus doux */
+    transition: top 0.3s, background 0.3s; /* Transition douce lors du masquage de l'en-tête */
+    margin: 0 1rem; /* Ajuste les marges pour éviter que le header ne touche les bords de l'écran */
 }
 
 /* Styles pour le logo dans l'en-tête */
@@ -79,18 +82,25 @@ nav ul {
 
 /* Styles pour les liens de navigation */
 nav a {
-    text-decoration: none; /* Pas de soulignement */
+    text-decoration: none; /* Pas de soulignement pour le lien */
     color: var(--text-color); /* Couleur du texte pour les liens */
     font-weight: 600; /* Poids de la police */
-    transition: color 0.3s; /* Transition douce de la couleur */
-    padding: 0.5rem; /* Espacement interne pour les liens */
-    border-radius: var(--border-radius); /* Arrondit les coins des liens */
+    padding: 0.5rem 1rem; /* Espacement interne pour les liens */
+    border-radius: 12px; /* Bordures arrondies pour les liens */
+    transition: background 0.3s, color 0.3s, transform 0.3s; /* Transition douce pour les changements de couleur */
 }
 
 /* Changement de style au survol d'un lien de navigation */
+
 nav a:hover {
     background: var(--primary-color); /* Change le fond au survol */
     color: white; /* Change la couleur du texte au survol */
+    transform: scale(1.05); /* Légère augmentation de la taille au survol */
+}
+
+/* Ajouter un effet de changement d'ombre pour l'en-tête lors du survol */
+header:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Légère ombre plus prononcée au survol */
 }
 
 /* Styles pour les sections */
@@ -142,12 +152,14 @@ section {
     cursor: pointer; /* Curseur pointer pour indiquer que c'est cliquable */
     transition: background 0.3s, transform 0.3s; /* Transitions douces pour les effets au survol */
     box-shadow: 0 4px 8px var(--shadow); /* Ombre portée pour le bouton */
+     text-decoration: none; /* Supprime le soulignement */
 }
 
 /* Styles au survol du bouton de rejoindre */
 .join-button:hover {
     background: var(--secondary-color); /* Change la couleur de fond au survol */
     transform: scale(1.05); /* Légère augmentation de la taille au survol */
+    background-color: #0056b3; /* Couleur de fond au survol */
 }
 
 /* Styles pour les titres de section */
@@ -186,82 +198,293 @@ section {
     border-radius: var(--border-radius); /* Arrondit les coins de l'image */
     margin-bottom: 1rem; /* Marge en bas de l'image */
 }
+ /* Styles spécifiques au carrousel */
+.carousel {
+    width: 100%;
+    max-width: 1400px;
+    margin: 2rem;
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
 
-        /* Styles pour le carrousel */
-        .carousel-container {
-            position: relative; /* Positionnement relatif pour le conteneur */
-            max-width: 1200px; /* Largeur maximale */
-            margin: 0 auto; /* Centré horizontalement */
-            overflow: hidden; /* Masquer les débordements */
-            border-radius: 10px; /* Coins arrondis */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Ombre portée */
-        }
+.carousel-inner {
+    display: flex; /* Utilisez flexbox pour afficher en ligne */
+    transition: transform 0.6s ease; /* Transition lors du changement de slide */
+}
 
-        .carousel {
-            display: flex; /* Alignement des éléments en ligne */
-            transition: transform 0.5s ease-in-out; /* Transition pour le mouvement du carrousel */
-        }
+.carousel .slide {
+    flex: 0 0 100%; /* Chaque slide prend 100% de la largeur du carrousel */
+    height: 900px; /* Gardez la hauteur définie */
+    padding: rem;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(45deg, #EBF8FF, white); /* Utiliser une couleur directe ici pour éviter les variables globales */
+}
 
-        .slide {
-            min-width: 100%; /* Largeur minimale pour chaque diapositive */
-            position: relative; /* Positionnement pour les effets */
-        }
+.carousel .slide.active {
+    opacity: 1;
+    z-index: 1;
+}
 
-        .slide img {
-            width: 100%; /* Largeur pleine pour l'image */
-            height: 500px; /* Hauteur fixe */
-            object-fit: cover; /* Couvrir l'espace sans déformation */
-            display: block; /* Affichage de bloc pour éviter les marges */
-        }
+.carousel .event-calendar {
+    height: 100%;
+    padding: 2rem;
+    background: #EBF8FF; /* Utiliser une couleur directe ici pour éviter les variables globales */
+    position: relative;
+}
 
-        /* Contrôles du carrousel */
-        .carousel-controls {
-            position: absolute; /* Positionnement absolu pour les contrôles */
-            top: 50%; /* Centré verticalement */
-            transform: translateY(-50%); /* Ajustement de la position */
-            width: 100%; /* Largeur pleine des contrôles */
-            display: flex; /* Alignement en ligne */
-            justify-content: space-between; /* Espacement entre les contrôles */
-            padding: 0 1rem; /* Espacement interne */
-        }
+.carousel .decorative-images {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    top: 0;
+    left: 0;
+}
 
-        .carousel-btn {
-            background: rgba(255, 255, 255, 0.8); /* Couleur de fond des boutons */
-            border: none; /* Pas de bordure */
-            padding: 0.8rem 1.2rem; /* Espacement interne */
-            border-radius: 50%; /* Forme circulaire */
-            cursor: pointer; /* Curseur pointer */
-            transition: all 0s ease; /* Transition pour les effets */
-        }
+.carousel .deco-image {
+    position: absolute;
+    opacity: 0.15;
+    transition: all 1s ease;
+    filter: grayscale(100%) sepia(50%);
+}
 
-        .carousel-btn:hover {
-            background: var(--primary-color); /* Couleur de fond au survol */
-            color: white; /* Couleur du texte au survol */
-        }
+.carousel .deco-image-1 {
+    width: 200px;
+    top: 10%;
+    left: -15%;
+    animation: float-1 25s infinite linear;
+}
 
-        /* Grille de contenu */
-        .content-grid {
-            display: grid; /* Grille pour les cartes */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Colonnes adaptables */
-            gap: 2rem; /* Espacement entre les éléments */
-            padding: 2rem; /* Espacement interne */
-            max-width: 1200px; /* Largeur maximale */
-            margin: 0 auto; /* Centré horizontalement */
-        }
+.carousel .deco-image-2 {
+    width: 150px;
+    bottom: 20%;
+    right: -10%;
+    animation: float-2 30s infinite linear;
+}
 
-        .card {
-            background: white; /* Couleur de fond de la carte */
-            border-radius: 10px; /* Coins arrondis */
-            padding: 1.5rem; /* Espacement interne */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre portée */
-            transition: transform 0.3s ease; /* Transition pour le survol */
-        }
+.carousel .calendar-header {
+    text-align: center;
+    margin-bottom: rem;
+    position: relative;
+    z-index: 1;
+}
 
-        .card:hover {
-            transform: translateY(-5px); /* Effet de survol */
-        }
+.carousel .calendar-header h2 {
+    font-size: 2.5rem;
+    color: #2A4365; /* Définir la couleur directement */
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
 
-        /* Design moderne */
+.carousel .calendar-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #C53030; /* Définir la couleur directement */
+}
+
+.carousel .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.carousel .event-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Légère ombre pour un meilleur effet */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    text-align: center; /* Centrer le texte */
+}
+
+.carousel .event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carousel .event-image {
+    height: 180px;
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.carousel .event-card:hover .event-image {
+    transform: scale(0.98) rotate(-0.5deg);
+}
+
+.carousel .date-badge {
+    background: linear-gradient(135deg, #2B6CB0 0%, #2A4365 100%);
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px rgba(43, 108, 176, 0.2);
+}
+
+.carousel .event-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrer le contenu */
+}
+
+.carousel .event-content h3 {
+    color: #2A4365; /* Définir la couleur directement */
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.carousel .event-category {
+    background: rgba(43, 108, 176, 0.1);
+    color: #2B6CB0; /* Définir la couleur directement */
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.carousel .filter-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.carousel .filter-btn {
+    padding: 0.7rem 1.8rem;
+    border: none;
+    border-radius: 30px;
+    background: rgba(43, 108, 176, 0.1);
+    color: #2B6CB0; /* Définir la couleur directement */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel .filter-btn.active {
+    background: linear-gradient(135deg, #2B6CB0 0%, #2A4365 100%);
+    color: white;
+    box-shadow: 0 4px 6px rgba(43, 108, 176, 0.2);
+}
+
+.carousel .navigation {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    z-index: 2;
+}
+
+.carousel .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid #2A4365; /* Définir la couleur directement */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel .dot.active {
+    background: #C53030; /* Définir la couleur directement */
+    border-color: #C53030; /* Définir la couleur directement */
+    transform: scale(1.3);
+}
+
+.carousel .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+    transition: all 0.3s ease;
+    display: grid;
+    place-items: center;
+}
+
+.carousel .nav-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel .nav-btn.prev {
+    left: 2rem;
+}
+
+.carousel .nav-btn.next {
+    right: 2rem;
+}
+
+.carousel .nav-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #2A4365; /* Définir la couleur directement */
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        margin: 1rem;
+        border-radius: 1rem;
+    }
+
+    .carousel-inner {
+        height: 600px;
+    }
+
+    .slide {
+        padding: 1.5rem;
+    }
+
+    .calendar-header h2 {
+        font-size: 2rem;
+    }
+
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .deco-image {
+        display: none;
+    }
+}
+
+/* Design moderne */
 .actions-section {
     padding: 4rem 1.5rem;
     background: var(--section-background);
@@ -1247,8 +1470,7 @@ footer > p {
         max-width: none;
     }
 }
-
-        /* Styles responsives */
+/* Styles responsives */
         @media (max-width: 768px) {
             header {
                 flex-direction: column; /* Alignement vertical pour l'en-tête */
@@ -1282,232 +1504,7 @@ footer > p {
     </style>
 
     <style>
-/* Section Calendrier Agenda */
-
-:root {
-    --primary: #2BB0ED;
-    --primary-hover: #1E90C0;
-    --secondary: #6c757d;
-    --light: #ffffff;
-    --dark: #2A2E35;
-    --accent: #FF6B6B;
-    --gradient: linear-gradient(135deg, var(--primary) 0%, #4A90E2 100%);
-}
-
-.event-calendar {
-    max-width: 1400px;
-    margin: 4rem auto;
-    padding: 3rem 2rem;
-    background: var(--light);
-    border-radius: 20px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-}
-
-.calendar-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    position: relative;
-}
-
-.header-content {
-    margin-bottom: 2.5rem;
-}
-
-.calendar-header h2 {
-    font-size: 2.75rem;
-    color: var(--dark);
-    margin-bottom: 0.5rem;
-    position: relative;
-    display: inline-block;
-}
-
-.calendar-header h2::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: var(--primary);
-}
-
-.section-subtitle {
-    color: var(--secondary);
-    font-size: 1.1rem;
-    letter-spacing: 0.5px;
-}
-
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-}
-
-.event-card {
-    background: var(--light);
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.05);
-}
-
-.event-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: var(--gradient);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.event-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
-
-.event-card:hover::before {
-    opacity: 1;
-}
-
-.event-date {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.date-badge {
-    background: var(--gradient);
-    color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    text-align: center;
-    line-height: 1.3;
-    min-width: 70px;
-    box-shadow: 0 4px 12px rgba(43,176,237,0.2);
-}
-
-.date-badge span:first-child {
-    font-size: 1.5rem;
-    font-weight: 700;
-    display: block;
-}
-
-.date-badge span:last-child {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.event-content h3 {
-    color: var(--dark);
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-    line-height: 1.4;
-}
-
-.event-content p {
-    color: var(--secondary);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-}
-
-.event-content small {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--primary);
-    font-weight: 500;
-}
-
-.event-category {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    background: rgba(43,176,237,0.1);
-    color: var(--primary);
-    border: 1px solid rgba(43,176,237,0.2);
-}
-
-.filter-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-}
-
-.filter-btn {
-    padding: 0.7rem 1.8rem;
-    border: none;
-    border-radius: 30px;
-    background: rgba(43,176,237,0.1);
-    color: var(--primary);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    position: relative;
-    overflow: hidden;
-}
-
-.filter-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.filter-btn.active {
-    color: white;
-}
-
-.filter-btn.active::before {
-    opacity: 1;
-}
-
-.filter-btn span {
-    position: relative;
-    z-index: 1;
-}
-
-@media (max-width: 768px) {
-    .event-calendar {
-        padding: 2rem 1rem;
-        margin: 2rem auto;
-    }
-    
-    .calendar-header h2 {
-        font-size: 2rem;
-    }
-    
-    .events-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .filter-buttons {
-        gap: 0.8rem;
-    }
-    
-    .filter-btn {
-        padding: 0.6rem 1.5rem;
-    }
-}
-
-/* Section Chatbot */
+        /* Section Chatbot */
         :root {
             --primary-color: #2BB0ED;
             --primary-dark: #2292cc;
@@ -1708,112 +1705,258 @@ footer > p {
    /* =====================
    SECTION ÉQUIPE MODERNISÉE
    ===================== */
-#equipe {
-    padding: var(--section-padding);
-    background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+:root {
+    --team-primary: #0a0a0a;
+    --team-accent: #6c4eff;
+    --team-light: #ffffff;
+    --team-dark: #101010;
+    --team-ease: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.team-section {
+    padding: 8rem 2rem; /* Réduit de 10rem à 8rem */
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(108,78,255,0.05) 0%, transparent 50%),
+        linear-gradient(180deg, #fafafa 0%, var(--team-light) 100%);
     position: relative;
     overflow: hidden;
 }
 
-#equipe h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    position: relative;
-    color: var(--primary-color);
-}
-
 .team-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    max-width: 1600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 2rem;
-    padding: 1rem 0;
-    scroll-behavior: smooth;
-}
-
-.team-member {
+    margin-bottom: 4rem; /* Réduit de 6rem à 4rem */
     position: relative;
-    background: white;
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    opacity: 0;
-    transform: translateY(20px);
-    animation: cardEntrance 0.6s ease-out forwards;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-.team-member:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+.title-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--team-accent) 50%, transparent 100%);
+    opacity: 0.3;
 }
 
-.team-member::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--primary-color);
-    border-radius: 1rem 1rem 0 0;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.team-member:hover::before {
-    opacity: 1;
-}
-
-.team-member img {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    margin-bottom: 1.5rem;
-    object-fit: cover;
-    filter: grayscale(20%);
-    transition: filter 0.3s ease;
-    border: 3px solid var(--primary-color);
-    padding: 3px;
-}
-
-.team-member:hover img {
-    filter: grayscale(0%);
-}
-
-.team-member h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-    color: #2d2d2d;
+.title-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3rem; /* Réduit de 3.5rem à 3rem */
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--team-primary);
     position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.crown {
-    font-size: 1.4rem;
-    color: #ffd700;
-    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
-    animation: crownGlow 2s ease-in-out infinite;
-}
-
-.team-member p:first-of-type {
-    color: var(--primary-color);
-    font-weight: 600;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-}
-
-.team-member p:last-child {
-    color: #666;
-    line-height: 1.6;
+    padding: 0 2rem;
     text-align: center;
-    margin-top: auto;
-    font-size: 0.9rem;
+}
+
+.team-mosaic {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+}
+
+.president-card {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.photo-container {
+    position: relative;
+    border-radius: 2rem;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    isolation: isolate;
+}
+
+.member-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform-origin: center;
+    transition: transform 0.8s var(--team-ease), filter 0.8s var(--team-ease);
+    filter: grayscale(100%) contrast(110%);
+}
+
+.photo-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, rgba(108,78,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    mix-blend-mode: multiply;
+}
+
+.deco-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.deco-circle {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 2px solid var(--team-accent);
+    border-radius: 50%;
+    top: -20px;
+    right: -20px;
+    opacity: 0.3;
+}
+
+.deco-triangle {
+    position: absolute;
+    width: 60px;
+    height: 86px;
+    border: 2px solid var(--team-accent);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    bottom: -15px;
+    right: -15px;
+    opacity: 0.3;
+}
+
+.president-badge {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: var(--team-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.crown-svg {
+    width: 48px;
+    height: 48px;
+    fill: #bbb114;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+}
+
+.member-details {
+    position: relative;
+    margin-top: -4rem;
+    padding: 3rem;
+    background: var(--team-light);
+    border-radius: 2rem;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+    z-index: 1;
+}
+
+.member-name {
+    font-size: 1.8rem;
+    color: var(--team-primary);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.accent-bar {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--team-accent);
+    transform-origin: left;
+    transition: transform 0.6s var(--team-ease);
+}
+
+.member-role {
+    font-size: 0.85rem;
+    color: var(--team-accent);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.member-bio p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    max-width: 600px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.team-card:hover .member-photo {
+    filter: grayscale(0%) contrast(100%);
+    transform: scale(1.05);
+}
+
+.member-links {
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+}
+
+.linkedin-link {
+    width: 48px;
+    height: 48px;
+    background: var(--team-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s var(--team-ease);
+}
+
+.linkedin-link .icon {
+    width: 24px;
+    height: 24px;
+    fill: var(--team-light);
+}
+
+@media (max-width: 1200px) {
+    .member-details {
+        padding: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .title-line {
+        width: 100px;
+    }
+    
+    .title-text {
+        font-size: 2.5rem;
+    }
+    
+    .president-card {
+        max-width: 100%;
+    }
+    
+    .member-details {
+        margin-top: -2rem;
+        padding: 2rem;
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 /* Animation */
@@ -1872,14 +2015,14 @@ footer > p {
 :root {
     --primary-color: #27a9e5;
     --accent-color: #4F46E5;
-    --text-color: #5A5A5A;
+    --text-color: #000000;
     --card-bg: #FFFFFF;
-    --section-bg: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
+    --section-bg: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
 }
 
 /* Section Globale */
 .actions-section {
-    padding: 6rem 1.5rem;
+    padding: 0.5rem 0rem;
     background: var(--section-bg);
     position: relative;
 }
@@ -2075,10 +2218,403 @@ footer > p {
         padding: 1.25rem;
     }
 }
+
+        /* qui-sommes-nous */
+
+:root {
+    --section-padding: 4rem 2rem;
+    --shadow: rgba(100, 100, 111, 0.2);
+    --border-radius: 20px;
+    --card-background: #ffffff;
+    --accent-color: #4a90e2;
+    --gradient: linear-gradient(135deg, #4a90e2 0%, #6c5ce7 100%);
+}
+
+.section {
+    padding: var(--section-padding);
+    margin: 0.5rem 0;
+    border-radius: var(--border-radius);
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.section::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: var(--gradient);
+    border-radius: 50%;
+    opacity: 0.1;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 2px 4px var(--shadow));
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: translateY(-5px);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: var(--gradient);
+    border-radius: 2px;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.actions-wrapper {
+    margin-top: 2rem; /* Ajout d'une marge pour espacer des sections */
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.action-card {
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    background: var(--card-background);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column; /* Alignement vertical des éléments dans la carte */
+    align-items: center; /* Centre les éléments horizontalement */
+    gap: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.action-card i {
+    font-size: 2rem;
+    color: var(--accent-color);
+    min-width: 50px;
+}
+
+.team-wrapper {
+    text-align: center; /* Centre le texte pour la section Équipe */
+    margin-top: 3rem; /* Espacement pour la section Équipe */
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 2rem auto;
+}
+
+.member-card {
+    position: relative;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-radius: var(--border-radius);
+    background: var(--card-background);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+    overflow: hidden;
+}
+
+.member-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+}
+
+.member-card:hover::before {
+    opacity: 1;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--gradient);
+    margin: 0 auto 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.logo-container img {
+    animation: float 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .logo-container img {
+        animation: none;
+    }
+
+    .action-card,
+    .member-card {
+        transition: none; /* Pas de transition pour les utilisateurs à mobilité réduite */
+    }
+}
+
+/* Nouveaux Carrousel D'actualité */
+
+:root {
+  --primary: #1a1a1a;
+  --accent: #7c3aed;
+  --light: #ffffff;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.new-carousel-section {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.new-section-title {
+  font-size: 2.8rem;
+  margin-bottom: 3rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-align: center;
+  letter-spacing: -0.02em;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.new-carousel-container {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+}
+
+.new-carousel {
+  display: flex;
+  transition: transform 0.6s var(--ease);
+}
+
+.new-carousel-item {
+  min-width: 100%;
+  padding: rem;
+  box-sizing: border-box;
+}
+
+.new-carousel-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.new-carousel-item.active .new-carousel-card {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.new-carousel-image-wrapper {
+  aspect-ratio: 21/9;
+  overflow: hidden;
+  position: relative;
+}
+
+.new-carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+
+.new-carousel-item.active .new-carousel-image {
+  transform: scale(1.03);
+}
+
+.new-carousel-content {
+  padding: 2rem;
+  background: var(--light);
+  text-align: center;
+}
+
+.new-carousel-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  color: var(--primary);
+  font-weight: 500;
+  position: relative;
+  display: inline-block;
+}
+
+.new-carousel-content h3::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.4s var(--ease);
+}
+
+.new-carousel-content:hover h3::after {
+  width: 60px;
+}
+
+.new-carousel-content p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.7;
+  margin: 1rem auto 0;
+  max-width: 600px;
+}
+
+.new-carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: var(--light);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s var(--ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-carousel-button svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--primary);
+  stroke-width: 2px;
+}
+
+.new-carousel-button:hover {
+  transform: translateY(-50%) scale(1.15);
+  background: var(--light);
+}
+
+.new-prev { left: 1.5rem; }
+.new-next { right: 1.5rem; }
+
+.new-carousel-indicators {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.8rem;
+}
+
+.new-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  position: relative;
+}
+
+.new-indicator::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+.new-indicator:hover::after {
+  opacity: 1;
+}
+
+.new-indicator.active {
+  background: var(--accent);
+  transform: scale(1.4);
+}
+
+@media (max-width: 768px) {
+  .new-section-title {
+    font-size: 2rem;
+  }
+  
+  .new-carousel-image-wrapper {
+    aspect-ratio: 16/9;
+  }
+  
+  .new-carousel-content {
+    padding: 1.5rem;
+  }
+  
+  .new-carousel-button {
+    width: 40px;
+    height: 40px;
+  }
+}
     </style>
 </head>
 <body>
-
     <header>
         <div class="logo">
             <a href="#accueil">AEJM</a>
@@ -2105,6 +2641,373 @@ footer > p {
         </div>
     </section>
 
+    <!-- qui-sommes-nous -->
+  <section id="qui-sommes-nous" class="section">
+    <div class="section-header">
+        <div class="logo-container">
+            <img src="logo-community.svg" alt="Logo communauté" class="logo">
+            <img src="logo-youth.svg" alt="Logo jeunesse" class="logo">
+        </div>
+        <h3 class="section-title">Qui sommes-nous ? <p>Nous Sommes Des Acteurs Engagés pour Façonner l'Avenir des Jeunes de Mayotte</h3>
+    </div>
+    
+    <p class="intro-text">
+        L'AEJM, Fondée en octobre 2013 à Dembéni, l'Association des Étudiants et des Jeunes de Mayotte (AEJM) est une organisation départementale dédiée aux jeunes âgés de 15 à 25 ans, qu'ils soient scolarisés ou non. Initialement connue sous le nom d'Association des Étudiants du Centre Universitaire de Formation et de Recherche (CUFR), elle a élargi son champ d'action en septembre 2021 pour inclure les jeunes non étudiants, reflétant ainsi son engagement à promouvoir le vivre-ensemble et à répondre aux besoins variés de la jeunesse mahoraise.
+    </p>
+
+
+    <!-- Section Actions Modernisée -->
+
+    <div class="actions-wrapper">
+        <div class="section-header">
+            <h2 class="section-title">L'AEJM intervient principalement dans les domaines suivants :<br><span>Nos Actions</span></h2>
+            <p class="section-subtitle">Des initiatives qui font la différence</p>
+        </div>
+
+        <div id="actions" class="actions-section">
+        <div class="actions-grid">
+            <!-- Carte Action 1 -->
+            <article class="action-card">
+                <div class="card-media">
+                    <div class="media-container">
+                        <img src="Prévention.jpg" alt="Santé & Prévention" class="card-image" loading="lazy">
+                        <div class="video-overlay">
+                            <iframe src="https://www.youtube.com/embed/ID_VIDEO_1" 
+                                    title="Vidéo Santé & Prévention" 
+                                    allowfullscreen 
+                                    class="embedded-video"
+                                    loading="lazy"></iframe>
+                            <button class="play-button" aria-label="Lire la vidéo">
+                                <svg viewBox="0 0 24 24" width="48" height="48">
+                                    <path fill="currentColor" d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="content-header">
+                        <h3 class="card-title">Santé & Prévention</h3>
+                        <div class="underline"></div>
+                    </div>
+                    <p class="card-description">Sensibilisation active et ateliers santé innovants</p>
+                    <div class="action-tag">Campagnes mensuelles</div>
+                </div>
+            </article>
+
+            <!-- Carte Action 2 -->
+            <article class="action-card">
+                <div class="card-media">
+                    <div class="media-container">
+                        <img src="Animation.jpg" alt="Animation locale" class="card-image" loading="lazy">
+                        <div class="video-overlay">
+                            <iframe src="https://www.youtube.com/embed/ID_VIDEO_1" 
+                                    title="Vidéo Animation Locale" 
+                                    allowfullscreen 
+                                    class="embedded-video"
+                                    loading="lazy"></iframe>
+                            <button class="play-button" aria-label="Lire la vidéo">
+                                <svg viewBox="0 0 24 24" width="48" height="48">
+                                    <path fill="currentColor" d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="content-header">
+                        <h3 class="card-title">Animation locale</h3>
+                        <div class="underline"></div>
+                    </div>
+                    <p class="card-description">Ateliers interactifs pour la jeunesse</p>
+                    <div class="action-tag">Campagnes Quotidien</div>
+                </div>
+            </article>
+
+            <!-- Carte Action 3 -->
+            <article class="action-card">
+                <div class="card-media">
+                    <div class="media-container">
+                        <img src="Accompagnement.jpg" alt="Accompagnement" class="card-image" loading="lazy">
+                        <div class="video-overlay">
+                            <iframe src="https://www.youtube.com/embed/ID_VIDEO_1" 
+                                    title="Vidéo Accompagnement" 
+                                    allowfullscreen 
+                                    class="embedded-video"
+                                    loading="lazy"></iframe>
+                            <button class="play-button" aria-label="Lire la vidéo">
+                                <svg viewBox="0 0 24 24" width="48" height="48">
+                                    <path fill="currentColor" d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="content-header">
+                        <h3 class="card-title">Accompagnement</h3>
+                        <div class="underline"></div>
+                    </div>
+                    <p class="card-description">Soutien personnalisé pour chaque jeune</p>
+                    <div class="action-tag">Campagnes mensuelles</div>
+                </div>
+            </article>
+        </div>
+
+        <h2 class="section-title">L'AEJM : Un Pilier pour les Jeunes Mahorais et un Soutien Face aux Catastrophes Naturelles</span></h2>
+        <p></p>
+
+        <p class="intro-text">
+        L'association concentre ses efforts sur les quartiers prioritaires de la politique de la ville, les établissements scolaires (lycées et CUFR) et les centres de formation. Elle est située à Iloni, Dembéni, et peut être contactée par téléphone au 0269 66 68 16 ou par email à secretaire@aejm.fr. </p>
+
+        <p class="intro-text">
+        En janvier 2025, suite aux passages du cyclone Chido et de la tempête Dikeledi qui ont dévasté l’île, l'AEJM s'est mobilisée pour soutenir les jeunes Mahorais touchés par ces catastrophes. Elle a mené une enquête sociale afin d’identifier les besoins urgents des étudiants et des jeunes, démontrant ainsi sa réactivité face aux crises et son engagement continu envers la jeunesse locale.  </p>
+
+        <p class="intro-text">
+        L'AEJM joue un rôle essentiel dans l'accompagnement des jeunes de Mayotte, en favorisant leur épanouissement personnel et social, et en répondant à leurs aspirations à travers des initiatives adaptées à leurs besoins. </p>
+
+    </div>
+
+  <section id="actualites" class="new-carousel-section">
+  <h2 class="new-section-title">Actualités Récentes</h2>
+  <div class="new-carousel-container">
+    <div class="new-carousel">
+      <!-- Item 1 -->
+      <div class="new-carousel-item active">
+        <div class="new-carousel-card">
+          <div class="new-carousel-image-wrapper">
+            <img src="Aejm_page.jpg" alt="Actualité 1" class="new-carousel-image">
+          </div>
+          <div class="new-carousel-content">
+            <h3>Innovation Technologique</h3>
+            <p>Découvrez nos dernières avancées dans le domaine des nouvelles technologies et leur impact sur l'industrie.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Item 2 -->
+      <div class="new-carousel-item">
+        <div class="new-carousel-card">
+          <div class="new-carousel-image-wrapper">
+            <img src="Asso-aejm.jpg" alt="Actualité 2" class="new-carousel-image">
+          </div>
+          <div class="new-carousel-content">
+            <h3>Événements Culturels</h3>
+            <p>Explorez notre programme culturel exclusif conçu pour inspirer et connecter les passionnés du monde entier.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Item 3 -->
+      <div class="new-carousel-item">
+        <div class="new-carousel-card">
+          <div class="new-carousel-image-wrapper">
+            <img src="edition.jpg" alt="Actualité 3" class="new-carousel-image">
+          </div>
+          <div class="new-carousel-content">
+            <h3>Design d'Exception</h3>
+            <p>Plongez dans l'univers du design contemporain à travers nos créations primées internationalement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <button class="new-carousel-button new-prev" aria-label="Précédent">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <button class="new-carousel-button new-next" aria-label="Suivant">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    
+    <div class="new-carousel-indicators"></div>
+  </div>
+</section>
+
+    <!-- HTML CALENDRIER -->
+    <div class="carousel">
+        <div class="carousel-inner">
+            <!-- Slide Calendrier -->
+            <div class="slide active">
+                <div class="decorative-images">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232B6CB0' d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V9h14v10zM5 7V5h14v2H5z'/%3E%3C/svg%3E" 
+                         class="deco-image deco-image-1" alt="déco">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23C53030' d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E"
+                         class="deco-image deco-image-2" alt="déco">
+                </div>
+                <div class="event-calendar">
+                    <div class="calendar-header">
+                        <h2>Agenda des Événements</h2>
+                        <p class="section-subtitle">Découvrez nos prochaines activités</p>
+                    </div>
+                    <div class="filter-buttons" id="filterButtons"></div>
+                    <div class="events-grid" id="eventsContainer"></div>
+                </div>
+            </div>
+            <!-- Slides supplémentaires -->
+            <div class="slide">
+                <div class="decorative-images">
+                    <img src="https://via.placeholder.com/400x200/2B6CB0/FFFFFF?text=Slide+2" 
+                         class="deco-image deco-image-1" alt="déco">
+                </div>
+                <div class="event-calendar">
+                    <div class="calendar-header">
+                        <h2>Deuxième Événement</h2>
+                        <p class="section-subtitle">Détails sur le deuxième événement</p>
+                    </div>
+                    <div class="events-grid">
+                        <p>Contenu de la deuxième slide</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="decorative-images">
+                    <img src="https://via.placeholder.com/400x200/C53030/FFFFFF?text=Slide+3" 
+                         class="deco-image deco-image-1" alt="déco">
+                </div>
+                <div class="event-calendar">
+                    <div class="calendar-header">
+                        <h2>Troisième Événement</h2>
+                        <p class="section-subtitle">Détails sur le troisième événement</p>
+                    </div>
+                    <div class="events-grid">
+                        <p>Contenu de la troisième slide</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="nav-btn prev">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+            </svg>
+        </button>
+        <button class="nav-btn next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+            </svg>
+        </button>
+
+        <div class="navigation"></div>
+    </div>
+
+    <!-- Section Équipe -->
+<!-- Section Équipe -->
+<section id="equipe" class="team-section">
+    <div class="team-container">
+        <h2 class="section-title" data-aos="fade-up">
+            <span class="title-line"></span>
+            <span class="title-text">L'Équipe Visionnaire</span>
+            <span class="title-line"></span>
+        </h2>
+
+        <div class="team-mosaic">
+            <!-- Président -->
+            <article class="team-card president-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-inner">
+                    <div class="photo-container">
+                        <div class="photo-frame">
+                            <img src="Said.jpg" alt="Saïd-Adine MOHAMADI" loading="lazy" class="member-photo">
+                            <div class="photo-gradient"></div>
+                            <div class="deco-shapes">
+                                <div class="deco-circle"></div>
+                                <div class="deco-triangle"></div>
+                            </div>
+                        </div>
+                        <div class="president-badge">
+                            <svg class="crown-svg" viewBox="0 0 56 56">
+                                <path d="M28 4L35.5 15H42L47 27L39 34L28 56L17 34L9 27L14 15H20.5L28 4Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="member-details">
+                        <div class="detail-content">
+                            <h3 class="member-name">
+                                Saïd-Adine MOHAMADI
+                                <span class="accent-bar"></span>
+                            </h3>
+                            <p class="member-role">Président Exécutif</p>
+                            <div class="member-bio">
+                                <p>Saïd-Adine MOHAMADI est passionnée par l'éducation et travaille sans relâche pour l'épanouissement des jeunes.</p>
+                            </div>
+                            <ul class="member-links">
+                                <li><a href="#" class="linkedin-link" aria-label="Profil LinkedIn">
+                                    <svg class="icon"><use xlink:href="#linkedin-icon"></use></svg>
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Autres membres -->
+            <div class="team-grid">
+                <!-- Développement -->
+                <article class="team-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="card-inner">
+                        <div class="photo-container">
+                            <img src="Mélissa.jpg" alt="Mélissa KEISLER" loading="lazy" class="member-photo">
+                            <div class="photo-overlay"></div>
+                            <div class="deco-dots"></div>
+                        </div>
+                        <div class="member-details">
+                            <h3 class="member-name">Mélissa KEISLER</h3>
+                            <p class="member-role">Chargée De Développement</p>
+                            <div class="member-bio">
+                                <p>Mélissa gère les opérations de l'association et veille au développement de celle-ci.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Communication -->
+                <article class="team-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-inner">
+                        <div class="photo-container">
+                            <img src="Mina.jpg" alt="Mina Soilihi" loading="lazy" class="member-photo">
+                            <div class="photo-overlay"></div>
+                            <div class="deco-lines"></div>
+                        </div>
+                        <div class="member-details">
+                            <h3 class="member-name">Mina Soilihi</h3>
+                            <p class="member-role">Chargée De Communication</p>
+                            <div class="member-bio">
+                                <p>Mina coordonne les activités liées à la communication et assure le lien avec les membres.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Communication -->
+                <article class="team-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-inner">
+                        <div class="photo-container">
+                            <img src="Mina.jpg" alt="Mina Soilihi" loading="lazy" class="member-photo">
+                            <div class="photo-overlay"></div>
+                            <div class="deco-lines"></div>
+                        </div>
+                        <div class="member-details">
+                            <h3 class="member-name">Mina Soilihi</h3>
+                            <p class="member-role">Directrice de la Communication Créative</p>
+                            <div class="member-bio">
+                                <p>Architecte de campagnes primées récompensées aux Global Communication Awards 2023.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <!-- SVG Sprite -->
+    <svg style="display: none;">
+        <symbol id="linkedin-icon" viewBox="0 0 24 24">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-2.5 15h-3v-5.5a1.5 1.5 0 0 0-3 0V18h-3v-7h3v1a3 3 0 0 1 2.4-1.5c1.5 0 2.6 1.1 2.6 2.7V18zM7.5 8.25a1.75 1.75 0 1 0 0-3.5 1.75 1.75 0 0 0 0 3.5zM9 18v-7H6v7h3z"/>
+        </symbol>
+    </svg>
+</section>
+
  <!-- Chat LA MINA -->
     <button class="chat-toggle" id="chatToggle" aria-label="Ouvrir le chat">
         <img src="mina-head.jpg" alt="l'AEJM BOT" class="mina-logo" loading="lazy">
@@ -2126,138 +3029,6 @@ footer > p {
             <button id="sendButton" aria-label="Envoyer le message">Envoyer</button>
         </div>
     </div>
-
-<!-- HTML CALENDRIER -->
-<div class="event-calendar">
-    <div class="calendar-header">
-        <div class="header-content">
-            <h2>Agenda des Événements</h2>
-            <p class="section-subtitle">Découvrez nos prochaines activités</p>
-        </div>
-        <div class="filter-buttons" id="filterButtons"></div>
-    </div>
-    
-    <div class="events-grid" id="eventsContainer"></div>
-</div>
-
-    <!-- Section "À la une" avec carrousel d'images -->
-    <section id="a-la-une" class="alaune">
-        <h2 class="section-title">À LA UNE</h2>
-        <div class="carousel-container">
-            <div class="carousel">
-                <div class="slide">
-                    <img src="Logo_qui.jpg" alt="Événement AEJM 2024">
-                </div>
-                <div class="slide">
-                    <img src="Aejm_page.jpg" alt="Ateliers éducatifs">
-                </div>
-                <div class="slide">
-                    <img src="asso-aejm.jpg" alt="Rencontre avec les membres">
-                </div>
-            </div>
-            <div class="carousel-controls">
-                <button class="carousel-btn prev" aria-label="Image précédente">‹</button>
-                <button class="carousel-btn next" aria-label="Image suivante">›</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Actions Modernisée -->
-<section id="actions" class="actions-section">
-    <div class="section-header">
-        <h2 class="section-title">Nos engagements<br><span>concrets</span></h2>
-        <p class="section-subtitle">Des initiatives qui font la différence</p>
-    </div>
-
-    <div class="actions-grid">
-        <!-- Carte Action 1 -->
-        <article class="action-card">
-            <div class="card-media">
-                <div class="media-container">
-                    <img src="Prévention.jpg" alt="Santé & Prévention" class="card-image" loading="lazy">
-                    <div class="video-overlay">
-                        <iframe src="https://www.youtube.com/embed/ID_VIDEO_1" 
-                                title="Vidéo Santé & Prévention" 
-                                allowfullscreen 
-                                class="embedded-video"
-                                loading="lazy"></iframe>
-                        <button class="play-button" aria-label="Lire la vidéo">
-                            <svg viewBox="0 0 24 24" width="48" height="48">
-                                <path fill="currentColor" d="M8 5v14l11-7z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-content">
-                <div class="content-header">
-                    <h3 class="card-title">Santé & Prévention</h3>
-                    <div class="underline"></div>
-                </div>
-                <p class="card-description">Sensibilisation active et ateliers santé innovants</p>
-                <div class="action-tag">Campagnes mensuelles</div>
-            </div>
-        </article>
-<!-- Carte Action 2 -->
-        <article class="action-card">
-            <div class="card-media">
-                <div class="media-container">
-                    <img src="Animation.jpg" alt="Animation locale" class="card-image" loading="lazy">
-                    <div class="video-overlay">
-                        <iframe src="https://www.youtube.com/embed/ID_VIDEO_1" 
-                                title="Vidéo Animation Locale" 
-                                allowfullscreen 
-                                class="embedded-video"
-                                loading="lazy"></iframe>
-                        <button class="play-button" aria-label="Lire la vidéo">
-                            <svg viewBox="0 0 24 24" width="48" height="48">
-                                <path fill="currentColor" d="M8 5v14l11-7z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-content">
-                <div class="content-header">
-                    <h3 class="card-title">Animation locale</h3>
-                    <div class="underline"></div>
-                </div>
-                <p class="card-description">Sensibilisation active et ateliers santé innovants</p>
-                <div class="action-tag">Campagnes Quotidien</div>
-            </div>
-        </article>
-<!-- Carte Action 3 -->
-        <article class="action-card">
-            <div class="card-media">
-                <div class="media-container">
-                    <img src="Accompagnement.jpg" alt="Accompagnement" class="card-image" loading="lazy">
-                    <div class="video-overlay">
-                        <iframe src="https://www.youtube.com/embed/ID_VIDEO_1" 
-                                title="Vidéo Accompagnement" 
-                                allowfullscreen 
-                                class="embedded-video"
-                                loading="lazy"></iframe>
-                        <button class="play-button" aria-label="Lire la vidéo">
-                            <svg viewBox="0 0 24 24" width="48" height="48">
-                                <path fill="currentColor" d="M8 5v14l11-7z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-content">
-                <div class="content-header">
-                    <h3 class="card-title">Accompagnement</h3>
-                    <div class="underline"></div>
-                </div>
-                <p class="card-description">Sensibilisation active et ateliers santé innovants</p>
-                <div class="action-tag">Campagnes mensuelles</div>
-            </div>
-        </article>
-
-        <!-- Répéter la structure pour les autres cartes -->
-    </div>
-</section>
 
     <!-- Section vidéos améliorée -->
 <section id="videos" class="videos-section">
@@ -2508,35 +3279,6 @@ footer > p {
     </button>
 </section>
 
-<!-- Section Équipe -->
-<section id="equipe">
-    <h2>Notre Équipe</h2>
-    <div class="team-container" id="teamContainer">
-        <div class="team-member animate">
-            <img src="Said.jpg" alt="Saïd-Adine MOHAMADI" loading="lazy">
-            <h3>
-                Saïd-Adine MOHAMADI  
-                <span class="crown" aria-label="Président">&#x1F3C5;</span> <!-- Emoji couronne -->
-            </h3>
-            <p>Présidente</p>
-            <p>Saïd-Adine MOHAMADI est passionnée par l'éducation et travaille sans relâche pour l'épanouissement des jeunes.</p>
-        </div>
-        <div class="team-member animate">
-            <img src="Mélissa.jpg" alt="Mélissa KEISLER" loading="lazy">
-            <h3>Mélissa KEISLER</h3>
-            <p>Chargée De Développement</p>
-            <p>Mélissa gère les opérations de l'association, s'assure que nos projets avancent efficacement et veille au développement de l'association.</p>
-        </div>
-        <div class="team-member animate">
-            <img src="Mina.jpg" alt="Mina Soilihi" loading="lazy">
-            <h3>Mina Soilihi</h3>
-            <p>Chargée De Communication</p>
-            <p>Mina travaille directement avec les membres et coordonne les activités liées à la communication.</p>
-        </div>
-        <!-- Ajoutez d'autres membres ici -->
-    </div>
-</section>
-
     <!-- Section contact -->
 <section id="contact" class="contact-section">
     <div class="contact-container">
@@ -2627,8 +3369,115 @@ footer > p {
         <p style="text-align: center; margin-top: 2rem;">&copy; 2024 AEJM - Tous droits réservés</p>
     </footer>
 
-<script>
-    // Script pour masquer la barre de navigation au défilement  
+
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+  const carousel = document.querySelector('.new-carousel');
+  const items = document.querySelectorAll('.new-carousel-item');
+  const indicatorsContainer = document.querySelector('.new-carousel-indicators');
+  let currentIndex = 0;
+  let autoPlayInterval;
+  let isHovering = false;
+
+  // Create indicators
+  items.forEach((_, index) => {
+    const indicator = document.createElement('div');
+    indicator.classList.add('new-indicator');
+    if (index === 0) indicator.classList.add('active');
+    indicator.addEventListener('click', () => goToIndex(index));
+    indicatorsContainer.appendChild(indicator);
+  });
+
+  const indicators = document.querySelectorAll('.new-indicator');
+
+  function updateCarousel() {
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    items.forEach((item, index) => {
+      item.classList.toggle('active', index === currentIndex);
+    });
+    
+    indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === currentIndex);
+    });
+  }
+
+  function goToIndex(index) {
+    currentIndex = index;
+    updateCarousel();
+  }
+
+  // Navigation controls
+  document.querySelector('.new-next').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % items.length;
+    updateCarousel();
+  });
+
+  document.querySelector('.new-prev').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    updateCarousel();
+  });
+
+  // Touch/swipe handling
+  let touchStartX = 0;
+  const carouselContainer = document.querySelector('.new-carousel-container');
+
+  carouselContainer.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+  });
+
+  carouselContainer.addEventListener('touchend', e => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const deltaX = touchStartX - touchEndX;
+    
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX > 0) {
+        currentIndex = (currentIndex + 1) % items.length;
+      } else {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+      }
+      updateCarousel();
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!isHovering) return;
+    
+    if (e.key === 'ArrowRight') {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
+    } else if (e.key === 'ArrowLeft') {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      updateCarousel();
+    }
+  });
+
+  // Autoplay with pause states
+  function startAutoplay() {
+    autoPlayInterval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
+    }, 8000);
+  }
+
+  function pauseAutoplay() {
+    clearInterval(autoPlayInterval);
+  }
+
+  carouselContainer.addEventListener('mouseenter', () => {
+    isHovering = true;
+    pauseAutoplay();
+  });
+
+  carouselContainer.addEventListener('mouseleave', () => {
+    isHovering = false;
+    startAutoplay();
+  });
+
+  startAutoplay();
+});
+        // Script pour masquer la barre de navigation au défilement  
 let lastScrollTop = 0;
 window.addEventListener("scroll", function () {
     const header = document.querySelector("header");
@@ -2640,63 +3489,6 @@ window.addEventListener("scroll", function () {
     }
     lastScrollTop = st <= 0 ? 0 : st; // Pour éviter des valeurs négatives  
 });
-
-// Script pour le carrousel  
-document.addEventListener("DOMContentLoaded", () => {
-    const carousel = document.querySelector(".carousel");
-    const slides = document.querySelectorAll(".slide");
-    const prevBtn = document.querySelector(".prev");
-    const nextBtn = document.querySelector(".next");
-    let currentIndex = 0;
-    let autoSlide = true;
-    let slideInterval;
-
-    // Fonction pour mettre à jour la position du carrousel  
-    function updateCarousel() {
-        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-
-    // Fonction pour passer à la diapositive suivante  
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateCarousel();
-    }
-
-    // Fonction pour revenir à la diapositive précédente  
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateCarousel();
-    }
-
-    // Fonction pour démarrer le défilement automatique  
-    function startSlide() {
-        slideInterval = setInterval(nextSlide, 5000);
-    }
-
-    // Gestionnaires d'événements pour les boutons  
-    prevBtn.addEventListener("click", () => {
-        prevSlide();
-        if (autoSlide) {
-            clearInterval(slideInterval);
-            startSlide();
-        }
-    });
-
-    nextBtn.addEventListener("click", () => {
-        nextSlide();
-        if (autoSlide) {
-            clearInterval(slideInterval);
-            startSlide();
-        }
-    });
-
-    // Pause sur survol  
-    carousel.parentElement.addEventListener("mouseenter", () => clearInterval(slideInterval));
-    carousel.parentElement.addEventListener("mouseleave", startSlide);
-
-    startSlide();
-});
-
 // Script interactif optionnel  
 document.querySelectorAll('.play-button').forEach(button => {
     button.addEventListener('click', (e) => {
@@ -2751,101 +3543,211 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Mise à jour des données d'événements
-const events = [
-    {
-        date: "15 Octobre 2025",
-        title: "Salon de l'étudiant et de l'apprenti de Mayotte",
-        category: "Éducation",
-        description: "Session d'orientation professionnelle pour les jeunes avec des experts du secteur",
-        location: "Maison des Jeunes"
-    },
-    {
-        date: "22 Mars 2024",
-        title: "Journée Éco-citoyenne",
-        category: "Environnement",
-        description: "Nettoyage des plages et sensibilisation à la protection marine",
-        location: "Plage de N'Gouja"
-    },
-    {
-        date: "28 Mars 2024",
-        title: "Atelier Artistique",
-        category: "Culture",
-        description: "Découverte des techniques traditionnelles de sculpture mahoraise",
-        location: "Centre Culturel"
-    }
-];
+        class Carousel {
+            constructor(container) {
+                this.carousel = container;
+                this.slides = Array.from(container.querySelectorAll('.slide'));
+                this.nav = container.querySelector('.navigation');
+                this.currentIndex = 0;
+                this.touchStartX = 0;
 
-// Génération automatique du calendrier  
-function generateCalendar() {
-    const container = document.getElementById('eventsContainer');
-    const categories = [...new Set(events.map(event => event.category))];
-    
-    // Génération des filtres  
-    const filterButtons = document.getElementById('filterButtons');
-    filterButtons.innerHTML = `
-        <button class="filter-btn active" data-category="all">
-            <span>Tous</span>
-        </button>
-        ${categories.map(cat => `
-            <button class="filter-btn" data-category="${cat}">
-                <span>${cat}</span>
-            </button>
-        `).join('')}
-    `;
-    
-    // Génération des événements  
-    container.innerHTML = events.map(event => {
-        const [day, month] = event.date.split(' ');
-        return `
-        <div class="event-card" data-category="${event.category}">
-            <div class="event-date">
-                <div class="date-badge">
-                    <span>${day}</span>
-                    <span>${month}</span>
-                </div>
-                <span class="event-category">${event.category}</span>
-            </div>
-            <div class="event-content">
-                <h3>${event.title}</h3>
-                <p>${event.description}</p>
-                <small>📍 ${event.location}</small>
-            </div>
-        </div>
-    `}).join('');
-}
+                this.init();
+            }
 
-// Filtrage amélioré avec animation
-document.addEventListener('click', function(e) {
-    if(e.target.closest('.filter-btn')) {
-        const btn = e.target.closest('.filter-btn');
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        const category = btn.dataset.category;
-        const cards = document.querySelectorAll('.event-card');
-        
-        cards.forEach(card => {
-            const shouldShow = category === 'all' || card.dataset.category === category;
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                card.style.display = shouldShow ? 'block' : 'none';
-                if(shouldShow) {
-                    requestAnimationFrame(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    });
+            init() {
+                this.createDots();
+                this.addEventListeners();
+            }
+
+            createDots() {
+                this.slides.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if(index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => this.goToSlide(index));
+                    this.nav.appendChild(dot);
+                });
+            }
+
+            addEventListeners() {
+                this.carousel.querySelector('.prev').addEventListener('click', () => this.prevSlide());
+                this.carousel.querySelector('.next').addEventListener('click', () => this.nextSlide());
+
+                this.carousel.addEventListener('mouseenter', () => this.stopAutoPlay());
+                this.carousel.addEventListener('mouseleave', () => this.startAutoPlay());
+
+                this.carousel.addEventListener('touchstart', e => this.handleTouchStart(e));
+                this.carousel.addEventListener('touchend', e => this.handleTouchEnd(e));
+
+                document.addEventListener('keydown', e => {
+                    if (e.key === 'ArrowLeft') this.prevSlide();
+                    if (e.key === 'ArrowRight') this.nextSlide();
+                });
+            }
+
+            handleTouchStart(e) {
+                this.touchStartX = e.touches[0].clientX;
+            }
+
+            handleTouchEnd(e) {
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = this.touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > 50) {
+                    diff > 0 ? this.nextSlide() : this.prevSlide();
                 }
-            }, 300);
+            }
+
+            updateSlide(direction) {
+                this.slides[this.currentIndex].classList.remove('active');
+
+                this.currentIndex = (this.currentIndex + direction + this.slides.length) % this.slides.length;
+                
+                // Mettez à jour la position du carrousel  
+                const offset = -this.currentIndex * 100; // 100% * index actuelle  
+                this.carousel.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
+
+                this.slides[this.currentIndex].classList.add('active');
+                this.updateDots();
+            }
+
+            updateDots() {
+                this.nav.querySelectorAll('.dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === this.currentIndex);
+                });
+            }
+
+            goToSlide(index) {
+                this.slides[this.currentIndex].classList.remove('active');
+                this.currentIndex = index;
+                this.updateSlide(0); // Mettez simplement à jour la position  
+            }
+
+            nextSlide() {
+                this.updateSlide(1);
+            }
+
+            prevSlide() {
+                this.updateSlide(-1);
+            }
+
+            startAutoPlay() {
+                // Commenté pour désactiver le défilement automatique  
+                // this.autoPlayInterval = setInterval(() => this.nextSlide(), 7000);
+            }
+
+            stopAutoPlay() {
+                // Commenté pour désactiver le défilement automatique  
+                // clearInterval(this.autoPlayInterval);
+            }
+
+            resetAutoPlay() {
+                // Commenté pour désactiver le défilement automatique  
+                // this.stopAutoPlay();
+                // this.startAutoPlay();
+            }
+        }
+
+        const events = [
+            {
+                date: "15 Octobre 2025",
+                title: "Salon de l'étudiant et de l'apprenti de Mayotte",
+                category: "Éducation",
+                description: "Session d'orientation professionnelle pour les jeunes avec des experts du secteur",
+                location: "Maison des Jeunes",
+                image: "Logo_qui.jpg"
+            },
+            {
+                date: "22 Mars 2024",
+                title: "Journée Éco-citoyenne",
+                category: "Environnement",
+                description: "Nettoyage des plages et sensibilisation à la protection marine",
+                location: "Plage de N'Gouja",
+                image: "Asso-aejm.jpg"
+            }
+        ];
+
+        function generateCalendar() {
+            const container = document.getElementById('eventsContainer');
+            const categories = [...new Set(events.map(event => event.category))];
+            
+            const filterButtons = document.getElementById('filterButtons');
+            filterButtons.innerHTML = `
+                <button class="filter-btn active" data-category="all">
+                    <span>Tous</span>
+                </button>
+                ${categories.map(cat => `
+                    <button class="filter-btn" data-category="${cat}">
+                        <span>${cat}</span>
+                    </button>
+                `).join('')}
+            `;
+            
+            container.innerHTML = events.map(event => {
+                const [day, month] = event.date.split(' ');
+                return `
+                <div class="event-card" data-category="${event.category}">
+                    ${event.image ? `<img src="${event.image}" class="event-image" alt="${event.title}">` : ''}
+                    <div class="event-date">
+                        <div class="date-badge">
+                            <span>${day}</span>
+                            <span>${month}</span>
+                        </div>
+                        <span class="event-category">${event.category}</span>
+                    </div>
+                    <div class="event-content">
+                        <h3>${event.title}</h3>
+                        <p>${event.description}</p>
+                        <small>📍 ${event.location}</small>
+                    </div>
+                </div>
+            `}).join('');
+        }
+
+        document.addEventListener('click', function(e) {
+            if(e.target.closest('.filter-btn')) {
+                const btn = e.target.closest('.filter-btn');
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                const cards = document.querySelectorAll('.event-card');
+                
+                cards.forEach(card => {
+                    const shouldShow = category === 'all' || card.dataset.category === category;
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        card.style.display = shouldShow ? 'block' : 'none';
+                        if(shouldShow) {
+                            requestAnimationFrame(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            });
+                        }
+                    }, 300);
+                });
+            }
         });
-    }
-});
 
-generateCalendar();
+        // Effet parallaxe  
+        const calendarContainer = document.querySelector('.event-calendar');
+        const deco1 = document.querySelector('.deco-image-1');
+        const deco2 = document.querySelector('.deco-image-2');
 
-// Script pour contrôler l'affichage du formulaire d'adhésion  
+        if(calendarContainer) {
+            calendarContainer.addEventListener('scroll', () => {
+                const scrollY = calendarContainer.scrollTop;
+                deco1.style.transform = `translateY(${scrollY * 0.2}px) rotate(-15deg)`;
+                deco2.style.transform = `translateY(${-scrollY * 0.15}px) rotate(5deg)`;
+            });
+        }
+
+        generateCalendar();
+        new Carousel(document.querySelector('.carousel'));
+
+        // Script pour contrôler l'affichage du formulaire d'adhésion  
 const confirmJoinButton = document.getElementById('confirm-join-button');
 const adhesionFormContainer = document.getElementById('adhesion-form-container');
 
@@ -2985,7 +3887,7 @@ const responses = [
     },
     {
         question: ["équipe", "membres", "présentez l'équipe", "qui sont les membres"],
-        answer: "Voici notre équipe :\n\n👩‍💼 **Saïd-Adine MOHAMADI** - Présidente : Saïd-Adine MOHAMADI est passionnée par l'éducation et travaille sans relâche pour l'épanouissement des jeunes.\n\n👨‍💼 **Mélissa Keisler** - Chargée De Développement : Mélissa gère les opérations de l'association, s'assure que nos projets avancent efficacement et veille au développement de l'association.\n\n👩‍🏫 **Mina Soilihi** - Chargée De Communication : Mina travaille directement avec les membres et coordonne les activités liées à la communication.\n\nPour en savoir plus, consultez notre site web : https://aejm.org",
+        answer: "Voici notre équipe :\n\n👩‍💼 **Saïd-Adine MOHAMADI** - Présidente : Saïd-Adine MOHAMADI est passionnée par l'éducation et travaille sans relâche pour l'épanouissement des jeunes.\n\n👨‍💼 **Mélissa Keisler** - Chargée De Développement : Mélissa gère les opérations de l'association, s'assure que nos projets avancent efficacement et veille au développement de l'association.\n\n👩‍🏫 **Mina Soilihi** - Chargée De Communication : Mina travaille directement avec les membres et coordonne nos activités liées à la communication.\n\nPour en savoir plus, consultez notre site web : https://aejm.org",
         quickReplies: ["Contact", "Aide"]
     },
     // ********** SERVICES **********
@@ -3176,5 +4078,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 <script src="chatbot.js"></script>
+    </script>
 </body>
 </html>
