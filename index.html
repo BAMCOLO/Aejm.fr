@@ -98,6 +98,30 @@ nav a:hover {
     transform: scale(1.05); /* Légère augmentation de la taille au survol */
 }
 
+nav ul li {
+  position: relative;
+}
+
+nav ul li .submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul li:hover .submenu {
+  display: block;
+}
+
+nav ul li .submenu li a {
+  padding: 8px 12px;
+  display: block;
+}
+
+
 /* Ajouter un effet de changement d'ombre pour l'en-tête lors du survol */
 header:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Légère ombre plus prononcée au survol */
@@ -115,7 +139,7 @@ section {
 /* Styles pour la section héroïque */
 .hero {
     position: relative; /* Positionnement relatif pour le contenu de la section */
-    width: 97.8%; /* Largeur presque pleine */
+    width: 100%; /* Largeur presque pleine */
     min-height: 54vh; /* Hauteur minimale de la section */
     background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url("Equipe-Aejm.jpg") no-repeat center center/cover; /* Fond d'écran avec gradient */
     display: flex; /* Utilise Flexbox pour centrer le contenu */
@@ -199,290 +223,347 @@ section {
     margin-bottom: 1rem; /* Marge en bas de l'image */
 }
  /* Styles spécifiques au carrousel */
-.carousel {
-    width: 100%;
-    max-width: 1400px;
-    margin: 2rem;
-    position: relative;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
+/*********************************************************************
+     *                           RESET + BASE
+     *********************************************************************/
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      background: linear-gradient(120deg, #F8FAFC, #EDF2F7);
+      color: #2A4365;
+    }
 
-.carousel-inner {
-    display: flex; /* Utilisez flexbox pour afficher en ligne */
-    transition: transform 0.6s ease; /* Transition lors du changement de slide */
-}
-
-.carousel .slide {
-    flex: 0 0 100%; /* Chaque slide prend 100% de la largeur du carrousel */
-    height: 900px; /* Gardez la hauteur définie */
-    padding: rem;
-    opacity: 0;
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    background: linear-gradient(45deg, #EBF8FF, white); /* Utiliser une couleur directe ici pour éviter les variables globales */
-}
-
-.carousel .slide.active {
-    opacity: 1;
-    z-index: 1;
-}
-
-.carousel .event-calendar {
-    height: 100%;
-    padding: 2rem;
-    background: #EBF8FF; /* Utiliser une couleur directe ici pour éviter les variables globales */
-    position: relative;
-}
-
-.carousel .decorative-images {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    top: 0;
-    left: 0;
-}
-
-.carousel .deco-image {
-    position: absolute;
-    opacity: 0.15;
-    transition: all 1s ease;
-    filter: grayscale(100%) sepia(50%);
-}
-
-.carousel .deco-image-1 {
-    width: 200px;
-    top: 10%;
-    left: -15%;
-    animation: float-1 25s infinite linear;
-}
-
-.carousel .deco-image-2 {
-    width: 150px;
-    bottom: 20%;
-    right: -10%;
-    animation: float-2 30s infinite linear;
-}
-
-.carousel .calendar-header {
-    text-align: center;
-    margin-bottom: rem;
-    position: relative;
-    z-index: 1;
-}
-
-.carousel .calendar-header h2 {
-    font-size: 2.5rem;
-    color: #2A4365; /* Définir la couleur directement */
-    margin-bottom: 1rem;
-    position: relative;
-    display: inline-block;
-}
-
-.carousel .calendar-header h2::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: #C53030; /* Définir la couleur directement */
-}
-
-.carousel .events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem;
-    position: relative;
-    z-index: 1;
-}
-
-.carousel .event-card {
-    background: white;
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Légère ombre pour un meilleur effet */
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    position: relative;
-    overflow: hidden;
-    text-align: center; /* Centrer le texte */
-}
-
-.carousel .event-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-.carousel .event-image {
-    height: 180px;
-    width: 100%;
-    border-radius: 12px;
-    object-fit: cover;
-    margin-bottom: 1rem;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.carousel .event-card:hover .event-image {
-    transform: scale(0.98) rotate(-0.5deg);
-}
-
-.carousel .date-badge {
-    background: linear-gradient(135deg, #2B6CB0 0%, #2A4365 100%);
-    color: white;
-    padding: 0.8rem 1.2rem;
-    border-radius: 12px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 6px rgba(43, 108, 176, 0.2);
-}
-
-.carousel .event-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centrer le contenu */
-}
-
-.carousel .event-content h3 {
-    color: #2A4365; /* Définir la couleur directement */
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
-}
-
-.carousel .event-category {
-    background: rgba(43, 108, 176, 0.1);
-    color: #2B6CB0; /* Définir la couleur directement */
-    padding: 0.3rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    display: inline-block;
-    margin-left: 1rem;
-}
-
-.carousel .filter-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-    position: relative;
-    z-index: 1;
-}
-
-.carousel .filter-btn {
-    padding: 0.7rem 1.8rem;
-    border: none;
-    border-radius: 30px;
-    background: rgba(43, 108, 176, 0.1);
-    color: #2B6CB0; /* Définir la couleur directement */
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.carousel .filter-btn.active {
-    background: linear-gradient(135deg, #2B6CB0 0%, #2A4365 100%);
-    color: white;
-    box-shadow: 0 4px 6px rgba(43, 108, 176, 0.2);
-}
-
-.carousel .navigation {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 1rem;
-    z-index: 2;
-}
-
-.carousel .dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    border: 2px solid #2A4365; /* Définir la couleur directement */
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.carousel .dot.active {
-    background: #C53030; /* Définir la couleur directement */
-    border-color: #C53030; /* Définir la couleur directement */
-    transform: scale(1.3);
-}
-
-.carousel .nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 2;
-    transition: all 0.3s ease;
-    display: grid;
-    place-items: center;
-}
-
-.carousel .nav-btn:hover {
-    background: white;
-    transform: translateY(-50%) scale(1.1);
-}
-
-.carousel .nav-btn.prev {
-    left: 2rem;
-}
-
-.carousel .nav-btn.next {
-    right: 2rem;
-}
-
-.carousel .nav-btn svg {
-    width: 24px;
-    height: 24px;
-    stroke: #2A4365; /* Définir la couleur directement */
-}
-
-@media (max-width: 768px) {
+    /*********************************************************************
+     *                          CAROUSEL GLOBAL
+     *********************************************************************/
     .carousel {
-        margin: 1rem;
-        border-radius: 1rem;
+      width: 100%;
+      max-width: 1400px;
+      margin: 2rem auto;
+      position: relative;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      background: #fff;
     }
 
     .carousel-inner {
-        height: 600px;
+      display: flex;
+      transition: transform 0.6s ease; /* Transition lors du changement de slide */
     }
 
-    .slide {
-        padding: 1.5rem;
+    .carousel .slide {
+      flex: 0 0 100%; /* Chaque slide prend 100% de la largeur du carrousel */
+      min-height: 800px; 
+      padding: 3rem 2rem;
+      opacity: 0;
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      background: linear-gradient(135deg, #E6FFFA, #FFFFFF);
+    }
+    /* Slide active visible */
+    .carousel .slide.active {
+      opacity: 1;
+      z-index: 1;
     }
 
+    /*********************************************************************
+     *                       EVENT CALENDAR
+     *********************************************************************/
+    .carousel .event-calendar {
+      height: 100%;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    /* Zone décorative en fond */
+    .carousel .decorative-images {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+    .carousel .deco-image {
+      position: absolute;
+      opacity: 0.15;
+      transition: all 1s ease;
+      filter: grayscale(100%) sepia(40%);
+    }
+    .carousel .deco-image-1 {
+      width: 200px;
+      top: 10%;
+      left: -12%;
+      animation: float-1 25s infinite linear;
+    }
+    .carousel .deco-image-2 {
+      width: 150px;
+      bottom: 20%;
+      right: -10%;
+      animation: float-2 30s infinite linear;
+    }
+
+    /* En-tête du calendrier */
+    .calendar-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
     .calendar-header h2 {
-        font-size: 2rem;
+      font-size: 2.5rem;
+      color: #2A4365;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    .calendar-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: #C53030;
+    }
+    .calendar-header .section-subtitle {
+      color: #4A5568;
+      font-size: 1rem;
+      opacity: 0.8;
     }
 
-    .nav-btn {
+    /*********************************************************************
+     *                          GRILLE + CARTES
+     *********************************************************************/
+    .carousel .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1200px;
+      padding: 1rem;
+    }
+    /* Carte d'événement */
+    .carousel .event-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+      text-align: center; /* Centrer le texte */
+    }
+    .carousel .event-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Image de l'événement */
+    .carousel .event-image {
+      height: 180px;
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .carousel .event-card:hover .event-image {
+      transform: scale(0.98) rotate(-0.5deg);
+    }
+
+    /* Badges de date + catégorie */
+    .carousel .date-badge {
+      background: linear-gradient(135deg, #2B6CB0 0%, #2A4365 100%);
+      color: white;
+      padding: 0.8rem 1.2rem;
+      border-radius: 12px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 6px rgba(43, 108, 176, 0.2);
+    }
+    .carousel .event-category {
+      background: rgba(43, 108, 176, 0.1);
+      color: #2B6CB0;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-left: 1rem;
+    }
+
+    .carousel .event-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+    }
+    .carousel .event-content h3 {
+      color: #2A4365;
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .carousel .event-content p {
+      color: #4A5568;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+    .carousel .event-content small {
+      color: #4A5568;
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    /*********************************************************************
+     *                   BOUTONS DE FILTRE
+     *********************************************************************/
+    .carousel .filter-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .carousel .filter-btn {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      background: rgba(43, 108, 176, 0.1);
+      color: #2B6CB0;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+      position: relative;
+      font-weight: 500;
+    }
+    .carousel .filter-btn:hover {
+      transform: translateY(-3px);
+    }
+    .carousel .filter-btn.active {
+      background: linear-gradient(135deg, #2B6CB0 0%, #2A4365 100%);
+      color: white;
+      box-shadow: 0 4px 6px rgba(43, 108, 176, 0.2);
+      transform: translateY(-3px);
+    }
+
+    /*********************************************************************
+     *                  NAVIGATION (PREV / NEXT / DOTS)
+     *********************************************************************/
+    .carousel .navigation {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1rem;
+      z-index: 2;
+    }
+    .carousel .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      border: 2px solid #2A4365;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .carousel .dot:hover {
+      transform: scale(1.2);
+    }
+    .carousel .dot.active {
+      background: #C53030;
+      border-color: #C53030;
+      transform: scale(1.4);
+    }
+
+    .carousel .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 2;
+      transition: all 0.3s ease;
+      display: grid;
+      place-items: center;
+    }
+    .carousel .nav-btn:hover {
+      background: white;
+      transform: translateY(-50%) scale(1.1);
+    }
+    .carousel .nav-btn.prev {
+      left: 2rem;
+    }
+    .carousel .nav-btn.next {
+      right: 2rem;
+    }
+    .carousel .nav-btn svg {
+      width: 24px;
+      height: 24px;
+      stroke: #2A4365;
+    }
+
+    /*********************************************************************
+     *                            MEDIA QUERIES
+     *********************************************************************/
+    @media (max-width: 768px) {
+      .carousel {
+        margin: 1rem;
+        border-radius: 1rem;
+      }
+      .carousel-inner {
+        height: auto; 
+      }
+      .slide {
+        padding: 2rem;
+        min-height: 600px;
+      }
+      .calendar-header h2 {
+        font-size: 1.8rem;
+      }
+      .nav-btn {
         width: 40px;
         height: 40px;
+      }
+      .deco-image {
+        display: none;
+      }
     }
 
-    .deco-image {
-        display: none;
+    /*********************************************************************
+     *                       ANIMATIONS @KEYFRAMES
+     *********************************************************************/
+    @keyframes float-1 {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(-10deg); }
+      100% { transform: translateY(0) rotate(0deg); }
     }
-}
+    @keyframes float-2 {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(10px) rotate(10deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
 
 /* Design moderne */
 .actions-section {
@@ -1504,511 +1585,479 @@ footer > p {
     </style>
 
     <style>
-        /* Section Chatbot */
-        :root {
-            --primary-color: #2BB0ED;
-            --primary-dark: #2292cc;
-            --background: #ffffff;
-            --text-color: #333333;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --border-radius: 12px;
-        }
+            :root { 
+    --primary-color: #2BB0ED;
+    --primary-dark: #1A8ACB;
+    --background: #fdfdfd;
+    --text-color: #333333;
+    --accent-color: #FF5722;
+    --shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    --border-radius: 16px;
+    --transition-speed: 0.3s;
+    --font-family: 'Roboto', sans-serif;
+}
 
-        .chat-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            cursor: pointer;
-            border: none;
-            background: none;
-            padding: 0;
-            transition: transform 0.3s ease;
-            z-index: 1000;
-        }
+/* Style global */
+body {
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    font-family: var(--font-family);
+}
 
-        .chat-toggle:hover .mina-logo {
-            transform: scale(1.1);
-            box-shadow: var(--shadow);
-        }
+/* Bouton d'activation du chat */
+.chat-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #ffffff;
+    border: none;
+    border-radius: 50%;
+    padding: 13px;
+    box-shadow: var(--shadow);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    cursor: pointer;
+    z-index: 1000;
+}
+.chat-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+.mina-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: block;
+}
 
-        .mina-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            display: block;
-        }
+/* Conteneur du chat */
+.chat-container {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 360px;
+    max-width: 95vw;
+    background: var(--background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+    z-index: 999;
+}
+.chat-container.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
 
-        .chat-container {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: min(400px, 95vw);
-            background: var(--background);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            display: none;
-            flex-direction: column;
-            z-index: 999;
-        }
+/* En-tête du chat */
+.chat-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+.chat-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    flex-grow: 1;
+}
+.close-button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: opacity var(--transition-speed);
+}
+.close-button:hover {
+    opacity: 0.8;
+}
 
-        .chat-header {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            background: var(--primary-color);
-            border-radius: var(--border-radius) var(--border-radius) 0 0;
-        }
+/* Zone des messages */
+.chat-messages {
+    padding: 1rem;
+    background: #fafafa;
+    height: 400px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
 
-        .chat-header h2 {
-            color: white;
-            font-size: 1.25rem;
-            margin: 0;
-        }
+/* Bulles de message */
+.chat-message {
+    padding: 0.20rem 1rem;
+    border-radius: 20px;
+    animation: messageAppear var(--transition-speed) ease;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+.user-message {
+    background: var(--primary-color);
+    color: #fff;
+    align-self: flex-end;
+}
+.mina-message {
+    background: #ffffffe3;
+    color: var(--text-color);
+    align-self: flex-start;
+}
 
-        .close-button {
-            margin-left: auto;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0 0.5rem;
-            transition: opacity 0.3s ease;
-        }
+/* Zone de saisie */
+.chat-input {
+    padding: 0.75rem 1rem;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    display: flex;
+    gap: 0.5rem;
+}
+.chat-input input {
+    flex-grow: 1;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    transition: border-color var(--transition-speed);
+}
+.chat-input input:focus {
+    border-color: var(--primary-color);
+}
+.chat-input button {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background var(--transition-speed);
+}
+.chat-input button:hover {
+    background: var(--primary-dark);
+}
 
-        .close-button:hover {
-            opacity: 0.8;
-        }
+/* Animation d'apparition des messages */
+@keyframes messageAppear {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-        .chat-messages {
-            flex: 1;
-            padding: 1rem;
-            overflow-y: auto;
-            max-height: 50vh;
-            min-height: 200px;
-            scroll-behavior: smooth;
-        }
+/* Indicateur de saisie */
+.typing-indicator {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.7;
+}
+.dot {
+    width: 10px;
+    height: 10px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out;
+}
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce {
+    0%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+}
 
-        .chat-message {
-            margin: 0.5rem 0;
-            padding: 0.75rem 1rem;
-            border-radius: 1rem;
-            max-width: 85%;
-            word-wrap: break-word;
-            animation: messageAppear 0.3s ease;
-        }
+/* Boutons de réponses rapides */
+.quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+.quick-reply {
+    background: rgba(43, 176, 237, 0.1);
+    border: 1px solid var(--primary-color);
+    border-radius: 20px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background var(--transition-speed), color var(--transition-speed);
+}
+.quick-reply:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
 
-        .user-message {
-            background: var(--primary-color);
-            color: white;
-            margin-left: auto;
-        }
-
-        .mina-message {
-            background: #f5f5f5;
-            color: var(--text-color);
-            margin-right: auto;
-        }
-
-        .chat-input {
-            display: flex;
-            gap: 0.5rem;
-            padding: 1rem;
-            border-top: 1px solid #eeeeee;
-        }
-
-        .chat-input input {
-            flex: 1;
-            padding: 0.75rem;
-            border: 1px solid #dddddd;
-            border-radius: 0.5rem;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .chat-input input:focus {
-            border-color: var(--primary-color);
-        }
-
-        .chat-input button {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.25rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .chat-input button:hover {
-            background: var(--primary-dark);
-        }
-
-        @keyframes messageAppear {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .typing-indicator {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            gap: 0.5rem;
-            opacity: 0.7;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            animation: bounce 1.4s infinite ease-in-out;
-        }
-
-        .dot:nth-child(2) { animation-delay: 0.2s; }
-        .dot:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes bounce {
-            0%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-6px); }
-        }
-
-        .quick-replies {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-
-        .quick-reply {
-            background: rgba(43, 176, 237, 0.1);
-            color: var(--primary-color);
-            border: 1px solid var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .quick-reply:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        @media (max-width: 480px) {
-            .chat-container { bottom: 70px; right: 10px; }
-            .chat-toggle { bottom: 15px; right: 15px; }
-        }
+/* Adaptations pour mobile */
+@media (max-width: 480px) {
+    .chat-container {
+        width: 90%;
+        bottom: 80px;
+        right: 5%;
+    }
+    .chat-toggle {
+        bottom: 20px;
+        right: 20px;
+    }
+}
 
    /* =====================
    SECTION ÉQUIPE MODERNISÉE
    ===================== */
+/********************************** 
+ *          Variables 
+ **********************************/
 :root {
-    --team-primary: #0a0a0a;
-    --team-accent: #6c4eff;
-    --team-light: #ffffff;
-    --team-dark: #101010;
-    --team-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  --glass-bg: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --team-primary: #2a2a2a;
+  --team-accent: #6c4eff;
+  --team-dark: #0f0f0f;
+  --team-light: #ffffff;
+  --team-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  --font-main: 'Poppins', sans-serif;
 }
 
-.team-section {
-    padding: 8rem 2rem; /* Réduit de 10rem à 8rem */
-    background: 
-        radial-gradient(circle at 10% 20%, rgba(108,78,255,0.05) 0%, transparent 50%),
-        linear-gradient(180deg, #fafafa 0%, var(--team-light) 100%);
-    position: relative;
-    overflow: hidden;
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background: #f4f6f8;
+  color: var(--team-primary);
 }
 
-.team-container {
-    max-width: 1600px;
-    margin: 0 auto;
-    position: relative;
+/********************************** 
+ * Section Team 
+ **********************************/
+.glass-team-section {
+  padding: 6rem 2rem;
+  background: radial-gradient(circle at 20% 20%, #ffffff 0%, #15bca005 40%), linear-gradient(135deg, #fff4f4, #ffffff);
+  overflow: hidden;
 }
 
-.section-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 4rem; /* Réduit de 6rem à 4rem */
-    position: relative;
+.glass-team-container {
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.title-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, var(--team-accent) 50%, transparent 100%);
-    opacity: 0.3;
+/********************************** 
+ * Section Title 
+ **********************************/
+.glass-section-title {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
-.title-text {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 3rem; /* Réduit de 3.5rem à 3rem */
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    color: var(--team-primary);
-    position: relative;
-    padding: 0 2rem;
-    text-align: center;
+.glass-title-text {
+  font-weight: 700;
+  font-size: 3rem;
+  color: var(--team-primary);
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.team-mosaic {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 4rem;
+/********************************** 
+ * Mosaic & Carousel 
+ **********************************/
+.glass-team-mosaic {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
 }
 
-.president-card {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
+/* Le Président conserve sa place */
+.glass-president-card {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.photo-container {
-    position: relative;
-    border-radius: 2rem;
-    overflow: hidden;
-    aspect-ratio: 1/1;
-    isolation: isolate;
+/* Carousel horizontal pour les membres */
+.glass-team-carousel {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
 }
 
-.member-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform-origin: center;
-    transition: transform 0.8s var(--team-ease), filter 0.8s var(--team-ease);
-    filter: grayscale(100%) contrast(110%);
+.glass-team-grid {
+  display: flex;
+  gap: 2rem;
+  padding: 0 1rem;
 }
 
-.photo-gradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, rgba(108,78,255,0.1) 0%, rgba(255,255,255,0) 100%);
-    mix-blend-mode: multiply;
+.glass-team-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(15px);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  min-width: 280px;
+  transition: transform 0.4s var(--team-ease), box-shadow 0.4s var(--team-ease);
+  scroll-snap-align: start;
 }
 
-.deco-shapes {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
+.glass-team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
-.deco-circle {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    border: 2px solid var(--team-accent);
-    border-radius: 50%;
-    top: -20px;
-    right: -20px;
-    opacity: 0.3;
+/********************************** 
+ * Photo & Image 
+ **********************************/
+.glass-photo-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
-.deco-triangle {
-    position: absolute;
-    width: 60px;
-    height: 86px;
-    border: 2px solid var(--team-accent);
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    bottom: -15px;
-    right: -15px;
-    opacity: 0.3;
+.glass-member-photo {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  filter: grayscale(20%) brightness(95%);
+  transition: filter 0.8s var(--team-ease), transform 0.8s var(--team-ease);
 }
 
-.president-badge {
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 100px;
-    height: 100px;
-    background: var(--team-dark);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+.glass-team-card:hover .glass-member-photo {
+  filter: grayscale(0) brightness(100%);
+  transform: scale(1.05);
 }
 
-.crown-svg {
-    width: 48px;
-    height: 48px;
-    fill: #bbb114;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+/********************************** 
+ * Badge de la Couronne 
+ **********************************/
+.glass-crown-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 50px;
+  height: 50px;
+  background: var(--team-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  animation: crownGlow 3s infinite;
 }
 
-.member-details {
-    position: relative;
-    margin-top: -4rem;
-    padding: 3rem;
-    background: var(--team-light);
-    border-radius: 2rem;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.05);
-    z-index: 1;
+.glass-crown-svg {
+  width: 26px;
+  height: 26px;
+  fill: var(--team-light);
 }
 
-.member-name {
-    font-size: 1.8rem;
-    color: var(--team-primary);
-    margin-bottom: 1rem;
-    position: relative;
-    display: inline-block;
+/********************************** 
+ * Card Content 
+ **********************************/
+.glass-card-content {
+  padding: 2rem;
+  text-align: center;
 }
 
-.accent-bar {
-    position: absolute;
-    bottom: -0.5rem;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--team-accent);
-    transform-origin: left;
-    transition: transform 0.6s var(--team-ease);
+.glass-member-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  position: relative;
 }
 
-.member-role {
-    font-size: 0.85rem;
-    color: var(--team-accent);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
+.glass-accent-bar {
+  content: '';
+  display: block;
+  width: 0%;
+  height: 3px;
+  background: var(--team-accent);
+  transition: width 0.4s var(--team-ease);
+  margin: 0.3rem auto 1rem;
 }
 
-.member-bio p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #444;
-    max-width: 600px;
+.glass-team-card:hover .glass-accent-bar {
+  width: 100%;
 }
 
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    margin-top: 4rem;
+.glass-member-role {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--team-accent);
+  margin-bottom: 1rem;
 }
 
-.team-card:hover .member-photo {
-    filter: grayscale(0%) contrast(100%);
-    transform: scale(1.05);
+.glass-member-bio {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 1.5rem;
 }
 
-.member-links {
-    position: absolute;
-    bottom: -2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 1rem;
+/********************************** 
+ * Liens externes (LinkedIn) 
+ **********************************/
+.glass-member-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
-.linkedin-link {
-    width: 48px;
-    height: 48px;
-    background: var(--team-dark);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.4s var(--team-ease);
+.glass-linkedin-link {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--team-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.4s var(--team-ease);
 }
 
-.linkedin-link .icon {
-    width: 24px;
-    height: 24px;
-    fill: var(--team-light);
+.glass-linkedin-link:hover {
+  background: var(--team-accent);
 }
 
-@media (max-width: 1200px) {
-    .member-details {
-        padding: 3rem;
-    }
+.glass-icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--team-light);
 }
 
-@media (max-width: 768px) {
-    .section-title {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .title-line {
-        width: 100px;
-    }
-    
-    .title-text {
-        font-size: 2.5rem;
-    }
-    
-    .president-card {
-        max-width: 100%;
-    }
-    
-    .member-details {
-        margin-top: -2rem;
-        padding: 2rem;
-    }
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-/* Animation */
-@keyframes cardEntrance {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+/********************************** 
+ * Animations 
+ **********************************/
 @keyframes crownGlow {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
-/* Scroll personnalisé */
-.team-container::-webkit-scrollbar {
-    height: 8px;
-}
-
-.team-container::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-.team-container::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 4px;
-}
-
-/* Responsive */
+/********************************** 
+ * Responsive Design 
+ **********************************/
 @media (max-width: 768px) {
-    .team-container {
-        grid-auto-flow: column;
-        grid-auto-columns: minmax(280px, 1fr);
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        padding-bottom: 1rem;
-    }
-
-    .team-member {
-        scroll-snap-align: start;
-        min-width: 280px;
-    }
-
-    #equipe h2 {
-        font-size: 2rem;
-    }
+  .glass-title-text {
+    font-size: 2.2rem;
+  }
+  .glass-card-content {
+    padding: 1.5rem;
+  }
+  .glass-member-name {
+    font-size: 1.3rem;
+  }
+  .glass-member-photo {
+    height: 200px;
+  }
 }
+
 
 
         /* Variables */
@@ -2615,27 +2664,36 @@ footer > p {
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <a href="#accueil">AEJM</a>
-            <img src="Logo.jpg" alt="Logo AEJM">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#accueil" id="home-link">Accueil</a></li>
-                <li><a href="#actions">Actions</a></li>
-                <li><a href="#videos">Vidéos</a></li>
-                <li><a href="#adhesion" id="join-button">Nous rejoindre</a></li>
-                <li><a href="#partenaires">Partenaires</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <header> 
+  <div class="logo">
+    <a href="#accueil">AEJM</a>
+    <img src="Logo.jpg" alt="Logo AEJM">
+  </div>
+  <nav>
+    <ul>
+      <li>
+        <a href="#accueil" id="home-link">Accueil</a>
+        <!-- Sous-menu pour Accueil -->
+        <ul class="submenu">
+          <li><a href="#qui-sommes-nous">Qui sommes-nous ?</a></li>
+          <li><a href="#actualites">Actualités Récentes</a></li>
+          <li><a href="#agenda">Agenda évènement</a></li>
+        </ul>
+      </li>
+      <li><a href="#actions">Actions</a></li>
+      <li><a href="#videos">Vidéos</a></li>
+      <li><a href="#adhesion" id="join-button">Nous rejoindre</a></li>
+      <li><a href="#partenaires">Partenaires</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
 
     <!-- Section héroïque avec contenu principal -->
     <section id="accueil" class="hero">
         <div class="hero-content">
-            <h2>Association Pour Les Étudiants et Les Jeunes de Mayotte - AEJM</h2>
+            <h2>Association Pour Les Étudiant.e.s et Les Jeunes de Mayotte - AEJM</h2>
             <p>Engagées pour l'épanouissement des jeunes depuis 2013</p>
             <a href="#adhesion" class="join-button">Nous rejoindre</a>
         </div>
@@ -2645,14 +2703,14 @@ footer > p {
   <section id="qui-sommes-nous" class="section">
     <div class="section-header">
         <div class="logo-container">
-            <img src="logo-community.svg" alt="Logo communauté" class="logo">
-            <img src="logo-youth.svg" alt="Logo jeunesse" class="logo">
+            <img src="Logo_2.png" alt="Logo communauté" class="logo">
+            <img src="Departement.png" alt="Logo jeunesse" class="logo">
         </div>
-        <h3 class="section-title">Qui sommes-nous ? <p>Nous Sommes Des Acteurs Engagés pour Façonner l'Avenir des Jeunes de Mayotte</h3>
+        <h3 class="section-title">Qui sommes-nous ? <p> Nous Sommes Des Acteurs Engagés pour Façonner l'Avenir des Jeunes de Mayotte</h3>
     </div>
     
     <p class="intro-text">
-        L'AEJM, Fondée en octobre 2013 à Dembéni, l'Association des Étudiants et des Jeunes de Mayotte (AEJM) est une organisation départementale dédiée aux jeunes âgés de 15 à 25 ans, qu'ils soient scolarisés ou non. Initialement connue sous le nom d'Association des Étudiants du Centre Universitaire de Formation et de Recherche (CUFR), elle a élargi son champ d'action en septembre 2021 pour inclure les jeunes non étudiants, reflétant ainsi son engagement à promouvoir le vivre-ensemble et à répondre aux besoins variés de la jeunesse mahoraise.
+        L'AEJM, Fondée en octobre 2013 à Dembéni, l'Association des Étudiants et des Jeunes de Mayotte (AEJM) est une organisation départementale dédiée aux jeunes âgés de 15 à 25 ans, qu'ils soient scolarisés, apprenti.e.s ou stagiaires en formation professionnelle. Initialement connue sous le nom d'Association des Étudiants du Centre Universitaire de Formation et de Recherche (CUFR), elle a élargi son champ d'action en septembre 2021 pour inclure les jeunes non étudiants, reflétant ainsi son engagement à promouvoir le vivre-ensemble et à répondre aux besoins variés de la jeunesse mahoraise.
     </p>
 
 
@@ -2716,7 +2774,7 @@ footer > p {
                 </div>
                 <div class="card-content">
                     <div class="content-header">
-                        <h3 class="card-title">Animation locale</h3>
+                        <h3 class="card-title">Animation Et Promotion de la vie des étudiant.e.s</h3>
                         <div class="underline"></div>
                     </div>
                     <p class="card-description">Ateliers interactifs pour la jeunesse</p>
@@ -2745,7 +2803,7 @@ footer > p {
                 </div>
                 <div class="card-content">
                     <div class="content-header">
-                        <h3 class="card-title">Accompagnement</h3>
+                        <h3 class="card-title">Accompagnement Social</h3>
                         <div class="underline"></div>
                     </div>
                     <p class="card-description">Soutien personnalisé pour chaque jeune</p>
@@ -2754,7 +2812,7 @@ footer > p {
             </article>
         </div>
 
-        <h2 class="section-title">L'AEJM : Un Pilier pour les Jeunes Mahorais et un Soutien Face aux Catastrophes Naturelles</span></h2>
+        <h2 class="section-title">L'AEJM : Un repère pour la Jeunesse de Mayotte et un Soutien face aux catastrophes naturelles</span></h2>
         <p></p>
 
         <p class="intro-text">
@@ -2779,8 +2837,8 @@ footer > p {
             <img src="Aejm_page.jpg" alt="Actualité 1" class="new-carousel-image">
           </div>
           <div class="new-carousel-content">
-            <h3>Innovation Technologique</h3>
-            <p>Découvrez nos dernières avancées dans le domaine des nouvelles technologies et leur impact sur l'industrie.</p>
+            <h3>Le Salon de l'Étudiant et de l'Apprenti de Mayotte</h3>
+            <p> C'est un événement annuel majeur dédié à l'orientation et à la formation des jeunes Mahorais. Organisé par le Département de Mayotte en partenariat avec la Préfecture, le Rectorat, la CADEMA.</p>
           </div>
         </div>
       </div>
@@ -2792,7 +2850,7 @@ footer > p {
             <img src="Asso-aejm.jpg" alt="Actualité 2" class="new-carousel-image">
           </div>
           <div class="new-carousel-content">
-            <h3>Événements Culturels</h3>
+            <h3>L'Association des Étudiants et des Jeunes de Mayotte (AEJM)</h3>
             <p>Explorez notre programme culturel exclusif conçu pour inspirer et connecter les passionnés du monde entier.</p>
           </div>
         </div>
@@ -2805,8 +2863,8 @@ footer > p {
             <img src="edition.jpg" alt="Actualité 3" class="new-carousel-image">
           </div>
           <div class="new-carousel-content">
-            <h3>Design d'Exception</h3>
-            <p>Plongez dans l'univers du design contemporain à travers nos créations primées internationalement.</p>
+            <h3>Prévention Santé : Lutte contre le VIH/SIDA avec l’AEJM</h3>
+            <p>L'AEJM s'engage activement dans la prévention du VIH/SIDA et des infections sexuellement transmissibles (IST) auprès de la jeunesse mahoraise.</p>
           </div>
         </div>
       </div>
@@ -2824,211 +2882,218 @@ footer > p {
 </section>
 
     <!-- HTML CALENDRIER -->
+    <div id="agenda" class="carousel">
     <div class="carousel">
-        <div class="carousel-inner">
-            <!-- Slide Calendrier -->
-            <div class="slide active">
-                <div class="decorative-images">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232B6CB0' d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V9h14v10zM5 7V5h14v2H5z'/%3E%3C/svg%3E" 
-                         class="deco-image deco-image-1" alt="déco">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23C53030' d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E"
-                         class="deco-image deco-image-2" alt="déco">
-                </div>
-                <div class="event-calendar">
-                    <div class="calendar-header">
-                        <h2>Agenda des Événements</h2>
-                        <p class="section-subtitle">Découvrez nos prochaines activités</p>
-                    </div>
-                    <div class="filter-buttons" id="filterButtons"></div>
-                    <div class="events-grid" id="eventsContainer"></div>
-                </div>
-            </div>
-            <!-- Slides supplémentaires -->
-            <div class="slide">
-                <div class="decorative-images">
-                    <img src="https://via.placeholder.com/400x200/2B6CB0/FFFFFF?text=Slide+2" 
-                         class="deco-image deco-image-1" alt="déco">
-                </div>
-                <div class="event-calendar">
-                    <div class="calendar-header">
-                        <h2>Deuxième Événement</h2>
-                        <p class="section-subtitle">Détails sur le deuxième événement</p>
-                    </div>
-                    <div class="events-grid">
-                        <p>Contenu de la deuxième slide</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide">
-                <div class="decorative-images">
-                    <img src="https://via.placeholder.com/400x200/C53030/FFFFFF?text=Slide+3" 
-                         class="deco-image deco-image-1" alt="déco">
-                </div>
-                <div class="event-calendar">
-                    <div class="calendar-header">
-                        <h2>Troisième Événement</h2>
-                        <p class="section-subtitle">Détails sur le troisième événement</p>
-                    </div>
-                    <div class="events-grid">
-                        <p>Contenu de la troisième slide</p>
-                    </div>
-                </div>
-            </div>
-
+    <div class="carousel-inner">
+      <!-- ========== SLIDE 1 ========== -->
+      <div class="slide active">
+        <div class="decorative-images">
+          <!-- Exemple d'images décoratives flottantes -->
+          <img 
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232B6CB0' d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V9h14v10zM5 7V5h14v2H5z'/%3E%3C/svg%3E"
+            class="deco-image deco-image-1"
+            alt="déco"
+          >
+          <img 
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23C53030' d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E"
+            class="deco-image deco-image-2"
+            alt="déco"
+          >
         </div>
+        <div class="event-calendar">
+          <div class="calendar-header">
+            <h2>Agenda des Événements (Slide 1)</h2>
+            <p class="section-subtitle">Découvrez nos prochains rendez-vous</p>
+          </div>
+          <!-- Boutons de filtre pour le Slide 1 -->
+          <div class="filter-buttons" id="filterButtonsSlide1"></div>
+          <!-- Grille d'événements pour le Slide 1 -->
+          <div class="events-grid" id="eventsContainerSlide1"></div>
+        </div>
+      </div>
 
-        <button class="nav-btn prev">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M15 18l-6-6 6-6"/>
-            </svg>
-        </button>
-        <button class="nav-btn next">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 18l6-6-6-6"/>
-            </svg>
-        </button>
+      <!-- ========== SLIDE 2 ========== -->
+      <div class="slide">
+        <div class="decorative-images">
+          <img 
+            src="https://via.placeholder.com/400x200/2B6CB0/FFFFFF?text=Slide+2"
+            class="deco-image deco-image-1" 
+            alt="déco"
+          >
+        </div>
+        <div class="event-calendar">
+          <div class="calendar-header">
+            <h2>Deuxième Slide d'Événements</h2>
+            <p class="section-subtitle">Détails sur un autre groupe d'événements</p>
+          </div>
+          <!-- Boutons de filtre Slide 2 -->
+          <div class="filter-buttons" id="filterButtonsSlide2"></div>
+          <!-- Grille d'événements Slide 2 -->
+          <div class="events-grid" id="eventsContainerSlide2"></div>
+        </div>
+      </div>
 
-        <div class="navigation"></div>
+      <!-- ========== SLIDE 3 ========== -->
+      <div class="slide">
+        <div class="decorative-images">
+          <img 
+            src="https://via.placeholder.com/400x200/C53030/FFFFFF?text=Slide+3" 
+            class="deco-image deco-image-1" 
+            alt="déco"
+          >
+        </div>
+        <div class="event-calendar">
+          <div class="calendar-header">
+            <h2>Troisième Slide d'Événements</h2>
+            <p class="section-subtitle">Encore d'autres activités</p>
+          </div>
+          <!-- Boutons de filtre Slide 3 -->
+          <div class="filter-buttons" id="filterButtonsSlide3"></div>
+          <!-- Grille d'événements Slide 3 -->
+          <div class="events-grid" id="eventsContainerSlide3"></div>
+        </div>
+      </div>
     </div>
+
+    <!-- BOUTONS DE NAVIGATION CALENDRIER -->
+    <button class="nav-btn prev">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+    <button class="nav-btn next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+
+    <!-- POINTS DE NAVIGATION CALENDRIER (DOTS) -->
+    <div class="navigation"></div>
+  </div>
 
     <!-- Section Équipe -->
 <!-- Section Équipe -->
-<section id="equipe" class="team-section">
-    <div class="team-container">
-        <h2 class="section-title" data-aos="fade-up">
-            <span class="title-line"></span>
-            <span class="title-text">L'Équipe Visionnaire</span>
-            <span class="title-line"></span>
-        </h2>
+<section id="equipe" class="glass-team-section">
+  <div class="glass-team-container">
+    <h2 class="glass-section-title" data-aos="zoom-in">
+      <span class="glass-title-text">L'ÉQUIPE DE L'AEJM</span>
+    </h2>
 
-        <div class="team-mosaic">
-            <!-- Président -->
-            <article class="team-card president-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-inner">
-                    <div class="photo-container">
-                        <div class="photo-frame">
-                            <img src="Said.jpg" alt="Saïd-Adine MOHAMADI" loading="lazy" class="member-photo">
-                            <div class="photo-gradient"></div>
-                            <div class="deco-shapes">
-                                <div class="deco-circle"></div>
-                                <div class="deco-triangle"></div>
-                            </div>
-                        </div>
-                        <div class="president-badge">
-                            <svg class="crown-svg" viewBox="0 0 56 56">
-                                <path d="M28 4L35.5 15H42L47 27L39 34L28 56L17 34L9 27L14 15H20.5L28 4Z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="member-details">
-                        <div class="detail-content">
-                            <h3 class="member-name">
-                                Saïd-Adine MOHAMADI
-                                <span class="accent-bar"></span>
-                            </h3>
-                            <p class="member-role">Président Exécutif</p>
-                            <div class="member-bio">
-                                <p>Saïd-Adine MOHAMADI est passionnée par l'éducation et travaille sans relâche pour l'épanouissement des jeunes.</p>
-                            </div>
-                            <ul class="member-links">
-                                <li><a href="#" class="linkedin-link" aria-label="Profil LinkedIn">
-                                    <svg class="icon"><use xlink:href="#linkedin-icon"></use></svg>
-                                </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Autres membres -->
-            <div class="team-grid">
-                <!-- Développement -->
-                <article class="team-card" data-aos="fade-up" data-aos-delay="150">
-                    <div class="card-inner">
-                        <div class="photo-container">
-                            <img src="Mélissa.jpg" alt="Mélissa KEISLER" loading="lazy" class="member-photo">
-                            <div class="photo-overlay"></div>
-                            <div class="deco-dots"></div>
-                        </div>
-                        <div class="member-details">
-                            <h3 class="member-name">Mélissa KEISLER</h3>
-                            <p class="member-role">Chargée De Développement</p>
-                            <div class="member-bio">
-                                <p>Mélissa gère les opérations de l'association et veille au développement de celle-ci.</p>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Communication -->
-                <article class="team-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-inner">
-                        <div class="photo-container">
-                            <img src="Mina.jpg" alt="Mina Soilihi" loading="lazy" class="member-photo">
-                            <div class="photo-overlay"></div>
-                            <div class="deco-lines"></div>
-                        </div>
-                        <div class="member-details">
-                            <h3 class="member-name">Mina Soilihi</h3>
-                            <p class="member-role">Chargée De Communication</p>
-                            <div class="member-bio">
-                                <p>Mina coordonne les activités liées à la communication et assure le lien avec les membres.</p>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Communication -->
-                <article class="team-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-inner">
-                        <div class="photo-container">
-                            <img src="Mina.jpg" alt="Mina Soilihi" loading="lazy" class="member-photo">
-                            <div class="photo-overlay"></div>
-                            <div class="deco-lines"></div>
-                        </div>
-                        <div class="member-details">
-                            <h3 class="member-name">Mina Soilihi</h3>
-                            <p class="member-role">Directrice de la Communication Créative</p>
-                            <div class="member-bio">
-                                <p>Architecte de campagnes primées récompensées aux Global Communication Awards 2023.</p>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
+    <div class="glass-team-mosaic">
+      <!-- Président (position fixe en haut) -->
+      <article class="glass-team-card glass-president-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="glass-photo-container">
+          <img src="Said.jpg" alt="Saïd-Adine MOHAMADI" loading="lazy" class="glass-member-photo" />
+          <div class="glass-crown-badge">
+            <svg class="glass-crown-svg" viewBox="0 0 56 56" aria-hidden="true" focusable="false">
+              <path d="M28 4L35.5 15H42L47 27L39 34L28 56L17 34L9 27L14 15H20.5L28 4Z" />
+            </svg>
+          </div>
         </div>
-    </div>
+        <div class="glass-card-content">
+          <h3 class="glass-member-name">
+            Saïd-Adine MOHAMADI
+            <span class="glass-accent-bar"></span>
+          </h3>
+          <p class="glass-member-role">Président Exécutif</p>
+          <p class="glass-member-bio">
+            Saïd-Adine MOHAMADI est passionné(e) par l'éducation et œuvre pour l'épanouissement des jeunes.
+          </p>
+          <ul class="glass-member-links">
+            <li>
+              <a href="#" class="glass-linkedin-link" aria-label="Profil LinkedIn">
+                <svg class="glass-icon">
+                  <use xlink:href="#linkedin-icon"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </article>
 
-    <!-- SVG Sprite -->
-    <svg style="display: none;">
-        <symbol id="linkedin-icon" viewBox="0 0 24 24">
-            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-2.5 15h-3v-5.5a1.5 1.5 0 0 0-3 0V18h-3v-7h3v1a3 3 0 0 1 2.4-1.5c1.5 0 2.6 1.1 2.6 2.7V18zM7.5 8.25a1.75 1.75 0 1 0 0-3.5 1.75 1.75 0 0 0 0 3.5zM9 18v-7H6v7h3z"/>
-        </symbol>
-    </svg>
+      <!-- Carousel horizontal pour les autres membres -->
+      <div class="glass-team-carousel" data-aos="fade-up" data-aos-delay="200">
+        <div class="glass-team-grid">
+          <!-- 1. Mélissa KEISLER -->
+          <article class="glass-team-card" data-scroll-snap-align="start">
+            <div class="glass-photo-container">
+              <img src="Mélissa.jpg" alt="Mélissa KEISLER" loading="lazy" class="glass-member-photo" />
+            </div>
+            <div class="glass-card-content">
+              <h3 class="glass-member-name">Mélissa KEISLER</h3>
+              <p class="glass-member-role">Chargée De Développement</p>
+              <p class="glass-member-bio">
+                Mélissa supervise les opérations et assure le développement stratégique de l'association.
+              </p>
+            </div>
+          </article>
+
+          <!-- 2. Mina Soilihi (Communication) -->
+          <article class="glass-team-card" data-scroll-snap-align="start">
+            <div class="glass-photo-container">
+              <img src="Mina.jpg" alt="Mina Soilihi" loading="lazy" class="glass-member-photo" />
+            </div>
+            <div class="glass-card-content">
+              <h3 class="glass-member-name">Mina Soilihi</h3>
+              <p class="glass-member-role">Chargée De Communication</p>
+              <p class="glass-member-bio">
+                Mina coordonne nos campagnes de communication et renforce les liens avec nos membres.
+              </p>
+            </div>
+          </article>
+
+          <!-- 3. Mina Soilihi  -->
+          <article class="glass-team-card" data-scroll-snap-align="start">
+            <div class="glass-photo-container">
+              <img src="ARIFACHADI ABDALLAH Roukia.jpg" alt="ARIFACHADI ABDALLAH Roukia" loading="lazy" class="glass-member-photo" />
+            </div>
+            <div class="glass-card-content">
+              <h3 class="glass-member-name">ARIFACHADI ABDALLAH Roukia</h3>
+              <p class="glass-member-role">Coordinatrice </p>
+              <p class="glass-member-bio">
+                Architecte de campagnes primées aux Global Communication Awards 2023.
+              </p>
+            </div>
+          </article>
+
+          <!-- Ajoutez d'autres membres ici -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG Sprite -->
+  <svg style="display: none;">
+    <symbol id="linkedin-icon" viewBox="0 0 24 24">
+      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-2.5 15h-3v-5.5a1.5 1.5 0 0 0-3 0V18h-3v-7h3v1a3 3 0 0 1 2.4-1.5c1.5 0 2.6 1.1 2.6 2.7V18zM7.5 8.25a1.75 1.75 0 1 0 0-3.5 1.75 1.75 0 0 0 0 3.5zM9 18v-7H6v7h3z" />
+    </symbol>
+  </svg>
 </section>
+
+
 
  <!-- Chat LA MINA -->
     <button class="chat-toggle" id="chatToggle" aria-label="Ouvrir le chat">
-        <img src="mina-head.jpg" alt="l'AEJM BOT" class="mina-logo" loading="lazy">
-    </button>
+      <img src="mina-head.jpg" alt="l'AEJM BOT" class="mina-logo" loading="lazy">
+  </button>
 
-    <div class="chat-container" id="chatContainer" aria-hidden="true" role="dialog" aria-labelledby="chatTitle" style="display:none;">
-        <div class="chat-header">
-            <h2 id="chatTitle">AEJM BOT</h2>
-            <button id="closeChat" class="close-button" aria-label="Fermer le chat">✖</button>
-        </div>
-        <div class="chat-messages" id="chatMessages" role="log" aria-live="polite"></div>
-        <div id="typingIndicator" class="typing-indicator" style="display:none;">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-        <div class="chat-input">
-            <input type="text" id="userInput" placeholder="Posez votre question ici..." aria-label="Votre message">
-            <button id="sendButton" aria-label="Envoyer le message">Envoyer</button>
-        </div>
-    </div>
+  <!-- Conteneur du chat -->
+  <div class="chat-container" id="chatContainer" aria-hidden="true" role="dialog" aria-labelledby="chatTitle">
+      <div class="chat-header">
+          <h2 id="chatTitle">AEJM BOT</h2>
+          <button id="closeChat" class="close-button" aria-label="Fermer le chat">✖</button>
+      </div>
+      <div class="chat-messages" id="chatMessages" role="log" aria-live="polite"></div>
+      <div id="typingIndicator" class="typing-indicator" style="display:none;">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+      </div>
+      <div class="chat-input">
+          <input type="text" id="userInput" placeholder="Posez votre question ici..." aria-label="Votre message">
+          <button id="sendButton" aria-label="Envoyer le message">Envoyer</button>
+      </div>
+  </div>
 
     <!-- Section vidéos améliorée -->
 <section id="videos" class="videos-section">
@@ -3543,209 +3608,266 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-        class Carousel {
-            constructor(container) {
-                this.carousel = container;
-                this.slides = Array.from(container.querySelectorAll('.slide'));
-                this.nav = container.querySelector('.navigation');
-                this.currentIndex = 0;
-                this.touchStartX = 0;
+    /*********************************************************************
+     *                    1) Données d'événements
+     *********************************************************************/
+    const events = [
+      // Slide 1
+      {
+        date: "15 Octobre 2025",
+        title: "Salon de l'étudiant et de l'apprenti de Mayotte",
+        category: "Éducation",
+        description: "Session d'orientation professionnelle pour les jeunes avec des experts du secteur",
+        location: "Maison des Jeunes",
+        image: "Asso-aejm.jpg",
+        slide: 1
+      },
+      {
+        date: "22 Mars 2024",
+        title: "Journée Éco-citoyenne",
+        category: "Environnement",
+        description: "AIME EN SÉCURITÉ : PROTÈGE TON AMOUR, PROTÈGE TA VIE ",
+        location: "Plage de N'Gouja",
+        image: "Selfise.jpg",
+        slide: 1
+      },
+      // Slide 2
+      {
+        date: "10 Avril 2025",
+        title: "Réunion d'information",
+        category: "Association",
+        description: "Venez assister à notre réunion pour découvrir nos futures actions",
+        location: "Centre Culturel",
+        image: "SALON2.jpg",
+        slide: 2
+      },
+      {
+        date: "12 Mai 2025",
+        title: "Atelier de cuisine",
+        category: "Loisirs",
+        description: "Découvrez de nouvelles recettes exotiques",
+        location: "Maison des Associations",
+        image: "Salon.jpg",
+        slide: 2
+      },
+      // Slide 3
+      {
+        date: "01 Juin 2025",
+        title: "Concert caritatif",
+        category: "Culture",
+        description: "Concert au profit d'une association locale",
+        location: "Salle de Spectacle",
+        image: "Logo_qui.jpg",
+        slide: 3
+      },
+      {
+        date: "15 Juillet 2025",
+        title: "Marché local solidaire",
+        category: "Économie",
+        description: "Venez découvrir et soutenir les producteurs locaux",
+        location: "Place du Marché",
+        image: "25.jpg",
+        slide: 3
+      }
+    ];
 
-                this.init();
-            }
+    /*********************************************************************
+     *       2) Fonction pour générer un slide en fonction de son ID
+     *********************************************************************/
+    function generateCalendar(slideNumber, filterButtonsId, eventsContainerId) {
+      // Filtre : ne garder que les événements du slide
+      const slideEvents = events.filter(ev => ev.slide === slideNumber);
 
-            init() {
-                this.createDots();
-                this.addEventListeners();
-            }
+      // Conteneur d'événements
+      const container = document.getElementById(eventsContainerId);
 
-            createDots() {
-                this.slides.forEach((_, index) => {
-                    const dot = document.createElement('div');
-                    dot.classList.add('dot');
-                    if(index === 0) dot.classList.add('active');
-                    dot.addEventListener('click', () => this.goToSlide(index));
-                    this.nav.appendChild(dot);
-                });
-            }
+      // Extraire les catégories (unique)
+      const categories = [...new Set(slideEvents.map(event => event.category))];
 
-            addEventListeners() {
-                this.carousel.querySelector('.prev').addEventListener('click', () => this.prevSlide());
-                this.carousel.querySelector('.next').addEventListener('click', () => this.nextSlide());
+      // Boutons de filtre
+      const filterButtons = document.getElementById(filterButtonsId);
+      filterButtons.innerHTML = `
+        <button class="filter-btn active" data-category="all">
+          <span>Tous</span>
+        </button>
+        ${categories.map(cat => `
+          <button class="filter-btn" data-category="${cat}">
+            <span>${cat}</span>
+          </button>
+        `).join('')}
+      `;
 
-                this.carousel.addEventListener('mouseenter', () => this.stopAutoPlay());
-                this.carousel.addEventListener('mouseleave', () => this.startAutoPlay());
+      // Génération dynamique des cartes
+      container.innerHTML = slideEvents.map(event => {
+        const parts = event.date.split(' ');
+        const day = parts[0] || '';
+        const month = parts.slice(1).join(' ') || '';
+        return `
+          <div class="event-card" data-category="${event.category}">
+            ${event.image ? `<img src="${event.image}" class="event-image" alt="${event.title}">` : ''}
+            <div class="event-date">
+              <div class="date-badge">
+                  <span>${day}</span>
+                  <span>${month}</span>
+              </div>
+              <span class="event-category">${event.category}</span>
+            </div>
+            <div class="event-content">
+              <h3>${event.title}</h3>
+              <p>${event.description}</p>
+              <small>📍 ${event.location}</small>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
 
-                this.carousel.addEventListener('touchstart', e => this.handleTouchStart(e));
-                this.carousel.addEventListener('touchend', e => this.handleTouchEnd(e));
+    /*********************************************************************
+     *       3) Gestion du filtrage des événements (click sur bouton)
+     *********************************************************************/
+    document.addEventListener('click', function(e) {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
 
-                document.addEventListener('keydown', e => {
-                    if (e.key === 'ArrowLeft') this.prevSlide();
-                    if (e.key === 'ArrowRight') this.nextSlide();
-                });
-            }
+      // Catégorie cliquée
+      const category = btn.dataset.category;
+      // ID du parent => ex: "filterButtonsSlide1"
+      const filterButtonsId = btn.parentNode.id;
+      let eventsContainerId = 'eventsContainerSlide1';
 
-            handleTouchStart(e) {
-                this.touchStartX = e.touches[0].clientX;
-            }
+      if (filterButtonsId === 'filterButtonsSlide1') eventsContainerId = 'eventsContainerSlide1';
+      if (filterButtonsId === 'filterButtonsSlide2') eventsContainerId = 'eventsContainerSlide2';
+      if (filterButtonsId === 'filterButtonsSlide3') eventsContainerId = 'eventsContainerSlide3';
 
-            handleTouchEnd(e) {
-                const touchEndX = e.changedTouches[0].clientX;
-                const diff = this.touchStartX - touchEndX;
-                
-                if (Math.abs(diff) > 50) {
-                    diff > 0 ? this.nextSlide() : this.prevSlide();
-                }
-            }
+      // Gérer la classe .active
+      document.querySelectorAll(`#${filterButtonsId} .filter-btn`).forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-            updateSlide(direction) {
-                this.slides[this.currentIndex].classList.remove('active');
+      // Filtrer les cartes
+      const cards = document.querySelectorAll(`#${eventsContainerId} .event-card`);
+      cards.forEach(card => {
+        const shouldShow = category === 'all' || card.dataset.category === category;
+        // Petite animation fade + translate
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
 
-                this.currentIndex = (this.currentIndex + direction + this.slides.length) % this.slides.length;
-                
-                // Mettez à jour la position du carrousel  
-                const offset = -this.currentIndex * 100; // 100% * index actuelle  
-                this.carousel.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
-
-                this.slides[this.currentIndex].classList.add('active');
-                this.updateDots();
-            }
-
-            updateDots() {
-                this.nav.querySelectorAll('.dot').forEach((dot, index) => {
-                    dot.classList.toggle('active', index === this.currentIndex);
-                });
-            }
-
-            goToSlide(index) {
-                this.slides[this.currentIndex].classList.remove('active');
-                this.currentIndex = index;
-                this.updateSlide(0); // Mettez simplement à jour la position  
-            }
-
-            nextSlide() {
-                this.updateSlide(1);
-            }
-
-            prevSlide() {
-                this.updateSlide(-1);
-            }
-
-            startAutoPlay() {
-                // Commenté pour désactiver le défilement automatique  
-                // this.autoPlayInterval = setInterval(() => this.nextSlide(), 7000);
-            }
-
-            stopAutoPlay() {
-                // Commenté pour désactiver le défilement automatique  
-                // clearInterval(this.autoPlayInterval);
-            }
-
-            resetAutoPlay() {
-                // Commenté pour désactiver le défilement automatique  
-                // this.stopAutoPlay();
-                // this.startAutoPlay();
-            }
-        }
-
-        const events = [
-            {
-                date: "15 Octobre 2025",
-                title: "Salon de l'étudiant et de l'apprenti de Mayotte",
-                category: "Éducation",
-                description: "Session d'orientation professionnelle pour les jeunes avec des experts du secteur",
-                location: "Maison des Jeunes",
-                image: "Logo_qui.jpg"
-            },
-            {
-                date: "22 Mars 2024",
-                title: "Journée Éco-citoyenne",
-                category: "Environnement",
-                description: "Nettoyage des plages et sensibilisation à la protection marine",
-                location: "Plage de N'Gouja",
-                image: "Asso-aejm.jpg"
-            }
-        ];
-
-        function generateCalendar() {
-            const container = document.getElementById('eventsContainer');
-            const categories = [...new Set(events.map(event => event.category))];
-            
-            const filterButtons = document.getElementById('filterButtons');
-            filterButtons.innerHTML = `
-                <button class="filter-btn active" data-category="all">
-                    <span>Tous</span>
-                </button>
-                ${categories.map(cat => `
-                    <button class="filter-btn" data-category="${cat}">
-                        <span>${cat}</span>
-                    </button>
-                `).join('')}
-            `;
-            
-            container.innerHTML = events.map(event => {
-                const [day, month] = event.date.split(' ');
-                return `
-                <div class="event-card" data-category="${event.category}">
-                    ${event.image ? `<img src="${event.image}" class="event-image" alt="${event.title}">` : ''}
-                    <div class="event-date">
-                        <div class="date-badge">
-                            <span>${day}</span>
-                            <span>${month}</span>
-                        </div>
-                        <span class="event-category">${event.category}</span>
-                    </div>
-                    <div class="event-content">
-                        <h3>${event.title}</h3>
-                        <p>${event.description}</p>
-                        <small>📍 ${event.location}</small>
-                    </div>
-                </div>
-            `}).join('');
-        }
-
-        document.addEventListener('click', function(e) {
-            if(e.target.closest('.filter-btn')) {
-                const btn = e.target.closest('.filter-btn');
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                const category = btn.dataset.category;
-                const cards = document.querySelectorAll('.event-card');
-                
-                cards.forEach(card => {
-                    const shouldShow = category === 'all' || card.dataset.category === category;
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    
-                    setTimeout(() => {
-                        card.style.display = shouldShow ? 'block' : 'none';
-                        if(shouldShow) {
-                            requestAnimationFrame(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'translateY(0)';
-                            });
-                        }
-                    }, 300);
-                });
-            }
-        });
-
-        // Effet parallaxe  
-        const calendarContainer = document.querySelector('.event-calendar');
-        const deco1 = document.querySelector('.deco-image-1');
-        const deco2 = document.querySelector('.deco-image-2');
-
-        if(calendarContainer) {
-            calendarContainer.addEventListener('scroll', () => {
-                const scrollY = calendarContainer.scrollTop;
-                deco1.style.transform = `translateY(${scrollY * 0.2}px) rotate(-15deg)`;
-                deco2.style.transform = `translateY(${-scrollY * 0.15}px) rotate(5deg)`;
+        setTimeout(() => {
+          card.style.display = shouldShow ? 'block' : 'none';
+          if (shouldShow) {
+            requestAnimationFrame(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
             });
-        }
+          }
+        }, 300);
+      });
+    });
 
-        generateCalendar();
-        new Carousel(document.querySelector('.carousel'));
+    /*********************************************************************
+     *         4) Classe de gestion du Carrousel (slides)
+     *********************************************************************/
+    class Carousel {
+      constructor(container) {
+        this.carousel = container;
+        this.slides = Array.from(container.querySelectorAll('.slide'));
+        this.nav = container.querySelector('.navigation');
+        this.currentIndex = 0;
+        this.touchStartX = 0;
+
+        this.init();
+      }
+
+      init() {
+        this.createDots();
+        this.addEventListeners();
+      }
+
+      createDots() {
+        this.slides.forEach((_, index) => {
+          const dot = document.createElement('div');
+          dot.classList.add('dot');
+          if(index === 0) dot.classList.add('active');
+          dot.addEventListener('click', () => this.goToSlide(index));
+          this.nav.appendChild(dot);
+        });
+      }
+
+      addEventListeners() {
+        this.carousel.querySelector('.prev').addEventListener('click', () => this.prevSlide());
+        this.carousel.querySelector('.next').addEventListener('click', () => this.nextSlide());
+
+        // Navigation tactile
+        this.carousel.addEventListener('touchstart', e => this.handleTouchStart(e));
+        this.carousel.addEventListener('touchend', e => this.handleTouchEnd(e));
+
+        // Navigation clavier
+        document.addEventListener('keydown', e => {
+          if (e.key === 'ArrowLeft') this.prevSlide();
+          if (e.key === 'ArrowRight') this.nextSlide();
+        });
+      }
+
+      handleTouchStart(e) {
+        this.touchStartX = e.touches[0].clientX;
+      }
+
+      handleTouchEnd(e) {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = this.touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          diff > 0 ? this.nextSlide() : this.prevSlide();
+        }
+      }
+
+      updateSlide(direction) {
+        // On enlève la classe active de la slide actuelle
+        this.slides[this.currentIndex].classList.remove('active');
+
+        // Calcul du nouvel index
+        this.currentIndex = (this.currentIndex + direction + this.slides.length) % this.slides.length;
+
+        // TranslateX pour basculer la vue
+        const offset = -this.currentIndex * 100;
+        this.carousel.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
+
+        // On active la nouvelle slide
+        this.slides[this.currentIndex].classList.add('active');
+        this.updateDots();
+      }
+
+      updateDots() {
+        this.nav.querySelectorAll('.dot').forEach((dot, index) => {
+          dot.classList.toggle('active', index === this.currentIndex);
+        });
+      }
+
+      goToSlide(index) {
+        this.slides[this.currentIndex].classList.remove('active');
+        this.currentIndex = index;
+        this.updateSlide(0);
+      }
+
+      nextSlide() {
+        this.updateSlide(1);
+      }
+
+      prevSlide() {
+        this.updateSlide(-1);
+      }
+    }
+
+    /*********************************************************************
+     *     5) Initialisation : on remplit chaque slide + démarre le carrousel
+     *********************************************************************/
+    // Générer le contenu pour Slide 1
+    generateCalendar(1, 'filterButtonsSlide1', 'eventsContainerSlide1');
+    // Générer le contenu pour Slide 2
+    generateCalendar(2, 'filterButtonsSlide2', 'eventsContainerSlide2');
+    // Générer le contenu pour Slide 3
+    generateCalendar(3, 'filterButtonsSlide3', 'eventsContainerSlide3');
+
+    // Lancer le carrousel
+    new Carousel(document.querySelector('.carousel'));
 
         // Script pour contrôler l'affichage du formulaire d'adhésion  
 const confirmJoinButton = document.getElementById('confirm-join-button');
@@ -3806,14 +3928,23 @@ document.querySelectorAll('.floating-label input, .floating-label textarea').for
     });
 });
 
-// Protection contre les XSS  
+ /* Protection contre les XSS */
 const sanitizeInput = (text) => {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
 };
 
-// Liste des questions-réponses pour La Mina  
+/* Fonction de normalisation pour la détection des mots clés */
+const normalizeText = (text) => {
+    return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")  // Retire les accents
+        .replace(/[^\w\s]/g, "");          // Retire la ponctuation
+};
+
+/* Liste des questions-réponses pour La Mina */
 const responses = [
     // ********** QUESTIONS GÉNÉRALES **********
     {
@@ -3844,8 +3975,8 @@ const responses = [
     // ********** À PROPOS DE L'ASSOCIATION **********
     {
         question: ["qui êtes-vous", "présentation", "aejm", "association"],
-        answer: "**L'AEJM en 5 points :**\n1. Association loi 1901 créée en 2010\n2. 15 000 membres actifs\n3. 3 domaines d'action : Éducation, Culture, Insertion\n4. Présente dans 5 régions\n5. Budget annuel : 1.2M€\n\n📌 Site officiel : https://aejm.org",
-        quickReplies: ["Histoire", "Équipe", "Activités"]
+        answer: "L'AEJM, fondée en octobre 2013 à Dembéni, est l'Association des Étudiants et des Jeunes de Mayotte, une organisation départementale dédiée aux jeunes âgés de 15 à 25 ans, qu'ils soient scolarisés ou non. \n▶️ Initialement connue sous le nom d'Association des Étudiants du Centre Universitaire de Formation et de Recherche (CUFR), elle a élargi son champ d'action en septembre 2021 pour inclure les jeunes non étudiants, reflétant ainsi son engagement à promouvoir le vivre-ensemble et à répondre aux besoins variés de la jeunesse mahoraise. \n▶️ L'association concentre ses efforts sur les quartiers prioritaires de la politique de la ville, les établissements scolaires (lycées et CUFR) et les centres de formation. Située à Iloni, Dembéni, elle peut être contactée par téléphone au 0269 66 68 16 ou par email à secretaire@aejm.fr.\n▶️ En janvier 2025, suite aux passages du cyclone Chido et de la tempête Dikeledi qui ont dévasté l’île, l'AEJM s'est mobilisée pour soutenir les jeunes Mahorais touchés par ces catastrophes en menant une enquête sociale pour identifier leurs besoins urgents. \n▶️ L'AEJM joue un rôle essentiel dans l'accompagnement des jeunes de Mayotte, en favorisant leur épanouissement personnel et social, et en répondant à leurs aspirations à travers des initiatives adaptées.",
+        quickReplies: ["Contact", "Historique", "Activités"]
     },
     {
         question: ["histoire", "fondation", "création", "origine"],
@@ -3936,7 +4067,7 @@ const responses = [
     }
 ];
 
-// Liste des mots-clés et leurs réponses  
+/* Liste des mots-clés et leurs réponses */
 const keywordResponses = [
     {
         keywords: ["bonjour", "salut", "coucou", "hello", "hey", "yo"],
@@ -3965,116 +4096,135 @@ const keywordResponses = [
     }
 ];
 
-// Configuration optimisée pour Fuse.js  
+/* Configuration optimisée pour Fuse.js */
 const fuseOptions = {
-    keys: ['question'], // Indique que nous voulons rechercher dans le champ 'question'
-    threshold: 0.25, // Permet des correspondances approximatives  
-    ignoreLocation: true, // Ignore la position de la correspondance  
-    minMatchCharLength: 3, // Longueur minimum pour une correspondance  
-    shouldSort: true, // Trie les résultats  
-    includeMatches: true // Inclut les détails des correspondances  
+    keys: ['question'],
+    threshold: 0.25,
+    ignoreLocation: true,
+    minMatchCharLength: 3,
+    shouldSort: true,
+    includeMatches: true
 };
 
-const fuse = new Fuse(responses, fuseOptions); // Crée une instance de Fuse.js avec les options définies
+const fuse = new Fuse(responses, fuseOptions);
 
-// Éléments DOM : Récupération des éléments nécessaires du DOM  
-const chatContainer = document.getElementById('chatContainer'); // Conteneur du chat  
-const userInput = document.getElementById('userInput'); // Champ de saisie de l'utilisateur  
-const sendButton = document.getElementById('sendButton'); // Bouton d'envoi  
-let isChatOpen = false; // État du chat (ouvert ou fermé)
-
-// Gestion du chat : Fonction pour ouvrir ou fermer le chat  
-const toggleChat = () => {
-    isChatOpen = !isChatOpen;
-    chatContainer.style.display = isChatOpen ? 'flex' : 'none';
-    chatContainer.setAttribute('aria-hidden', !isChatOpen);
-    if (isChatOpen) userInput.focus();
-};
-
-// Événements pour ouvrir/fermer le chat  
-document.getElementById('chatToggle').addEventListener('click', toggleChat);
-document.getElementById('closeChat').addEventListener('click', toggleChat);
-
-
-// Gestion du clavier : Écoute la touche 'Escape' pour fermer le chat  
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isChatOpen) toggleChat(); // Ferme le chat si 'Escape' est pressé  
-});
-
-// Affichage des messages : Fonction pour afficher les messages  
-const displayMessage = (text, sender, options = {}) => {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `chat-message ${sender}-message`;
-    messageDiv.innerHTML = sanitizeInput(text).replace(/\n/g, '<br>');
-
-    if (options.quickReplies) {
-        const quickRepliesDiv = document.createElement('div');
-        quickRepliesDiv.className = 'quick-replies';
-
-        options.quickReplies.forEach(reply => {
-            const button = document.createElement('div');
-            button.className = 'quick-reply';
-            button.textContent = reply;
-            button.onclick = () => {
-                userInput.value = reply;
-                sendMessage();
-            };
-            quickRepliesDiv.appendChild(button);
-        });
-
-        messageDiv.appendChild(quickRepliesDiv);
-    }
-
-    document.getElementById('chatMessages').appendChild(messageDiv);
-    chatContainer.scrollTo(0, chatContainer.scrollHeight);
-};
-
-// Fonction pour trouver une réponse basée sur les mots-clés  
-const findKeywordResponse = (input) => {
-    const lowerInput = input.toLowerCase();
-    for (const response of keywordResponses) {
-        if (response.keywords.some(keyword => lowerInput.includes(keyword))) {
-            return response;
-        }
-    }
-    return null;
-};
-
-// Fonction améliorée pour obtenir une réponse basée sur l'entrée de l'utilisateur  
-const getResponse = (input) => {
-    const cleanInput = input.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
-    const keywordResponse = findKeywordResponse(cleanInput);
-    if (keywordResponse) return keywordResponse;
-
-    const result = fuse.search(cleanInput)[0];
-    return result?.item || {
-        answer: "Désolé, je n'ai pas compris. Pourriez-vous reformuler ?",
-        quickReplies: ["Aide", "Contact", "Adhésion"]
-    };
-};
-
-
-// Envoi de message : Fonction pour gérer l'envoi de messages  
-const sendMessage = async () => {
-    const message = userInput.value.trim();
-    if (!message) return;
-
-    displayMessage(message, 'user');
-    userInput.value = '';
-
-    document.getElementById('typingIndicator').style.display = 'flex';
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    document.getElementById('typingIndicator').style.display = 'none';
-
-    const response = getResponse(message);
-    displayMessage(response.answer, 'Assistant Bot', { quickReplies: response.quickReplies });
-};
-
-// Événements pour interagir avec le chatbot  
+/* Attendre que le DOM soit chargé pour attacher les événements */
 document.addEventListener('DOMContentLoaded', () => {
+    // Récupération des éléments du DOM
+    const chatContainer = document.getElementById('chatContainer');
+    const chatMessages = document.getElementById('chatMessages');
+    const userInput = document.getElementById('userInput');
+    const sendButton = document.getElementById('sendButton');
+    
+    // Ces éléments doivent exister dans votre HTML
+    const chatToggle = document.getElementById('chatToggle');
+    const closeChat = document.getElementById('closeChat');
+    const typingIndicator = document.getElementById('typingIndicator');
+    
+    let isChatOpen = false;
+    
+    /* Gestion de l'ouverture/fermeture du chat */
+    const toggleChat = () => {
+        isChatOpen = !isChatOpen;
+        if (isChatOpen) {
+            chatContainer.classList.add('open');
+            chatContainer.setAttribute('aria-hidden', 'false');
+            userInput.focus();
+        } else {
+            chatContainer.classList.remove('open');
+            chatContainer.setAttribute('aria-hidden', 'true');
+        }
+    };
+    
+    chatToggle.addEventListener('click', toggleChat);
+    closeChat.addEventListener('click', toggleChat);
+    
+    /* Fermeture du chat avec la touche Escape */
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isChatOpen) toggleChat();
+    });
+    
+    /* Fonction d'affichage des messages */
+    const displayMessage = (text, sender, options = {}) => {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `chat-message ${sender}-message`;
+        messageDiv.innerHTML = sanitizeInput(text).replace(/\n/g, '<br>');
+    
+        if (options.quickReplies) {
+            const quickRepliesDiv = document.createElement('div');
+            quickRepliesDiv.className = 'quick-replies';
+    
+            options.quickReplies.forEach(reply => {
+                const button = document.createElement('div');
+                button.className = 'quick-reply';
+                button.textContent = reply;
+                button.onclick = () => {
+                    userInput.value = reply;
+                    sendMessage();
+                };
+                quickRepliesDiv.appendChild(button);
+            });
+    
+            messageDiv.appendChild(quickRepliesDiv);
+        }
+    
+        chatMessages.appendChild(messageDiv);
+        // Défilement automatique vers le bas
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+    
+    /* Recherche d'une réponse par mots-clés */
+    const findKeywordResponse = (input) => {
+        const cleanedInput = normalizeText(input);
+        for (const response of keywordResponses) {
+            for (const keyword of response.keywords) {
+                const cleanedKeyword = normalizeText(keyword);
+                if (cleanedInput.includes(cleanedKeyword)) {
+                    return response;
+                }
+            }
+        }
+        return null;
+    };
+    
+    /* Obtention de la réponse à partir de l'entrée utilisateur */
+    const getResponse = (input) => {
+        const normalizedInput = normalizeText(input);
+        const keywordResponse = findKeywordResponse(normalizedInput);
+        if (keywordResponse) return keywordResponse;
+        const result = fuse.search(normalizedInput)[0];
+        return result?.item || {
+            answer: "Désolé, je n'ai pas compris. Pourriez-vous reformuler ?",
+            quickReplies: ["Aide", "Contact", "Adhésion"]
+        };
+    };
+    
+    /* Gestion de l'envoi du message */
+    const sendMessage = async () => {
+        const message = userInput.value.trim();
+        if (!message) return;
+    
+        // Affichage du message de l'utilisateur
+        displayMessage(message, 'user');
+        userInput.value = '';
+    
+        // Affichage de l'indicateur de saisie (si présent)
+        if (typingIndicator) {
+            typingIndicator.style.display = 'flex';
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            typingIndicator.style.display = 'none';
+        }
+    
+        // Récupération et affichage de la réponse du bot (classe "mina-message")
+        const response = getResponse(message);
+        displayMessage(response.answer, 'mina', { quickReplies: response.quickReplies });
+    };
+    
+    /* Écoute des événements pour l'envoi du message */
     sendButton.addEventListener('click', sendMessage);
-    userInput.addEventListener('keypress', (e) => e.key === 'Enter' && sendMessage());
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
 });
 </script>
 <script src="chatbot.js"></script>
