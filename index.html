@@ -660,6 +660,38 @@ section {
     padding: 1.5rem;
 }
 
+/* --- Améliorations typographiques pour un texte épuré --- */
+.card-content,
+.card-content p,
+.card-title,
+.card-description {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: var(--text-color);
+}
+
+.card-title {
+    color: var(--primary-dark);
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem; /* Taille légèrement augmentée */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.card-description {
+    font-size: 1rem;
+    line-height: 1.7; /* Interligne renforcé pour une meilleure lisibilité */
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+/* Pour tous les paragraphes internes de .card-content */
+.card-content p {
+    margin-bottom: 1.5rem;
+}
+
+/* --- Autres éléments --- */
 .category-tag {
     background: var(--primary-color);
     color: white;
@@ -668,18 +700,6 @@ section {
     font-size: 0.8rem;
     display: inline-block;
     margin-bottom: 1rem;
-}
-
-.card-title {
-    color: var(--primary-dark);
-    margin-bottom: 0.75rem;
-    font-size: 1.3rem;
-}
-
-.card-description {
-    color: var(--text-color);
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
 }
 
 .action-link {
@@ -715,6 +735,7 @@ section {
 .video-overlay.active .video-embed {
     opacity: 1;
 }
+
 
     /* Styles de la section adhésion */
 .adhesion-section {
@@ -2710,7 +2731,9 @@ body {
     </div>
     
     <p class="intro-text">
-        L'AEJM, Fondée en octobre 2013 à Dembéni, l'Association des Étudiants et des Jeunes de Mayotte (AEJM) est une organisation départementale dédiée aux jeunes âgés de 15 à 25 ans, qu'ils soient scolarisés, apprenti.e.s ou stagiaires en formation professionnelle. Initialement connue sous le nom d'Association des Étudiants du Centre Universitaire de Formation et de Recherche (CUFR), elle a élargi son champ d'action en septembre 2021 pour inclure les jeunes non étudiants, reflétant ainsi son engagement à promouvoir le vivre-ensemble et à répondre aux besoins variés de la jeunesse mahoraise.
+        L’Association des Étudiants et des Jeunes de Mayotte (AEJM) a été fondée en 2013 sous le nom d’Association des Étudiants du Centre Universitaire de Mayotte. Basée à Dembéni, elle a été créée par des étudiants du CUFR et s’adresse aujourd’hui aux jeunes de 15 à 25 ans, en particulier ceux issus des quartiers prioritaires, ainsi qu’aux jeunes actifs. </p>
+
+    <p class="intro-text">Notre mission est d’accompagner les jeunes dans leur développement personnel et professionnel à travers des actions dans plusieurs domaines : la promotion de la santé, l’animation des quartiers, la vie étudiante, l’accompagnement social et professionnel ainsi que le soutien pédagogique.
     </p>
 
 
@@ -2718,106 +2741,165 @@ body {
 
     <div class="actions-wrapper">
         <div class="section-header">
-            <h2 class="section-title">L'AEJM intervient principalement dans les domaines suivants :<br><span>Nos Actions</span></h2>
-            <p class="section-subtitle">Des initiatives qui font la différence</p>
+            <h2 class="section-title">Notre Engagement au Service des Jeunes<br><span>Mais Aussi Nos Actions</span></h2>
+            <p class="section-subtitle">L’AEJM intervient principalement dans les communes de Dembéni et Koungou, ainsi que dans les établissements scolaires et centres de formation de Mayotte. L’association mène également des actions ponctuelles dans d’autres communes pour soutenir la jeunesse mahoraise.</p>
+
+    <p class="intro-text">
+      En tant que membre actif de plusieurs instances éducatives et sociales, nous contribuons aux discussions et initiatives liées à la jeunesse, la santé, le social, l’éducation et la formation.
+    </p>
         </div>
 
-        <div id="actions" class="actions-section">
-        <div class="actions-grid">
-            <!-- Carte Action 1 -->
-            <article class="action-card">
-                <div class="card-media">
-                    <div class="media-container">
-                        <img src="Prévention.jpg" alt="Santé & Prévention" class="card-image" loading="lazy">
-                        <div class="video-overlay">
-                            <iframe src="https://www.youtube.com/embed/ID_VIDEO_1" 
-                                    title="Vidéo Santé & Prévention" 
-                                    allowfullscreen 
-                                    class="embedded-video"
-                                    loading="lazy"></iframe>
-                            <button class="play-button" aria-label="Lire la vidéo">
-                                <svg viewBox="0 0 24 24" width="48" height="48">
-                                    <path fill="currentColor" d="M8 5v14l11-7z"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="content-header">
-                        <h3 class="card-title">Santé & Prévention</h3>
-                        <div class="underline"></div>
-                    </div>
-                    <p class="card-description">Sensibilisation active et ateliers santé innovants</p>
-                    <div class="action-tag">Campagnes mensuelles</div>
-                </div>
-            </article>
-
-            <!-- Carte Action 2 -->
-            <article class="action-card">
-                <div class="card-media">
-                    <div class="media-container">
-                        <img src="Animation.jpg" alt="Animation locale" class="card-image" loading="lazy">
-                        <div class="video-overlay">
-                            <iframe src="https://www.youtube.com/embed/ID_VIDEO_1" 
-                                    title="Vidéo Animation Locale" 
-                                    allowfullscreen 
-                                    class="embedded-video"
-                                    loading="lazy"></iframe>
-                            <button class="play-button" aria-label="Lire la vidéo">
-                                <svg viewBox="0 0 24 24" width="48" height="48">
-                                    <path fill="currentColor" d="M8 5v14l11-7z"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="content-header">
-                        <h3 class="card-title">Animation Et Promotion de la vie des étudiant.e.s</h3>
-                        <div class="underline"></div>
-                    </div>
-                    <p class="card-description">Ateliers interactifs pour la jeunesse</p>
-                    <div class="action-tag">Campagnes Quotidien</div>
-                </div>
-            </article>
-
-            <!-- Carte Action 3 -->
-            <article class="action-card">
-                <div class="card-media">
-                    <div class="media-container">
-                        <img src="Accompagnement.jpg" alt="Accompagnement" class="card-image" loading="lazy">
-                        <div class="video-overlay">
-                            <iframe src="https://www.youtube.com/embed/ID_VIDEO_1" 
-                                    title="Vidéo Accompagnement" 
-                                    allowfullscreen 
-                                    class="embedded-video"
-                                    loading="lazy"></iframe>
-                            <button class="play-button" aria-label="Lire la vidéo">
-                                <svg viewBox="0 0 24 24" width="48" height="48">
-                                    <path fill="currentColor" d="M8 5v14l11-7z"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="content-header">
-                        <h3 class="card-title">Accompagnement Social</h3>
-                        <div class="underline"></div>
-                    </div>
-                    <p class="card-description">Soutien personnalisé pour chaque jeune</p>
-                    <div class="action-tag">Campagnes mensuelles</div>
-                </div>
-            </article>
+  <!-- SECTION Actions -->
+  <div id="actions" class="actions-section">
+    <div class="actions-grid">
+      <!-- Carte Action 1 -->
+      <article class="action-card">
+        <div class="card-media">
+          <div class="media-container">
+            <img src="Prévention.jpg" alt="Santé & Prévention" class="card-image" loading="lazy">
+            <div class="video-overlay">
+              <iframe src="https://www.youtube.com/embed/ID_VIDEO_1" 
+                      title="Vidéo Santé & Prévention" 
+                      allowfullscreen 
+                      class="embedded-video"
+                      loading="lazy"></iframe>
+              <button class="play-button" aria-label="Lire la vidéo">
+                <svg viewBox="0 0 24 24" width="48" height="48">
+                  <path fill="currentColor" d="M8 5v14l11-7z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
+        <div class="card-content">
+          <div class="content-header">
+            <h3 class="card-title">Santé & Prévention</h3>
+            <div class="underline"></div>
+          </div>
+          <!-- Bloc d'information détaillée -->
+          <div class="info-card">
+            <p class="info-card-description">
+              Chaque année, nous sensibilisons plusieurs milliers de jeunes à travers des campagnes et événements
+              sur des thématiques essentielles :
+            </p>
+            <div class="info-card-content">
+              <ul class="card-topics">
+                <li><strong>Santé sexuelle et reproductive</strong></li>
+                <li><strong>Nutrition et bien-être</strong></li>
+                <li><strong>Prévention des addictions</strong></li>
+                <li><strong>Préservation et gestion de l’eau</strong></li>
+              </ul>
+            </div>
+            <p></p>
+            <p class="info-card-details">
+              Nos actions se déroulent dans les <strong>quartiers prioritaires</strong>, les <strong>établissements scolaires</strong> 
+              et lors de <strong>maraudes en milieu festif</strong>, favorisant des échanges ouverts et sans tabou.
+            </p>
+            <div class="action-tag">Campagnes mensuelles</div>
+          </div>
+        </div>
+      </article>
 
-        <h2 class="section-title">L'AEJM : Un repère pour la Jeunesse de Mayotte et un Soutien face aux catastrophes naturelles</span></h2>
+      <!-- Carte Action 2 -->
+      <article class="action-card">
+        <div class="card-media">
+          <div class="media-container">
+            <img src="Animation.jpg" alt="Animation locale" class="card-image" loading="lazy">
+            <div class="video-overlay">
+              <iframe src="https://www.youtube.com/embed/ID_VIDEO_1" 
+                      title="Vidéo Animation Locale" 
+                      allowfullscreen 
+                      class="embedded-video"
+                      loading="lazy"></iframe>
+              <button class="play-button" aria-label="Lire la vidéo">
+                <svg viewBox="0 0 24 24" width="48" height="48">
+                  <path fill="currentColor" d="M8 5v14l11-7z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="content-header">
+            <h3 class="card-title">Animation Et Promotion de la vie des étudiant.e.s</h3>
+            <div class="underline"></div>
+          </div>
+          <div class="info-card">
+            <p class="info-card-description">
+              Nous organisons régulièrement des activités pour dynamiser les quartiers prioritaires et renforcer la vie étudiante à Mayotte. L’objectif est de :
+            </p>
+            <div class="info-card-content">
+              <ul class="card-topics">
+                <li><strong>Créer du lien social et encourager l’engagement des jeunes</strong></li>
+                <li><strong>Proposer des espaces d’échange et de développement personnel</strong></li>
+                <li><strong>Offrir des opportunités culturelles et sportives</strong></li>
+                <li><strong>Préservation et gestion de l’eau</strong></li>
+              </ul>
+            </div>
+            <p></p>
+          <p class="card-description">
+            Ateliers interactifs pour la jeunesse
+          </p>
+          <div class="action-tag">Campagnes Quotidien</div>
+        </div>
+      </article>
+
+      <!-- Carte Action 3 -->
+      <article class="action-card">
+        <div class="card-media">
+          <div class="media-container">
+            <img src="Accompagnement.jpg" alt="Accompagnement" class="card-image" loading="lazy">
+            <div class="video-overlay">
+              <iframe src="https://www.youtube.com/embed/ID_VIDEO_1" 
+                      title="Vidéo Accompagnement" 
+                      allowfullscreen 
+                      class="embedded-video"
+                      loading="lazy"></iframe>
+              <button class="play-button" aria-label="Lire la vidéo">
+                <svg viewBox="0 0 24 24" width="48" height="48">
+                  <path fill="currentColor" d="M8 5v14l11-7z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="content-header">
+            <h3 class="card-title">Accompagnement Social et Insertion Professionnelle</h3>
+            <div class="underline"></div>
+          </div>
+          <p class="card-description">
+            Soutien personnalisé pour chaque jeune
+          </p>
+          <div class="info-card">
+            <p class="info-card-description">
+              Nous aidons les jeunes à s’orienter et à s’insérer dans le monde professionnel grâce à plusieurs initiatives :
+            </p>
+            <div class="info-card-content">
+              <ul class="card-topics">
+                <li><strong>Soutien dans les démarches administratives et éducatives</strong></li>
+                <li><strong>Aide à l’accès à l’emploi et aux formations</strong></li>
+                <li><strong>Restaurant social et solidaire : prévu pour 2026, il offrira des repas accessibles aux jeunes en difficulté</strong></li>
+              </ul>
+            </div>
+            <p></p>
+          <p class="card-description">
+            Ateliers interactifs pour la jeunesse
+          <div class="action-tag">Campagnes mensuelles</div>
+        </div>
+      </article>
+    </div>
+
+        <h2 class="section-title">L'AEJM : Un repère pour la Jeunesse de Mayotte et un Soutien face à la crise sanitaire et aux catastrophes naturelles<P></P><br><span>LA CRISE SANITAIRE</span></h2>
         <p></p>
 
         <p class="intro-text">
-        L'association concentre ses efforts sur les quartiers prioritaires de la politique de la ville, les établissements scolaires (lycées et CUFR) et les centres de formation. Elle est située à Iloni, Dembéni, et peut être contactée par téléphone au 0269 66 68 16 ou par email à secretaire@aejm.fr. </p>
+        Pendant la crise sanitaire, l’AEJM s'est engagée activement dans des actions de solidarité en réponse aux besoins de la population :
+        • Pendant la crise sanitaire (2020-2021) : distribution d’aide alimentaire et soutien aux campagnes de sensibilisation aux gestes barrières et dépistage
+        • Face à la crise de l’eau (2023) : distribution de bouteilles d’eau pour aider les habitants en difficulté
+      Nous restons engagés au service de la jeunesse et de la communauté mahoraise, en nous adaptant aux enjeux actuels pour un avenir plus prometteur. </p>
 
+      <h2 class="section-title"><br><span>Durant le cyclone chido</span></h2>
         <p class="intro-text">
         En janvier 2025, suite aux passages du cyclone Chido et de la tempête Dikeledi qui ont dévasté l’île, l'AEJM s'est mobilisée pour soutenir les jeunes Mahorais touchés par ces catastrophes. Elle a mené une enquête sociale afin d’identifier les besoins urgents des étudiants et des jeunes, démontrant ainsi sa réactivité face aux crises et son engagement continu envers la jeunesse locale.  </p>
 
@@ -3042,7 +3124,7 @@ body {
             </div>
           </article>
 
-          <!-- 3. Mina Soilihi  -->
+          <!-- 3. ARIFACHADI ABDALLAH Roukia  -->
           <article class="glass-team-card" data-scroll-snap-align="start">
             <div class="glass-photo-container">
               <img src="ARIFACHADI ABDALLAH Roukia.jpg" alt="ARIFACHADI ABDALLAH Roukia" loading="lazy" class="glass-member-photo" />
@@ -3056,7 +3138,8 @@ body {
             </div>
           </article>
 
-            <article class="glass-team-card" data-scroll-snap-align="start">
+          <!-- 4.TSARALAZA Germaine -->
+          <article class="glass-team-card" data-scroll-snap-align="start">
             <div class="glass-photo-container">
               <img src="TSARALAZA Germaine.jpg" alt="TSARALAZA Germaine" loading="lazy" class="glass-member-photo" />
             </div>
@@ -3068,6 +3151,21 @@ body {
               </p>
             </div>
           </article>
+
+          <!-- 5.TSARALAZA Germaine -->
+          <article class="glass-team-card" data-scroll-snap-align="start">
+            <div class="glass-photo-container">
+              <img src="Logo.jpg" alt="Mina Soilihi" loading="lazy" class="glass-member-photo" />
+            </div>
+            <div class="glass-card-content">
+              <h3 class="glass-member-name">KASSIM SOILHA Jasmine </h3>
+              <p class="glass-member-role">Conseillère en insertion professionnelle</p>
+              <p class="glass-member-bio">
+                les liens avec nos membres.
+              </p>
+            </div>
+          </article>
+
 
           <!-- Ajoutez d'autres membres ici -->
         </div>
@@ -3434,9 +3532,10 @@ body {
             <div class="footer-section">
                 <h3>Réseaux sociaux</h3>
                 <div class="social-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/aejmayotte?locale=fr_FR" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/aejm_dembeni/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/association-des-etudiants-et-des-jeunes-de-mayotte-aejm/about/" aria-label="linkedin"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.tiktok.com/@aejm_dembeni" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
             <div class="footer-section">
