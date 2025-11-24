@@ -14,9 +14,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Dépendance Fuse.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
-    <style>
 
-        /* Déclarations de variables pour un design moderne */
+  <!-- ================== STYLES ORIGINAUX (1) ================== -->
+<style>
+    /* Déclarations de variables pour un design moderne */
 :root {
     --primary-color: #2BB0ED; /* Couleur principale du site */
     --secondary-color: #2292cc; /* Couleur secondaire */
@@ -91,7 +92,6 @@ nav a {
 }
 
 /* Changement de style au survol d'un lien de navigation */
-
 nav a:hover {
     background: var(--primary-color); /* Change le fond au survol */
     color: white; /* Change la couleur du texte au survol */
@@ -121,7 +121,6 @@ nav ul li .submenu li a {
   display: block;
 }
 
-
 /* Ajouter un effet de changement d'ombre pour l'en-tête lors du survol */
 header:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Légère ombre plus prononcée au survol */
@@ -130,7 +129,7 @@ header:hover {
 /* Styles pour les sections */
 section {
     padding: var(--section-padding); /* Espacement vertical des sections */
-    margin: rem 0; /* Marges entre les sections */
+    margin: 2rem 0; /* ⚠️ Correction : ancien "margin: rem 0;" → marge verticale entre sections */
     box-shadow: 0 4px 10px var(--shadow); /* Ombre portée pour les sections */
     border-radius: var(--border-radius); /* Arrondit les coins des sections */
     background: white; /* Couleur de fond de la section */
@@ -272,7 +271,7 @@ section {
     }
 
     /*********************************************************************
-     *                       EVENT CALENDAR
+     *                          EVENT CALENDAR
      *********************************************************************/
     .carousel .event-calendar {
       height: 100%;
@@ -430,7 +429,7 @@ section {
     }
 
     /*********************************************************************
-     *                   BOUTONS DE FILTRE
+     *                  BOUTONS DE FILTRE
      *********************************************************************/
     .carousel .filter-buttons {
       display: flex;
@@ -463,7 +462,7 @@ section {
     }
 
     /*********************************************************************
-     *                  NAVIGATION (PREV / NEXT / DOTS)
+     *              NAVIGATION (PREV / NEXT / DOTS)
      *********************************************************************/
     .carousel .navigation {
       position: absolute;
@@ -525,7 +524,7 @@ section {
     }
 
     /*********************************************************************
-     *                            MEDIA QUERIES
+     *                           MEDIA QUERIES
      *********************************************************************/
     @media (max-width: 768px) {
       .carousel {
@@ -552,7 +551,7 @@ section {
     }
 
     /*********************************************************************
-     *                       ANIMATIONS @KEYFRAMES
+     *                      ANIMATIONS @KEYFRAMES
      *********************************************************************/
     @keyframes float-1 {
       0% { transform: translateY(0) rotate(0deg); }
@@ -737,7 +736,7 @@ section {
 }
 
 
-    /* Styles de la section adhésion */
+/* Styles de la section adhésion */
 .adhesion-section {
     padding: 4rem 1.5rem;
     background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
@@ -871,7 +870,7 @@ section {
     text-decoration: none;
 }
 
-        /* Styles de la section contact */
+/* Styles de la section contact */
 .contact-section {
     padding: 4rem 1.5rem;
     background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
@@ -1605,6 +1604,7 @@ footer > p {
         
     </style>
 
+    <!-- ================== STYLES ORIGINAUX (2) ================== -->
     <style>
             :root { 
     --primary-color: #2BB0ED;
@@ -1826,7 +1826,7 @@ body {
     }
 }
 
-   /* =====================
+/* =====================
    SECTION ÉQUIPE MODERNISÉE
    ===================== */
 /********************************** 
@@ -2289,7 +2289,7 @@ body {
     }
 }
 
-        /* qui-sommes-nous */
+/* qui-sommes-nous */
 
 :root {
     --section-padding: 4rem 2rem;
@@ -2519,7 +2519,7 @@ body {
 
 .new-carousel-item {
   min-width: 100%;
-  padding: rem;
+  padding: 1.5rem; /* ⚠️ Correction : ancien "padding: rem;" → padding homogène */
   box-sizing: border-box;
 }
 
@@ -2683,13 +2683,396 @@ body {
   }
 }
     </style>
+
+    <!-- ================== STYLES DE SURCHARGE (3) – DESIGN MODERNISÉ ================== -->
+    <style>
+/* ============ VARIABLES GLOBALES OVERRIDES ============ */
+:root {
+  --primary-color: #27a9e5;
+  --primary-dark: #1b82b0;
+  --accent-color: #4F46E5;
+  --bg-page: #f3f4f6;
+  --bg-card: #ffffff;
+  --text-main: #111827;
+  --text-soft: #6b7280;
+  --radius-lg: 1.75rem;
+  --radius-pill: 999px;
+  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+  --shadow-strong: 0 30px 80px rgba(15, 23, 42, 0.45);
+}
+
+/* ============ RESET SIMPLE ============ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============ BODY GLOBAL (override) ============ */
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at top left, #e0f2fe 0, transparent 55%),
+    radial-gradient(circle at bottom right, #eef2ff 0, transparent 55%),
+    var(--bg-page);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============ HEADER / NAV ============ */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  max-width: 1200px;
+  margin: 0.75rem auto 2rem;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+}
+
+/* Logo */
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+header .logo img {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.45);
+}
+
+header .logo a {
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-main);
+}
+
+/* Navigation desktop */
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  position: relative;
+}
+
+nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+}
+
+/* Petit trait sous le lien au hover */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 6px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+  opacity: 0;
+  transform: scaleX(0.7);
+  transform-origin: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+nav a:hover {
+  color: #0f172a;
+  background: rgba(148, 163, 184, 0.14);
+  transform: translateY(-1px);
+}
+
+nav a:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Sous-menu (Accueil) */
+nav ul li .submenu {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 220px;
+  background: #fff;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18);
+  list-style: none;
+}
+
+nav ul li:hover .submenu {
+  display: block;
+}
+
+nav ul li .submenu li a {
+  width: 100%;
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+/* ============ NAV MOBILE ============ */
+.nav-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(255, 255, 255, 0.98);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: #0f172a;
+}
+
+@media (max-width: 900px) {
+  header {
+    padding-inline: 1rem;
+  }
+
+  nav ul {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 1.25rem;
+    padding: 0.75rem;
+    min-width: 230px;
+    box-shadow: var(--shadow-soft);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  nav ul.nav-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+}
+
+/* ============ HERO (bannière) ============ */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 54vh;
+    background: linear-gradient(rgb(4 4 4 / 20%), rgb(35 35 35 / 50%)), url(Equipe-Aejm.jpg) no-repeat center center / cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8rem 1rem;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.4), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.4), transparent 55%);
+  mix-blend-mode: screen;
+  opacity: 0.95;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  text-align: center;
+  color: #f9fafb;
+}
+
+.hero-content h2 {
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.hero-content p {
+  font-size: 1.05rem;
+  color: rgba(241, 245, 249, 0.9);
+  margin-bottom: 2rem;
+}
+
+.hero .join-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* ============ BOUTON PRINCIPAL ============ */
+.join-button {
+  padding: 0.9rem 1.8rem;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 14px 35px rgba(34, 197, 94, 0.6);
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.join-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 45px rgba(22, 163, 74, 0.7);
+  filter: brightness(1.04);
+}
+
+/* ============ SECTIONS GLOBALES ============ */
+section {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  padding: 3rem 1.5rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: var(--shadow-soft);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 2.5vw, 2.4rem);
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -0.6rem;
+  width: 60px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+}
+
+.section-subtitle {
+  max-width: 640px;
+  margin: 0.75rem auto 0;
+  font-size: 0.98rem;
+  color: var(--text-soft);
+}
+
+.intro-text {
+  max-width: 800px;
+  margin: 0 auto 1.75rem;
+  font-size: 0.98rem;
+  color: var(--text-soft);
+}
+
+/* ============ RWD ============ */
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 1.25rem 3rem;
+    min-height: 60vh;
+    border-radius: 1.75rem;
+  }
+
+  .hero-content h2 {
+    font-size: 1.9rem;
+  }
+
+  section {
+    padding: 2.5rem 1.25rem;
+    margin-bottom: 2.25rem;
+  }
+}
+
+/* ===== Wrapper pour centrer toute la page ===== */
+.page-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+    </style>
+
 </head>
 <body>
+  <div class="page-wrapper">
     <header> 
   <div class="logo">
     <a href="#accueil">AEJM</a>
     <img src="Logo.jpg" alt="Logo AEJM">
   </div>
+
+  <!-- Bouton menu mobile -->
+  <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
   <nav>
     <ul>
       <li>
@@ -2727,7 +3110,8 @@ body {
             <img src="Logo_2.png" alt="Logo communauté" class="logo">
             <img src="Departement.png" alt="Logo jeunesse" class="logo">
         </div>
-        <h3 class="section-title">Qui sommes-nous ? <p> Nous Sommes Des Acteurs Engagés pour Façonner l'Avenir des Jeunes de Mayotte</h3>
+        <h3 class="section-title">Qui sommes-nous ?</h3>
+        <p class="intro-text">Nous Sommes Des Acteurs Engagés pour Façonner l'Avenir des Jeunes de Mayotte</p>
     </div>
     
     <p class="intro-text">
@@ -2890,7 +3274,7 @@ body {
       </article>
     </div>
 
-        <h2 class="section-title">L'AEJM : Un repère pour la Jeunesse de Mayotte et un Soutien face à la crise sanitaire et aux catastrophes naturelles<P></P><br><span>LA CRISE SANITAIRE</span></h2>
+        <h2 class="section-title">L'AEJM : Un repère pour la Jeunesse de Mayotte et un Soutien face à la crise sanitaire et aux catastrophes naturelles<br><span>LA CRISE SANITAIRE</span></h2>
         <p></p>
 
         <p class="intro-text">
@@ -3152,10 +3536,10 @@ body {
             </div>
           </article>
 
-          <!-- 5.TSARALAZA Germaine -->
+          <!-- 5. Jasmine -->
           <article class="glass-team-card" data-scroll-snap-align="start">
             <div class="glass-photo-container">
-              <img src="Logo.jpg" alt="Mina Soilihi" loading="lazy" class="glass-member-photo" />
+              <img src="Logo.jpg" alt="KASSIM SOILHA Jasmine" loading="lazy" class="glass-member-photo" />
             </div>
             <div class="glass-card-content">
               <h3 class="glass-member-name">KASSIM SOILHA Jasmine </h3>
@@ -3374,9 +3758,6 @@ body {
             </article>
 
             <!-- Répétez les cartes partenaires suivantes -->
-            <!-- Carte partenaire 2 -->
-                <!-- ... même structure ... -->
-            </article>
 
              <article class="partner-card">
                 <div class="card-inner">
@@ -3434,86 +3815,110 @@ body {
                     <div class="partner-content">
                         <h3 class="partner-name">Département De Mayotte</h3>
                         <p class="partner-description">Le Département gère, entretient et et l'équipement (informatique notamment) des collèges publics afin d'offrir de bonnes conditions d'accueil et d'enseignement aux élèves</p>
-                        <a href="https://www.mayotte.fr/le-conseil-departemental/institution/historique#:~:text=protection%20et%20action%20sociale%2C,finances%20communales" class="partner-link">
+                                                <a href="https://www.departementdemayotte.fr" class="partner-link" target="_blank" rel="noopener">
                             <span>Explorer</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
             </article>
-
-            <!-- Ajoutez autant de cartes que nécessaire -->
         </div>
-    </div>
 
-    <!-- Contrôles de navigation -->
-    <button class="scroll-btn prev" aria-label="Partenaire précédent">
-        <i class="fas fa-chevron-left"></i>
-    </button>
-    <button class="scroll-btn next" aria-label="Partenaire suivant">
-        <i class="fas fa-chevron-right"></i>
-    </button>
+        <!-- Boutons de scroll horizontal -->
+        <button class="scroll-btn prev" type="button" aria-label="Faire défiler vers la gauche">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="scroll-btn next" type="button" aria-label="Faire défiler vers la droite">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
 </section>
 
-    <!-- Section contact -->
+<!-- Section contact -->
 <section id="contact" class="contact-section">
     <div class="contact-container">
         <div class="contact-header">
-            <h2>📬 Contactez-nous</h2>
-            <p class="subtitle">Une question, une suggestion ou simplement envie de discuter ? Écrivez-nous !</p>
+            <h2>
+                <i class="fas fa-envelope-open-text"></i>
+                Nous contacter
+            </h2>
+            <p class="subtitle">
+                Une question, un projet, une envie de collaboration ? Écrivez-nous, l’équipe de l’AEJM vous répondra rapidement.
+            </p>
         </div>
-        
+
         <div class="contact-wrapper">
-            <form id="contact-form" class="animated-form">
+            <!-- Formulaire de contact -->
+            <form id="contact-form">
                 <div class="form-grid">
                     <div class="form-group floating-label">
-                        <input type="text" id="contact-name" required autocomplete="name">
-                        <label for="contact-name">Nom et prénom complet</label>
+                        <input type="text" id="contact-name" name="name" required autocomplete="name">
+                        <label for="contact-name">Nom et prénom</label>
                         <div class="underline"></div>
                     </div>
-                    
+
                     <div class="form-group floating-label">
-                        <input type="email" id="contact-email" required autocomplete="email">
+                        <input type="email" id="contact-email" name="email" required autocomplete="email">
                         <label for="contact-email">Adresse email</label>
                         <div class="underline"></div>
                     </div>
+
+                    <div class="form-group floating-label">
+                        <input type="text" id="contact-subject" name="subject" required>
+                        <label for="contact-subject">Objet de votre message</label>
+                        <div class="underline"></div>
+                    </div>
+
+                    <div class="form-group floating-label">
+                        <textarea id="contact-message" name="message" rows="4" required></textarea>
+                        <label for="contact-message">Votre message</label>
+                        <div class="underline"></div>
+                    </div>
                 </div>
 
-                <div class="form-group floating-label">
-                    <textarea id="contact-message" rows="4" required></textarea>
-                    <label for="contact-message">Votre message</label>
-                    <div class="underline"></div>
-                </div>
-
-                <button type="submit" class="submit-btn">
-                    <span class="btn-text">Envoyer le message</span>
-                    <div class="loader"></div>
+                <button type="submit" class="submit-btn" id="contact-submit">
+                    <span class="btn-text">Envoyer mon message</span>
+                    <div class="loader" id="contact-loader"></div>
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </form>
 
-            <div class="contact-alert success">
+            <!-- Message de succès -->
+            <div class="contact-alert" id="contact-alert">
                 <i class="fas fa-check-circle"></i>
-                <p>Message envoyé avec succès !</p>
+                <div>
+                    <strong>Merci pour votre message !</strong>
+                    <p>Votre demande a bien été envoyée à l’équipe de l’AEJM. Nous reviendrons vers vous dans les meilleurs délais.</p>
+                </div>
             </div>
 
-            <div class="alternative-contact">
-                <div class="divider">
-                    <span>Ou</span>
+            <div class="divider">
+                <span>Ou contactez-nous directement</span>
+            </div>
+
+            <!-- Coordonnées directes -->
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email</strong>
+                        <p><a href="mailto:contact@aejm.yt">contact@aejm.yt</a></p>
+                    </div>
                 </div>
-                
-                <div class="contact-methods">
-                    <a href="tel:+262 269 66 68 16" class="contact-method">
-                        <i class="fas fa-phone-alt"></i>
-                        <span>+262 269 66 68 16</span>
-                    </a>
-                    <a href="mailto:contact@aejm.org" class="contact-method">
-                        <i class="fas fa-envelope"></i>
-                        <span>secretaire@aejm.fr</span>
-                    </a>
-                    <div class="contact-method">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>RESIDENCE LES FLAMBOYANTS, 6 RUE LAMBERT ILONI<br>Dembéni 97660 Mayotte</span>
+
+                <div class="contact-method">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Téléphone</strong>
+                        <p><a href="tel:+262000000000">+262 (0)6 00 00 00 00</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <i class="fas fa-location-dot"></i>
+                    <div>
+                        <strong>Adresse</strong>
+                        <p>Dembéni, Mayotte – Association des Étudiants et des Jeunes de Mayotte (AEJM)</p>
                     </div>
                 </div>
             </div>
@@ -3521,33 +3926,64 @@ body {
     </div>
 </section>
 
-    <!-- Pied de page -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p>secretaire@aejm.fr</p>
-                <p>+262 269 66 68 16</p>
-            </div>
-            <div class="footer-section">
-                <h3>Réseaux sociaux</h3>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/aejmayotte?locale=fr_FR" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/aejm_dembeni/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/company/association-des-etudiants-et-des-jeunes-de-mayotte-aejm/about/" aria-label="linkedin"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.tiktok.com/@aejm_dembeni" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Adresse</h3>
-                <p>RESIDENCE LES FLAMBOYANTS, 6 RUE LAMBERT ILONI<br>Dembéni 97660 Mayotte</p>
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <!-- Bloc 1 : Présentation -->
+        <div class="footer-section">
+            <h3>AEJM</h3>
+            <p>
+                L’Association des Étudiants et des Jeunes de Mayotte accompagne, informe et
+                valorise la jeunesse mahoraise depuis 2013.
+            </p>
+            <p>
+                Basée à Dembéni, l’AEJM agit dans les quartiers, les établissements scolaires
+                et auprès des jeunes actifs.
+            </p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/aejmayotte" target="_blank" rel="noopener" aria-label="Facebook AEJM">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram AEJM">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn AEJM">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 2rem;">&copy; 2024 AEJM - Tous droits réservés</p>
-    </footer>
 
+        <!-- Bloc 2 : Liens utiles -->
+        <div class="footer-section">
+            <h3>Navigation</h3>
+            <p><a href="#accueil">Accueil</a></p>
+            <p><a href="#qui-sommes-nous">Qui sommes-nous ?</a></p>
+            <p><a href="#actions">Nos actions</a></p>
+            <p><a href="#videos">Vidéos</a></p>
+            <p><a href="#adhesion">Adhésion / Bénévolat</a></p>
+            <p><a href="#partenaires">Partenaires</a></p>
+            <p><a href="#contact">Contact</a></p>
+        </div>
 
-    <script>
+        <!-- Bloc 3 : Infos pratiques -->
+        <div class="footer-section">
+            <h3>Informations</h3>
+            <p><strong>Siège :</strong><br>Dembéni – Mayotte</p>
+            <p><strong>Email :</strong><br><a href="mailto:contact@aejm.yt">contact@aejm.yt</a></p>
+            <p><strong>Téléphone :</strong><br><a href="tel:+262000000000">+262 (0)6 00 00 00 00</a></p>
+            <p><strong>Horaires :</strong><br>Du lundi au vendredi, 9h – 17h</p>
+        </div>
+    </div>
+
+    <p>
+        © <span id="year"></span> – AEJM, Association des Étudiants et des Jeunes de Mayotte.
+        Tous droits réservés.
+    </p>
+</footer>
+  </div> <!-- fin .page-wrapper -->
+
+<!-- ===================== SCRIPTS ===================== -->
+<script>
        document.addEventListener('DOMContentLoaded', () => {
   const carousel = document.querySelector('.new-carousel');
   const items = document.querySelectorAll('.new-carousel-item');
@@ -4056,7 +4492,7 @@ const normalizeText = (text) => {
         .replace(/[^\w\s]/g, "");          // Retire la ponctuation
 };
 
-/* Liste des questions-réponses pour La Mina */
+/* Liste des questions-réponses pour l'assistante virtuelle de l'AEJM */
 const responses = [
     // ********** QUESTIONS GÉNÉRALES **********
     {
@@ -4087,7 +4523,7 @@ const responses = [
     // ********** À PROPOS DE L'ASSOCIATION **********
     {
         question: ["qui êtes-vous", "présentation", "aejm", "association"],
-        answer: "L'AEJM, fondée en octobre 2013 à Dembéni, est l'Association des Étudiants et des Jeunes de Mayotte, une organisation départementale dédiée aux jeunes âgés de 15 à 25 ans, qu'ils soient scolarisés ou non. \n▶️ Initialement connue sous le nom d'Association des Étudiants du Centre Universitaire de Formation et de Recherche (CUFR), elle a élargi son champ d'action en septembre 2021 pour inclure les jeunes non étudiants, reflétant ainsi son engagement à promouvoir le vivre-ensemble et à répondre aux besoins variés de la jeunesse mahoraise. \n▶️ L'association concentre ses efforts sur les quartiers prioritaires de la politique de la ville, les établissements scolaires (lycées et CUFR) et les centres de formation. Située à Iloni, Dembéni, elle peut être contactée par téléphone au 0269 66 68 16 ou par email à secretaire@aejm.fr.\n▶️ En janvier 2025, suite aux passages du cyclone Chido et de la tempête Dikeledi qui ont dévasté l’île, l'AEJM s'est mobilisée pour soutenir les jeunes Mahorais touchés par ces catastrophes en menant une enquête sociale pour identifier leurs besoins urgents. \n▶️ L'AEJM joue un rôle essentiel dans l'accompagnement des jeunes de Mayotte, en favorisant leur épanouissement personnel et social, et en répondant à leurs aspirations à travers des initiatives adaptées.",
+        answer: "L’Association des Étudiants et des Jeunes de Mayotte (AEJM)\n\nL’Association des Étudiants et des Jeunes de Mayotte (AEJM) a été fondée en 2013 sous le nom d’Association des Étudiants du Centre Universitaire de Mayotte (AECUM). Basée à Dembéni, elle a été créée par des étudiants du CUFR et s’adresse aujourd’hui aux jeunes de 15 à 25 ans, en particulier ceux issus des quartiers prioritaires, ainsi qu’aux jeunes actifs.\n\nNotre mission est d’accompagner les jeunes dans leur développement personnel et professionnel à travers des actions dans plusieurs domaines : la promotion de la santé, l’animation des quartiers, la vie étudiante, l’accompagnement social et professionnel ainsi que le soutien pédagogique.\n\nNos Missions\n\nL’AEJM intervient principalement dans les communes de Dembéni et Koungou, ainsi que dans les établissements scolaires et centres de formation de Mayotte. L’association mène également des actions ponctuelles dans d’autres communes pour soutenir la jeunesse mahoraise.\n\nEn tant que membre actif de plusieurs instances éducatives et sociales, nous contribuons aux discussions et initiatives liées à la jeunesse, la santé, le social, l’éducation et la formation.\n\nNotre Engagement au Service des Jeunes\n\n1. Prévention et Promotion de la Santé\n\nChaque année, nous sensibilisons plusieurs milliers de jeunes à travers des campagnes et événements sur des thématiques essentielles :\n\t• Santé sexuelle et reproductive\n\t• Nutrition et bien-être\n\t• Prévention des addictions\n\t• Préservation et gestion de l’eau\n\nNos actions se déroulent dans les quartiers prioritaires, les établissements scolaires et lors de maraudes en milieu festif, favorisant des échanges ouverts et sans tabou.\n\n2. Animation des Quartiers et Vie Étudiante\n\nNous organisons régulièrement des activités pour dynamiser les quartiers prioritaires et renforcer la vie étudiante à Mayotte. L’objectif est de :\n\t• Créer du lien social et encourager l’engagement des jeunes\n\t• Proposer des espaces d’échange et de développement personnel\n\t• Offrir des opportunités culturelles et sportives\n\n3. Accompagnement Social et Insertion Professionnelle\n\nNous aidons les jeunes à s’orienter et à s’insérer dans le monde professionnel grâce à plusieurs initiatives :\n\t• Accompagnement et orientation sociale : soutien dans les démarches administratives et éducatives\n\t• Insertion sociale et professionnelle : aide à l’accès à l’emploi et aux formations\n\t• Épicerie sociale et solidaire : en cours de finalisation, elle proposera des produits de première nécessité à bas prix\n\t• Restaurant social et solidaire : prévu pour 2026, il offrira des repas accessibles aux jeunes en difficulté\n\nMaison des Étudiants de Mayotte\n\nEn 2020, l’AEJM a ouvert la première Maison des Étudiants de Mayotte (MDE), un lieu dédié aux jeunes avec :\n\t• Un espace de co-working\n\t• Une salle de réunion\n\t• Un accès Wi-Fi gratuit\n\t• Des équipements de diffusion\n\nLa MDE accompagne les étudiants et jeunes actifs dans leurs projets académiques et associatifs. En 2025, nous inaugurerons la Maison des Étudiants et des Jeunes de Mayotte, un espace encore plus complet pour soutenir la jeunesse mahoraise.\n\nSalon de l’Étudiant et de l’Apprenti de Mayotte\n\nLancé en 2020, ce salon est devenu itinérant en 2022 pour toucher un plus large public malgré les défis logistiques. En 2023, il a fusionné avec le Salon de l’Apprentissage pour mieux accompagner les jeunes vers le monde professionnel.\n\nCet événement majeur propose :\n\t• Des informations sur les formations et métiers\n\t• Des conseils pour l’orientation et l’insertion professionnelle\n\t• Un job dating spécial alternance et formation qualifiante, organisé en 2023 et 2024\n\nNotre Mobilisation pour la Communauté\n\nL’AEJM s’engage activement dans des actions de solidarité en réponse aux besoins de la population :\n\t• Pendant la crise sanitaire (2020-2021) : distribution d’aide alimentaire et soutien aux campagnes de sensibilisation aux gestes barrières et dépistage\n\t• Face à la crise de l’eau (2023) : distribution de bouteilles d’eau pour aider les habitants en difficulté\n\nNous restons engagés au service de la jeunesse et de la communauté mahoraise, en nous adaptant aux enjeux actuels pour un avenir plus prometteur.",
         quickReplies: ["Contact", "Historique", "Activités"]
     },
     {
